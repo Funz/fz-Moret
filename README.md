@@ -1,6 +1,6 @@
 # fz-Moret
 
-Funz plugin for MORET (Monte Carlo calculations for reactor physics)
+Funz plugin for MORET (Monte Carlo neutron transport code for criticality safety)
 
 ## Features
 
@@ -8,12 +8,12 @@ This plugin integrates MORET calculations with the Funz parametric computing fra
 - Automated parametric studies for criticality safety calculations
 - Variable substitution in MORET input files
 - Formula expressions for derived parameters
-- Automatic extraction of keff and uncertainty results
-- Support for perturbation calculations
+- Automatic extraction of keff, its uncertainty and the end status of each run
+- Extraction of keff variations of perturbed systems (`ASSO` `REPL` / `TAYL`)
 
 ### Input
 
-- **File type supported**: `*.m5`, any other format for resources
+- **File type supported**: `*.m6` (MORET 6), `*.m5` (MORET 5, unverified), any other format for resources
 - **Parameter syntax**:
   - Variable syntax: `${...}`
   - Formula syntax: `@{...}`
@@ -23,24 +23,30 @@ This plugin integrates MORET calculations with the Funz parametric computing fra
 
 ```
 MORET_BEGIN
+GODIVA - bare HEU metal sphere (MORET 6)
 
-...
 GEOM
   MODU 0
-  TYPE 1 SPHE ${radius~[8.0,9.0]}
-  VOLU Ext0 0 1 1 0.0 0.0 0.0
+    TYPE 1 SPHE ${radius~[8.0,9.0]}
+    VOLU 1 0 1 UMET 0. 0. 0.
   ENDM
 ENDG
 
 MATE
-  ...
-  COMP UMET
-    CONC
-    U234     4.91895E-04
-    U235     ${u5~4.49988E-02}
-    U238     2.49865E-03
-  ENDC   
-ENDM
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 ${u5~4.49988E-02}
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+SOUR
+  UNIF 1000
+ENDS
 ...
 ENDD
 MORET_END
@@ -52,23 +58,25 @@ This will identify input variables:
 
 ### Output
 
-- **File type supported**: `*.listing`
-- **Extracted values**: `mean_keff`, `sigma_keff`, `dkeff_pertu`, `sigma_dkeff_pertu`
+- **Files read**: `<input>.listing` and `<input>.out.xml` (e.g. `godiva.m6.listing`), as named by MORET 6.0.0
+- **Extracted values**:
 
-#### Example output file:
+| Variable | Content |
+|---|---|
+| `moret_status` | `NORMAL END`, `ABNORMAL END: <MORET error message>`, `NO OUTPUT` (no listing) or `NO END BANNER` |
+| `mean_keff`, `sigma_keff` | keff and standard deviation of the lowest-sigma estimator (initial system) |
+| `dkeff`, `sigma_dkeff` | keff variation of each perturbed system, flattened by fz into `dkeff_1`, `dkeff_2`, ... (absent without perturbation) |
+
+#### Example output (listing):
 
 ```
+##                 CYCLE    100 LOWEST SIGMA ESTI.        0.99381 +/-  0.00203  :  0.98772 < KEFF < 0.99991           ##
 ...
-##                                             ESTIMATION FINALE DU KEFF                                              ##
-##                                                                                                                    ##
-##                                                          KEFF     ECART TYPE    INTERVALLE A +/- 3 SIGMA           ##
-##                 ETAPE    417  ESTI. + FAIBLE SIGMA     0.99612 +/-  0.00100  :  0.99314 < KEFF < 0.99911           ##
-...
+##                                               PERTURBED SYSTEM NO 1                                                ##
+##                 CYCLE    100 LOWEST SIGMA ESTI.    +8.0230E-03 +/- 4.6602E-05 : +7.8831E-03 < DKEFF < +8.1628E-03  ##
 ```
 
-This will return output:
-- `mean_keff` = 0.99612
-- `sigma_keff` = 0.00100
+This returns `mean_keff` = 0.99381, `sigma_keff` = 0.00203, `dkeff_1` = 0.008023, `sigma_dkeff_1` = 4.6602e-05.
 
 ## Installation
 
@@ -85,7 +93,15 @@ This will return output:
    fz.install('Moret')
    ```
 
-3. Install MORET at `/opt/MORET/scripts/moret.py` (or update the path in `.fz/calculators/Moret.sh`)
+3. Make the MORET launcher available and configure it through environment variables:
+
+| Variable | Default | Role |
+|---|---|---|
+| `MORET_CMD` | `moret.py` on `PATH`, else `/opt/MORET/scripts/moret.py` | launcher |
+| `MORET_RELEASE` | `6.0` for `.m6`, `5D1` for `.m5` | first launcher argument (`moret.py {5A1,5B1,5B2,5C1,5D1,6.0} input_file`); set to an empty string for a launcher without it |
+| `MORET_OPTS` | none | extra launcher options (e.g. `--keep_tmp_dir`) |
+
+MORET 6 launchers may run MORET in a Singularity container: `singularity` must then be in `PATH`.
 
 ## Usage
 
@@ -117,14 +133,14 @@ input_variables = {
 
 # Run parametric study
 results = fz.fzr(
-    "examples/Moret/godiva.m5",
+    "examples/Moret/godiva.m6",
     input_variables,
     "Moret",
     calculators="localhost_Moret",
     results_dir="moret_results"
 )
 
-print(results)
+print(results[["radius", "moret_status", "mean_keff", "sigma_keff"]])
 ```
 
 ### Parsing Input Variables
@@ -133,7 +149,7 @@ print(results)
 import fz
 
 # Parse input file to identify variables
-variables = fz.fzi("examples/Moret/godiva.m5", "Moret")
+variables = fz.fzi("examples/Moret/godiva.m6", "Moret")
 print(variables)
 ```
 
@@ -144,7 +160,7 @@ import fz
 
 # Compile input file with specific parameter values
 fz.fzc(
-    "examples/Moret/godiva.m5",
+    "examples/Moret/godiva.m6",
     {"radius": 8.5, "u5": 5.0e-02},
     "Moret",
     output_dir="compiled"
@@ -163,9 +179,14 @@ fz-Moret/
 │       └── localhost_Moret.json    # Local calculator configuration
 ├── examples/
 │   └── Moret/
-│       └── godiva.m5               # Example MORET input file
+│       ├── godiva.m6               # Example MORET 6 input file
+│       └── godiva.m5               # Legacy MORET 5 example (unverified)
 ├── tests/
-│   └── test_plugin.py              # Test suite
+│   ├── test_plugin.py              # Plugin structure and fz integration
+│   ├── test_calculator.py          # Moret.sh with a fake launcher
+│   ├── test_outputs_moret6.py      # Output extraction on real MORET 6 outputs
+│   ├── fixtures/moret6/            # Reference MORET 6.0.0 outputs (anonymized)
+│   └── moret_probe/                # Probe datasets to run with a real MORET
 ├── example_usage.ipynb             # Example usage notebook (Jupyter)
 ├── .gitignore
 ├── LICENSE                         # BSD-3-Clause license
@@ -184,11 +205,7 @@ Defines the input/output syntax for MORET files:
 - `commentline`: Comment character (`*`)
 - `output`: Shell commands mapping output variable names to extraction methods
 
-**Extracted Output Variables:**
-- `mean_keff`: Mean effective multiplication factor
-- `sigma_keff`: Standard deviation of keff
-- `dkeff_pertu`: Perturbation delta-keff (if PERTU is used)
-- `sigma_dkeff_pertu`: Standard deviation of delta-keff
+**Extracted Output Variables:** `moret_status`, `mean_keff`, `sigma_keff`, `dkeff`, `sigma_dkeff` (see [Output](#output)).
 
 ### Calculator Configuration (`.fz/calculators/localhost_Moret.json`)
 
@@ -205,14 +222,14 @@ To run MORET calculations on a remote server via SSH:
    {
        "uri": "ssh://username@hostname",
        "models": {
-           "Moret": "/path/to/Moret.sh"
+           "Moret": "MORET_CMD=/path/to/moret.py bash /path/to/Moret.sh"
        }
    }
    ```
 
 2. Use it in your Funz calls:
    ```python
-   results = fz.fzr("examples/Moret/godiva.m5", input_variables, "Moret",
+   results = fz.fzr("examples/Moret/godiva.m6", input_variables, "Moret",
                      calculators="Remote_Moret")
    ```
 
@@ -222,7 +239,10 @@ Run the test suite to validate the plugin:
 
 ```bash
 python tests/test_plugin.py
+pytest tests/test_calculator.py tests/test_outputs_moret6.py
 ```
+
+`tests/moret_probe/` contains short datasets and scripts to check the plugin assumptions against a real MORET installation (see its README).
 
 ## Customization
 
@@ -230,23 +250,27 @@ To adapt this plugin for your specific needs:
 
 1. **Modify input syntax**: Edit `.fz/models/Moret.json` to change variable/formula prefixes or delimiters
 2. **Add output variables**: Add new extraction commands in the `output` section
-3. **Change MORET path**: Update the MORET installation path in `.fz/calculators/Moret.sh`
+3. **Change MORET launcher**: set `MORET_CMD`, `MORET_RELEASE`, `MORET_OPTS` (no script edit needed)
 4. **Custom calculator**: Create additional calculator configurations for different execution environments
 
 ## Troubleshooting
 
-**Calculator script not executing:**
-- Ensure `.fz/calculators/Moret.sh` is executable: `chmod +x .fz/calculators/Moret.sh`
-- Verify MORET installation path in the script
+The calculator decides success from the MORET outputs, not from the launcher exit code
+(observed to be 0 even on abnormal end with MORET 6.0.0). Exit codes of `Moret.sh`, reported by fz in the
+`error` column together with the MORET message:
 
-**Output extraction failing:**
-- Check that MORET produces `.listing` files
-- Verify output extraction commands in `.fz/models/Moret.json`
-- Test commands manually on a sample `.listing` file
+| Code | Meaning | Check |
+|---|---|---|
+| 1 | no `.m6`/`.m5` dataset in the input | input files |
+| 4 | launcher not found | `MORET_CMD` |
+| 5 | no listing produced | `MORET_RELEASE`, launcher environment (e.g. `singularity` in `PATH`) |
+| 6 | MORET abnormal end | dataset (error message in `error` and `moret_status`) |
+| 7 | listing without end banner | interrupted run (time limit, crash) |
 
-**Variables not recognized:**
-- Ensure variable syntax matches the configuration: `${variable_name}`
-- Check that comment character `*` is not interfering with variable definitions
+A failed case is retried by fz up to `FZ_MAX_RETRIES` times (default 5), including deterministic dataset
+errors (code 6): set `FZ_MAX_RETRIES=1` while debugging a dataset.
+
+Default random seeds are 0: repeating a case gives identical results. Use `SOUR SEED` for independent replicates.
 
 ## Related Resources
 

@@ -48,3 +48,10 @@ htmlcov/
 compiled*/
 moret_results/
 
+
+# Resultats des sondes MORET (tests/moret_probe)
+tests/moret_probe/results-*
+
+# Fichiers de reference MORET (tests)
+!tests/fixtures/**/*.listing
+!tests/fixtures/**/*.out.xml

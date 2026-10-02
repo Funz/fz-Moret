@@ -1,0 +1,34 @@
+MORET_BEGIN
+GODIVA - bare HEU metal sphere (MORET 6)
+* Parameters: radius (cm), u5 (U235 concentration, 1E24 at/cm3)
+* Critical radius about 8.74 cm with JEFF-3.1.1.
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE ${radius~[8.0,9.0]}
+    VOLU 1 0 1 UMET 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 ${u5~4.49988E-02}
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END
