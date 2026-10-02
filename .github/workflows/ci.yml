@@ -23,10 +23,11 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install fz framework and plugin
+    - name: Install fz framework
       run: |
         pip install git+https://github.com/Funz/fz.git
-        python -c "import fz; fz.install('Moret')"
+        # No fz.install('Moret') here: it would overwrite the checked-out .fz/
+        # with the published plugin, so CI would not test this commit.
 
     - name: Validate JSON files
       run: |
