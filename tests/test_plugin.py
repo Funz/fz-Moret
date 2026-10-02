@@ -25,12 +25,15 @@ def test_model_files():
 
     # Check required fields
     required_fields = ['id', 'varprefix', 'delim', 'commentline', 'output']
+    expected_outputs = ['moret_status', 'mean_keff', 'sigma_keff', 'dkeff', 'sigma_dkeff']
     for field in required_fields:
         assert field in model, f"Missing required field: {field}"
         print(f"✓ Has field '{field}': {model[field] if field != 'output' else f'{len(model[field])} outputs'}")
 
     # Check output variables
     assert len(model['output']) > 0, "No output variables defined"
+    for name in expected_outputs:
+        assert name in model['output'], f"Missing output variable: {name}"
     print(f"✓ Output variables: {', '.join(model['output'].keys())}")
 
     print("✓ Model files test PASSED")
@@ -82,8 +85,9 @@ def test_example_files():
     """Test example files exist"""
     print("\n=== Testing Example Files ===")
 
-    # Check example file exists
-    example_path = 'examples/Moret/godiva.m5'
+    # Check example file exists (MORET 6 example; godiva.m5 kept for MORET 5)
+    assert os.path.exists('examples/Moret/godiva.m5'), "MORET 5 example missing"
+    example_path = 'examples/Moret/godiva.m6'
     assert os.path.exists(example_path), f"Example file not found: {example_path}"
     print(f"✓ Example file exists: {example_path}")
 
@@ -109,7 +113,7 @@ def test_with_fz():
         print(f"✓ fz module imported successfully")
 
         # Test variable parsing
-        example_path = 'examples/Moret/godiva.m5'
+        example_path = 'examples/Moret/godiva.m6'
         variables = fz.fzi(example_path, 'Moret')
         print(f"✓ fz.fzi() works, found variables: {list(variables.keys())}")
 
@@ -132,7 +136,7 @@ def test_with_fz():
             subdirs = [d for d in os.listdir(tmpdir) if os.path.isdir(os.path.join(tmpdir, d))]
             assert len(subdirs) > 0, "No compiled directory created"
 
-            compiled_file = os.path.join(tmpdir, subdirs[0], 'godiva.m5')
+            compiled_file = os.path.join(tmpdir, subdirs[0], 'godiva.m6')
             assert os.path.exists(compiled_file), f"Compiled file not found at {compiled_file}"
 
             # Check variable substitution

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<calculation code="MORET 6.0.0" commit_short_hash="d9ff307" compiler="Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000" compil_processor="Unknown P6 family" compil_os="Ubuntu 22.04.5 LTS" calculation_computer="calc-host.example" calculation_author="user" calculation_date="Thursday, October 01 2026 - 18h29m51s" input_file_md5="facc335568d9f24bbc79cb62703b369b">
+ <error_message>Error message number 3 from ERROR_ASSO_MATE_GEOM occurred during the association of the material compositions with the geometry media.<br/>The medium name FOO does not match a material composition name.</error_message>
+ <end_message>ABNORMAL END</end_message>
+ <cpu_time>
+  <read>.33695800</read>
+  <check>.0000000</check>
+  <simu_inactive>.0000000</simu_inactive>
+  <simu_active>.0000000</simu_active>
+  <output>.0000000</output>
+  <global>.33695800</global>
+ </cpu_time>
+ <real_time>
+  <read>.39092207</read>
+  <check>.0000000</check>
+  <simu_inactive>.0000000</simu_inactive>
+  <simu_active>.0000000</simu_active>
+  <output>.0000000</output>
+  <global>.39092207</global>
+ </real_time>
+ <output_files>
+  <expected number="2">.listing .out.xml</expected>
+  <existing number="2">.listing .out.xml</existing>
+ </output_files>
+</calculation>

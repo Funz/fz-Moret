@@ -1,6 +1,5 @@
 {
     "uri": "sh://",
-    "n": 2,
     "models": {
         "Moret": "bash .fz/calculators/Moret.sh"
     }

@@ -1,0 +1,101 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                  6666
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                 666666
+                MMMM    MMMM OO        OO RR        RR EE                TT                     66    66
+                MM MM  MM MM OO        OO RR        RR EE                TT                     66
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     66
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     6666666
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     66666666
+                MM        MM OO        OO RR    RR     EE                TT                     66    66
+                MM        MM OO        OO RR     RR    EE                TT                     66    66
+                MM        MM OO        OO RR      RR   EE                TT                     66    66
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                      666666
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                       6666
+
+
+                                <<<<<<< MORET 6.0.0 (commit short hash: d9ff307) >>>>>>>
+
+Compiled on processor: Unknown P6 family
+Compiled on OS: Ubuntu 22.04.5 LTS
+Compiled with: Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+Runned on computer: calc-host.example
+Runned by user: user
+Run date: Thursday, October 01 2026 - 18h29m55s
+
+Input file MD5: ce65d797e8304f3654dd66926b0face2
+
+:MORET_BEGIN:
+
+:ERREUR XMLC:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H4d XMLC supprime en 6.0.0 (skills v2 coherents):
+
+:* Attendu    : Error 20 (XMLC keyword is no longer available):
+
+::
+
+:GEOM:
+
+:  MODU 0:
+
+:    TYPE 1 SPHE 8.7407:
+
+:    VOLU 1 0 1 UMET 0. 0. 0.:
+
+:  ENDM:
+
+:ENDG:
+
+::
+
+:MATE:
+
+:  CONT:
+
+:    LIBR jeff311.xml:
+
+:    TEMP 300:
+
+:    COMP UMET:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.49988E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:  ENDM:
+
+::
+
+:OUTP:
+
+:  XMLC:
+
+Error message number 20 from ERROR_SUPPRESSED_KEYWORDS occurred when reading the suppressed keywords.
+The XMLC keyword is no longer available.
+
+
+               ==========================================================================================
+               |                            ABNORMAL END OF THE CALCULATION                             |
+               ==========================================================================================
+
+
+calc. time (s) :             CPU              real
+
+reading        :             0.3               0.4
+verification   :             0.0               0.0
+passive simu.  :             0.0               0.0
+active simu.   :             0.0               0.0
+outputs        :             0.0               0.0
+global         :             0.3               0.4

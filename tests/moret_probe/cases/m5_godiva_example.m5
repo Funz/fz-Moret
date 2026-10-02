@@ -1,7 +1,7 @@
 MORET_BEGIN
 TITLE GODIVA
-* MORET 5 syntax (TITLE, POIN source, FSIM); not verified. With MORET 6 this dataset fails
-* (medium "1" does not match COMP UMET): use godiva.m6 instead.
+* Hypothese : H6 exemple godiva.m5 du plugin (syntaxe MORET 5) compile ; a lancer avec MORET 5 ET MORET 6
+* Attendu    : MORET 5 NORMAL END ; MORET 6 erreurs (GRAP apres SOUR, FSIM, POIN, milieu 1)
 
 TERM
   CYCL
@@ -14,7 +14,7 @@ ENDT
 * Geometry modelling
 GEOM
   MODU 0
-  TYPE 1 SPHE ${radius~[8.0,9.0]}
+  TYPE 1 SPHE 8.7407
   VOLU Ext0 0 1 1 0.0 0.0 0.0
   ENDM
 ENDG
@@ -28,7 +28,7 @@ MATE
   COMP UMET
     CONC
     U234     4.91895E-04
-    U235     ${u5~4.49988E-02}
+    U235     4.49988E-02
     U238     2.49865E-03
   ENDC
 ENDM

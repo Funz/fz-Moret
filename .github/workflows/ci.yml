@@ -23,10 +23,11 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install fz framework and plugin
+    - name: Install fz framework
       run: |
         pip install git+https://github.com/Funz/fz.git
-        python -c "import fz; fz.install('Moret')"
+        # No fz.install('Moret') here: it would overwrite the checked-out .fz/
+        # with the published plugin, so CI would not test this commit.
 
     - name: Validate JSON files
       run: |
@@ -52,17 +53,22 @@ jobs:
     - name: Test variable parsing
       run: |
         echo "Testing variable parsing with fzi..."
-        python -c "import fz; vars = fz.fzi('examples/Moret/godiva.m5', 'Moret'); print('Variables found:', vars)"
+        python -c "import fz; vars = fz.fzi('examples/Moret/godiva.m6', 'Moret'); print('Variables found:', vars)"
 
     - name: Test input compilation
       run: |
         echo "Testing input compilation with fzc..."
-        python -c "import fz; fz.fzc('examples/Moret/godiva.m5', {'radius': 8.5}, 'Moret', output_dir='test_compiled')"
+        python -c "import fz; fz.fzc('examples/Moret/godiva.m6', {'radius': 8.5}, 'Moret', output_dir='test_compiled')"
         ls -la test_compiled/
 
     - name: Run plugin tests
       run: |
         python tests/test_plugin.py
+
+    - name: Test calculator script and output extraction (real MORET 6 outputs)
+      run: |
+        pip install pytest
+        pytest tests/test_calculator.py tests/test_outputs_moret6.py -v
 
   lint:
     name: Lint Shell Scripts
@@ -101,4 +107,4 @@ jobs:
     - name: Check example files
       run: |
         echo "Checking for example input files..."
-        test -f examples/Moret/godiva.m5 && echo "✓ Example input exists" || (echo "✗ Example input missing" && exit 1)
+        test -f examples/Moret/godiva.m6 && echo "✓ Example input exists" || (echo "✗ Example input missing" && exit 1)

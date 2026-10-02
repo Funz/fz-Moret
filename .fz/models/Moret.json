@@ -5,9 +5,10 @@
     "delim": "{}",
     "commentline": "*",
     "output": {
-        "mean_keff": "grep -E '(FAIBLE|LOWEST) SIGMA' *.listing | head -1 | awk '{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\\.[0-9]+$/ && $(i+1) ~ /^\\+\\/\\-$/) {print $i; exit}}'",
-        "sigma_keff": "grep -E '(FAIBLE|LOWEST) SIGMA' *.listing | head -1 | awk '{for(i=1;i<=NF;i++) if($i ~ /^\\+\\/\\-$/ && $(i+1) ~ /^[0-9]+\\.[0-9]+$/) {print $(i+1); exit}}'",
-        "dkeff_pertu": "if grep -q 'PERTU' *.m5 2>/dev/null; then grep -E '(FAIBLE|LOWEST) SIGMA' *.listing | sed -n '2p' | awk '{for(i=1;i<=NF;i++) if($i ~ /^[0-9]+\\.[0-9]+$/ && $(i+1) ~ /^\\+\\/\\-$/) {print $i; exit}}'; fi",
-        "sigma_dkeff_pertu": "if grep -q 'PERTU' *.m5 2>/dev/null; then grep -E '(FAIBLE|LOWEST) SIGMA' *.listing | sed -n '2p' | awk '{for(i=1;i<=NF;i++) if($i ~ /^\\+\\/\\-$/ && $(i+1) ~ /^[0-9]+\\.[0-9]+$/) {print $(i+1); exit}}'; fi"
+        "moret_status": "if ls *.out.xml >/dev/null 2>&1; then st=$(sed -n 's:.*<end_message>\\(.*\\)</end_message>.*:\\1:p' *.out.xml | head -1); err=$(sed -n 's:.*<error_message>\\(.*\\)</error_message>.*:\\1:p' *.out.xml | head -1 | sed 's:<br/>: :g'); elif ls *.listing >/dev/null 2>&1; then st=$(grep -oE '(AB)?NORMAL END OF THE CALCULATION' *.listing | tail -1 | sed 's/ OF THE CALCULATION//'); err=$(grep -A1 '^Error message number' *.listing | head -2 | tr '\\n' ' '); else st='NO OUTPUT'; fi; echo \"${st:-NO END BANNER}${err:+: $err}\"",
+        "mean_keff": "awk '/^##.*LOWEST SIGMA ESTI\\./{for(i=1;i<=NF;i++) if($i==\"+/-\"){print $(i-1); exit}}' *.listing",
+        "sigma_keff": "awk '/^##.*LOWEST SIGMA ESTI\\./{for(i=1;i<=NF;i++) if($i==\"+/-\"){print $(i+1); exit}}' *.listing",
+        "dkeff": "awk -v f=1 '/^##/{if($0~/PERTURBED SYSTEM NO/){match($0,/NO +[0-9]+/);s=substr($0,RSTART+3,RLENGTH-3)+0} else if(s>0 && $0~/LOWEST SIGMA ESTI\\./){for(i=1;i<=NF;i++) if($i==\"+/-\"){m[s]=$(i-1);d[s]=$(i+1)}; s=0} if($0~/TAYLOR SERIES EXPANSION/) t=1; if(t && $2~/^[0-9]+$/ && $4==\"+/-\"){m[$2]=$3;d[$2]=$5}} END{o=\"\"; for(k=1;k in m;k++){v=(f==1?m[k]:d[k]); sub(/^\\+/,\"\",v); o=o (o==\"\"?\"\":\", \") \"\\\"\" k \"\\\": \" v}; print \"{\" o \"}\"}' *.listing",
+        "sigma_dkeff": "awk -v f=2 '/^##/{if($0~/PERTURBED SYSTEM NO/){match($0,/NO +[0-9]+/);s=substr($0,RSTART+3,RLENGTH-3)+0} else if(s>0 && $0~/LOWEST SIGMA ESTI\\./){for(i=1;i<=NF;i++) if($i==\"+/-\"){m[s]=$(i-1);d[s]=$(i+1)}; s=0} if($0~/TAYLOR SERIES EXPANSION/) t=1; if(t && $2~/^[0-9]+$/ && $4==\"+/-\"){m[$2]=$3;d[$2]=$5}} END{o=\"\"; for(k=1;k in m;k++){v=(f==1?m[k]:d[k]); sub(/^\\+/,\"\",v); o=o (o==\"\"?\"\":\", \") \"\\\"\" k \"\\\": \" v}; print \"{\" o \"}\"}' *.listing"
     }
 }
