@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<calculation code="MORET 6.0.0" commit_short_hash="052de83" compiler="Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000" compil_processor="Unknown P6 family" compil_os="Ubuntu 22.04.5 LTS" calculation_computer="calc-host.example" calculation_author="user" calculation_date="Thursday, October 15 2026 - 11h53m11s" input_file_md5="b101fb1c5ec152d4d6effc2a2a036341">
+ <error_message>Error message number 1 from ERROR_READING_DATA occurred when reading the data input.<br/>Syntax error in the data input.<br/>Stop on character string Ceci in column 1 of the line:<br/>Ceci n est pas un commentaire<br/>The word "Ceci" is not one of the expected keywords.<br/>The content of a data input is as follows:<br/>a MANDATORY title line (first non-empty line read)<br/>    GEOM ... ENDG: mandatory<br/>    BOUN ... ENDB: optional (after GEOM block)<br/>    GRAP ... ENDG: optional (after GEOM and BOUN blocks)<br/>    PAIN ... ENDP: optional (after GEOM and BOUN blocks)<br/>    MATE ... ENDM: mandatory<br/>    ASSO ... ENDA: optional<br/>    OUTP ... ENDO: optional (after GEOM, MATE and ASSO blocks)<br/>    SOUR ... ENDS: mandatory (after GEOM, MATE, ASSO and OUTP blocks)<br/>    ESTI ... ENDE: optional<br/>    SIMU ... ENDS: optional<br/>    TERM ... ENDT: optional<br/>ENDD: mandatory at the end of the data input<br/>The character "*" introduces a comment until the end of the line.</error_message>
+ <end_message>ABNORMAL END</end_message>
+ <cpu_time>
+  <read>1.9557000E-02</read>
+  <check>.0000000E+00</check>
+  <simu_inactive>.0000000E+00</simu_inactive>
+  <simu_active>.0000000E+00</simu_active>
+  <output>.0000000E+00</output>
+  <global>1.9557000E-02</global>
+ </cpu_time>
+ <real_time>
+  <read>5.7075977E-02</read>
+  <check>.0000000E+00</check>
+  <simu_inactive>.0000000E+00</simu_inactive>
+  <simu_active>.0000000E+00</simu_active>
+  <output>.0000000E+00</output>
+  <global>5.7075977E-02</global>
+ </real_time>
+ <output_files>
+  <expected number="2">.listing .out.xml</expected>
+  <existing number="2">.listing .out.xml</existing>
+ </output_files>
+</calculation>

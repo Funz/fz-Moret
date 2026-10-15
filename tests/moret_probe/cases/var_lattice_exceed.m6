@@ -1,0 +1,50 @@
+MORET_BEGIN
+RESEAU 3x3 decale
+* Hypothese : H35b skills v0.2 : reseau place au centre du conteneur (0 0 0) : tronque sans erreur, avertissement exceed the lattice volume, keff faux
+* Attendu    : NORMAL END, keff < ok_lattice, avertissement dans le listing (compte WARN_ ?)
+
+GEOM
+  MODU 0
+    TYPE 1 BOX 22.5 22.5 7.5
+    VOLU box 0 1 VIDE 0. 0. 0.
+    TYPE 2 BOX 7.5 7.5 7.5
+    VOLU cell box 2 VIDE 0. 0. 0.
+    TYPE 3 SPHE 7.4
+    HOLE h cell 3 sph 0. 0. 0.
+    LATS
+      MPRI cell
+      DIML 3 3 1
+    ENDL
+  ENDM
+  MODU sph
+    TYPE 1 SPHE 7.4
+    VOLU 1 0 1 UMET 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+    COMP VIDE
+      CONC
+        O16 1.0E-08
+    ENDC
+  ENDM
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END

@@ -2,7 +2,9 @@
 
 The fake launcher mimics the verified behaviour of moret.py (MORET 6.0.0):
 release as first argument, outputs named <input>.listing / <input>.out.xml,
-exit code 0 whatever the outcome. It replays the reference outputs of
+exit code 0 whatever the outcome, and the Singularity bind failure of the
+MORET 6 container scripts when the dataset directory contains "," (fz case
+directories are named "x=1,y=2"). It replays the reference outputs of
 tests/fixtures/moret6 and records its arguments.
 
 Run: pytest tests/test_calculator.py
@@ -21,12 +23,18 @@ FIXTURES = ROOT / "tests" / "fixtures" / "moret6"
 
 FAKE = """#!/bin/bash
 echo "$@" > "$(dirname "$0")/args.txt"
+pwd > "$(dirname "$0")/cwd.txt"
 in="${@: -1}"
+case "$PWD" in
+  *,*) echo "FATAL:   container creation failed: mount hook function failure" >&2; exit 255 ;;
+esac
 case "$FAKE_CASE" in
   none) exit 0 ;;
   truncated) head -n 100 "$FIXTURES/ok_baseline/ok_baseline.m6.listing" > "$in.listing"; exit 0 ;;
   *) cp "$FIXTURES/$FAKE_CASE/$FAKE_CASE.m6.listing" "$in.listing"
-     cp "$FIXTURES/$FAKE_CASE/$FAKE_CASE.m6.out.xml" "$in.out.xml"; exit 0 ;;
+     cp "$FIXTURES/$FAKE_CASE/$FAKE_CASE.m6.out.xml" "$in.out.xml" 2>/dev/null
+     [ -f "$FIXTURES/$FAKE_CASE/moret.log" ] && grep -E "forrtl" "$FIXTURES/$FAKE_CASE/moret.log" >&2
+     exit 0 ;;
 esac
 """
 
@@ -41,14 +49,16 @@ def run(tmp_path):
     case_dir = tmp_path / "case"
     case_dir.mkdir()
 
-    def _run(fake_case="ok_baseline", input_name="godiva.m6", env=None, args=None):
-        (case_dir / input_name).write_text("dataset\n")
+    def _run(fake_case="ok_baseline", input_name="godiva.m6", env=None, args=None, cwd=None):
+        cwd = cwd or case_dir
+        cwd.mkdir(exist_ok=True)
+        (cwd / input_name).write_text("dataset\n")
         full_env = dict(os.environ, MORET_CMD=str(fake), FAKE_CASE=fake_case,
                         FIXTURES=str(FIXTURES))
         full_env.pop("MORET_RELEASE", None)
         full_env.update(env or {})
         proc = subprocess.run(["bash", str(SCRIPT)] + (args or [input_name]),
-                              cwd=case_dir, env=full_env, capture_output=True, text=True)
+                              cwd=cwd, env=full_env, capture_output=True, text=True)
         launcher_args = (bindir / "args.txt").read_text().split() if (bindir / "args.txt").exists() else None
         return proc, launcher_args
 
@@ -118,6 +128,59 @@ def test_launcher_not_found(tmp_path):
     proc = subprocess.run(["bash", str(SCRIPT), "godiva.m6"], cwd=tmp_path, env=env,
                           capture_output=True, text=True)
     assert proc.returncode == 4
+
+
+def test_launcher_output_logged(run, tmp_path):
+    proc, _ = run("var_pert_identical_system")
+    assert proc.returncode == 7
+    assert "forrtl: error (73): floating divide by zero" in proc.stderr
+    assert "forrtl" in (tmp_path / "case" / "moret.log").read_text()
+
+
+def test_crash_without_message(run):
+    proc, _ = run("err_missing_container")
+    assert proc.returncode == 7
+    assert "SIGSEGV" in proc.stderr
+
+
+def test_stop_option_is_normal_end(run):
+    proc, _ = run("var_stop")
+    assert proc.returncode == 0, proc.stderr
+    assert "STOP option" in proc.stderr
+
+
+def test_error_message_reported_in_full(run):
+    proc, _ = run("err_syntax_line")
+    assert proc.returncode == 6
+    assert "Ceci n est pas un commentaire" in proc.stderr
+    assert "The content of a data input is as follows:" in proc.stderr
+
+
+def test_comma_in_directory_runs_in_tmpdir(run, tmp_path):
+    """fz case directories "radius=8.5,u5=0.045" break singularity --bind (verified):
+    MORET runs in MORET_TMPDIR and its outputs are copied back."""
+    tmp = tmp_path / "scratch"
+    tmp.mkdir()
+    cwd = tmp_path / "radius=8.5,u5=0.045"
+    proc, _ = run(cwd=cwd, env={"MORET_TMPDIR": str(tmp)})
+    assert proc.returncode == 0, proc.stderr
+    assert "," not in (tmp_path / "bin" / "cwd.txt").read_text()
+    assert (cwd / "godiva.m6.listing").exists()
+    assert (cwd / "godiva.m6.out.xml").exists()
+    assert list(tmp.iterdir()) == []
+
+
+def test_moret_extension(run):
+    proc, args = run(input_name="BASIC_0_MATE_0001.moret")
+    assert proc.returncode == 0, proc.stderr
+    assert args == ["6.0", "BASIC_0_MATE_0001.moret"]
+
+
+def test_launcher_found_on_path(run, tmp_path):
+    env = {"MORET_CMD": "", "PATH": f"{tmp_path / 'bin'}:{os.environ['PATH']}"}
+    proc, args = run(env=env)
+    assert proc.returncode == 0, proc.stderr
+    assert args == ["6.0", "godiva.m6"]
 
 
 @pytest.mark.skipif(shutil.which("bash") is None, reason="bash required")

@@ -1,0 +1,39 @@
+MORET_BEGIN
+GODIVA VARD avec compte
+* Hypothese : H33c manuel MORET 6 : VARD nsyst v(1)..v(nsyst) ; skills v0.2 : le compte est lu comme une variation
+* Attendu    : a trancher : 2 systemes (manuel) ou 3 systemes dont +200 pct (skills)
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE 8.7407
+    VOLU 1 0 1 m1 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+ASSO
+  MEDI m1 UMET
+    VARD 2 0.01 -0.01
+ENDA
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END

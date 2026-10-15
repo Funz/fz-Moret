@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xsl/out.xsl" ?>
+<calculation code="MORET5.D.1" version_date="Monday, January 23 2017 - 14h15m42s" compiler="Intel(R) Fortran Intel(R) 64 Compiler XE for applications running on Intel(R) 64, Version 14.0.4.211 Build 20140805" compilation_computer="build-host.example" developer="developer" compilation_date="Monday, January 23 2017 - 14h31m33s" calculation_computer="calc-host.example" author="user" calculation_date="Thursday, October 15 2026 - 11h54m12s">
+ <error_message>Error message number 1 from ERROR_READING_INPUT occurred when reading the data input.<br/>Stop on string ENDO in column 1 of the line:<br/>ENDO<br/>The code was waiting for an INTEGER.</error_message>
+ <end_message>ABNORMAL END</end_message>
+ <cpu_time>
+  <read>5.3111300E-01</read>
+  <check>0.0000000E+00</check>
+  <simu_inactive>0.0000000E+00</simu_inactive>
+  <simu_active>0.0000000E+00</simu_active>
+  <output>0.0000000E+00</output>
+  <global>5.3111300E-01</global>
+ </cpu_time>
+ <output_files>
+  <expected number="2">.listing .out.xml</expected>
+  <existing number="2">.listing .out.xml</existing>
+ </output_files>
+</calculation>
+

@@ -1,0 +1,41 @@
+MORET_BEGIN
+ERREUR volumes qui se chevauchent
+* Hypothese : H31 deux volumes freres qui se chevauchent : diagnostic geometrique (format du message)
+* Attendu    : ABNORMAL END, message de chevauchement
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE 20.
+    VOLU 1 0 1 UMET 0. 0. 0.
+    TYPE 2 SPHE 5.
+    VOLU 2 1 2 VIDE -3. 0. 0.
+    VOLU 3 1 2 VIDE 3. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+    COMP VIDE
+      CONC
+        O16 1.0E-08
+    ENDC
+  ENDM
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END

@@ -3,7 +3,7 @@
 # tout ce qui est produit, pour consolider les hypotheses du plugin.
 #
 # Usage :
-#   MORET_CMD=/chemin/vers/moret.py MORET_RELEASE=6.0 ./run_probe.sh [motif]
+#   MORET_CMD=/chemin/vers/moret.py MORET_RELEASE=6.0 ./run_probe.sh [motif ...]
 #   MORET_RELEASE=6.0               : version passee en 1er argument au lanceur
 #                                     (moret.py {5A1,5B1,5B2,5C1,5D1,6.0} input_file) ;
 #                                     vide = lanceur sans argument de version
@@ -11,7 +11,7 @@
 #   MORET_SKIP_ENV_CHECK=1          : ne pas verifier la presence de singularity
 #   MORET_LIBR=ma_bibliotheque.xml  : remplace jeff311.xml dans les cas
 #   MORET_LABEL=moret6              : suffixe de l archive (ex. moret5 / moret6)
-#   motif                           : filtre glob sur les noms de cas (defaut *)
+#   motif ...                       : filtres glob sur les noms de cas (defaut *)
 
 set -u
 
@@ -20,7 +20,7 @@ MORET_CMD="${MORET_CMD:-/opt/MORET/scripts/moret.py}"
 RELEASE="${MORET_RELEASE-6.0}"
 OPTS="${MORET_OPTS:-}"
 LABEL="${MORET_LABEL:-moret${RELEASE}}"
-PATTERN="${1:-*}"
+PATTERNS=( "${@:-*}" )
 STAMP="$(date +%Y%m%d-%H%M%S)"
 OUT="$HERE/results-$LABEL-$STAMP"
 MAX_SIZE=$((20 * 1024 * 1024))  # fichiers plus gros non archives (liste seulement)
@@ -41,10 +41,13 @@ fi
 
 # Au moins un cas doit correspondre au motif
 shopt -s nullglob
-MATCHES=( "$HERE"/cases/$PATTERN.m5 "$HERE"/cases/$PATTERN.m6 )
+MATCHES=()
+for p in "${PATTERNS[@]}"; do
+  MATCHES+=( "$HERE"/cases/$p.m5 "$HERE"/cases/$p.m6 )
+done
 shopt -u nullglob
 if [ ${#MATCHES[@]} -eq 0 ]; then
-  echo "Aucun cas ne correspond au motif '$PATTERN' dans $HERE/cases" >&2
+  echo "Aucun cas ne correspond aux motifs '${PATTERNS[*]}' dans $HERE/cases" >&2
   echo "(archive de sondes trop ancienne ? cas disponibles : $(ls "$HERE"/cases | tr '\n' ' '))" >&2
   exit 1
 fi
@@ -67,7 +70,7 @@ mkdir -p "$OUT"
   done
 } > "$OUT/environment.txt" 2>&1
 
-for src in "$HERE"/cases/$PATTERN.m5 "$HERE"/cases/$PATTERN.m6; do
+for src in "${MATCHES[@]}"; do
   [ -f "$src" ] || continue
   name="$(basename "$src")"
   case_dir="$OUT/${name%.*}"

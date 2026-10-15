@@ -1,0 +1,170 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                  6666
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                 666666
+                MMMM    MMMM OO        OO RR        RR EE                TT                     66    66
+                MM MM  MM MM OO        OO RR        RR EE                TT                     66
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     66
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     6666666
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     66666666
+                MM        MM OO        OO RR    RR     EE                TT                     66    66
+                MM        MM OO        OO RR     RR    EE                TT                     66    66
+                MM        MM OO        OO RR      RR   EE                TT                     66    66
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                      666666
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                       6666
+
+
+                                <<<<<<< MORET 6.0.0 (commit short hash: 052de83) >>>>>>>
+
+Compiled on processor: Unknown P6 family
+Compiled on OS: Ubuntu 22.04.5 LTS
+Compiled with: Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+Runned on computer: calc-host.example
+Runned by user: user
+Run date: Thursday, October 15 2026 - 11h55m32s
+
+Input file MD5: 6531a46941dda674ac3c66bea0be430d
+
+:MORET_BEGIN:
+
+:GODIVA STOP:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H22 STOP apres lecture : banniere de fin, end_message, absence de keff:
+
+:* Attendu    : fin sans calcul (banniere a determiner):
+
+::
+
+:GEOM:
+
+:  MODU 0:
+
+:    TYPE 1 SPHE 8.7407:
+
+:    VOLU 1 0 1 UMET 0. 0. 0.:
+
+:  ENDM:
+
+:ENDG:
+
+::
+
+:MATE:
+
+:  CONT:
+
+:    LIBR jeff311.xml:
+
+:    TEMP 300:
+
+:    COMP UMET:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.49988E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:  ENDM:
+
+::
+
+:SOUR:
+
+               ==========================================================================================
+               |                             LOADING MATERIAL COMPOSITIONS                              |
+               ==========================================================================================
+
+Information message number 2 from WARN_ACE_DATA occurred when loading the ACE data.
+Slight difference between the temperature defined in the library and the one defined in the cross-section file
+for some nuclides.
+The temperature defined in the cross-section file is used.
+The nuclides are listed below.
+  Nuclide     Library                                             Temp. libr. (MeV)     Cross-section file                                  Temp. cross-section file (MeV)
+- U234        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922340_311.03c            2.5852000E-08
+- U235        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922350_311.03c            2.5852000E-08
+- U238        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922380_311.03c            2.5852000E-08
+
+                                         TABLE OF LOADED MATERIAL COMPOSITIONS
+========================================================================================================================
+| Number   Name                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      UMET                                                                                                        |
+|          Density  18.7419                                                                                            |
+|          Nuclide      Name in                   Atom.       Mass.       Conc.       Temp.      Temp.                 |
+|          name         neutr. libr.              prop.       prop.       (in 10+24)  neut. (K)  Sab (K)               |
+|          U234         U234                      1.0250E-02  1.0200E-02  4.9190E-04     300.000                       |
+|          U235         U235                      9.3768E-01  9.3710E-01  4.4999E-02     300.000                       |
+|          U238         U238                      5.2067E-02  5.2700E-02  2.4986E-03     300.000                       |
+========================================================================================================================
+
+                                  TABLE OF LOADED NUCLIDES DATA FOR NEUTRON TRANSPORT
+========================================================================================================================
+| Number   Name in    Format     Temp.        Temp.        Mass / neut.      Molar mass                                |
+|          libr.                 (K)          (MeV)                                                                    |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      U234       ACE           300.000   2.5852E-08   232.0300          234.0391                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922340_311.03c                                                              |
+|          Comment: U234 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9225  04/06/15         |
+|          Use in material UMET                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   2      U235       ACE           300.000   2.5852E-08   233.0250          235.0427                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922350_311.03c                                                              |
+|          Comment: U235 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9228  04/06/15         |
+|          Use in material UMET                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   3      U238       ACE           300.000   2.5852E-08   236.0058          238.0493                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922380_311.03c                                                              |
+|          Comment: U238 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9237  04/06/15         |
+|          Use in material UMET                                                                                        |
+========================================================================================================================
+
+:  UNIF 1000:
+
+:ENDS:
+
+::
+
+:TERM:
+
+:  CYCL PASS 30 ACTI 100:
+
+:ENDT:
+
+::
+
+:STOP:
+
+
+               ==========================================================================================
+               |                                      STOP OPTION                                       |
+               |                        END OF READING AND ANALYSIS OF DATA READ                        |
+               |                                     NO SIMULATION                                      |
+               ==========================================================================================
+
+
+               ==========================================================================================
+               |                             NORMAL END OF THE CALCULATION                              |
+               ==========================================================================================
+
+
+calc. time (s) :             CPU              real
+
+reading        :             2.7               3.8
+verification   :             0.0               0.0
+passive simu.  :             0.0               0.0
+active simu.   :             0.0               0.0
+outputs        :             0.0               0.0
+global         :             2.7               3.8

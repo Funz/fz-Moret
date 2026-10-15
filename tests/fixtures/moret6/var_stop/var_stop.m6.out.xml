@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<calculation code="MORET 6.0.0" commit_short_hash="052de83" compiler="Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000" compil_processor="Unknown P6 family" compil_os="Ubuntu 22.04.5 LTS" calculation_computer="calc-host.example" calculation_author="user" calculation_date="Thursday, October 15 2026 - 11h55m32s" input_file_md5="6531a46941dda674ac3c66bea0be430d">
+ <title>GODIVA STOP</title>
+ <info_message>Information message number 2 from WARN_ACE_DATA occurred when loading the ACE data.<br/>Slight difference between the temperature defined in the library and the one defined in the cross-section file<br/>for some nuclides.<br/>The temperature defined in the cross-section file is used.<br/>The nuclides are listed below.<br/>  Nuclide     Library                                             Temp. libr. (MeV)     Cross-section file                                  Temp. cross-section file (MeV)<br/>- U234        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922340_311.03c            2.5852000E-08<br/>- U235        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922350_311.03c            2.5852000E-08<br/>- U238        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922380_311.03c            2.5852000E-08</info_message>
+ <end_message>NORMAL END</end_message>
+ <cpu_time>
+  <read>2.7267620E+00</read>
+  <check>1.0000000E-04</check>
+  <simu_inactive>.0000000E+00</simu_inactive>
+  <simu_active>.0000000E+00</simu_active>
+  <output>.0000000E+00</output>
+  <global>2.7268620E+00</global>
+ </cpu_time>
+ <real_time>
+  <read>3.7729981E+00</read>
+  <check>9.7990036E-05</check>
+  <simu_inactive>.0000000E+00</simu_inactive>
+  <simu_active>.0000000E+00</simu_active>
+  <output>.0000000E+00</output>
+  <global>3.7730961E+00</global>
+ </real_time>
+ <output_files>
+  <expected number="2">.listing .out.xml</expected>
+  <existing number="2">.listing .out.xml</existing>
+ </output_files>
+</calculation>

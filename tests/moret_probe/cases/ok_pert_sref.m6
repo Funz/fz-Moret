@@ -1,0 +1,56 @@
+MORET_BEGIN
+GODIVA perturbation REPL avec SREF
+* Hypothese : H24 OUTP SREF : la 1re ligne LOWEST SIGMA du listing devient-elle celle du systeme de reference (mean_keff change de sens) ?
+* Attendu    : NORMAL END ; comparer mean_keff et dkeff a ok_pert_repl_count
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE 8.7407
+    VOLU 1 0 1 m1 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+    COMP UMET_P1
+      CONC
+        U234 4.91895E-04
+        U235 4.54488E-02
+        U238 2.49865E-03
+    ENDC
+    COMP UMET_P2
+      CONC
+        U234 4.91895E-04
+        U235 4.45488E-02
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+
+ASSO
+  MEDI m1 UMET
+    REPL 2 UMET_P1 UMET_P2
+ENDA
+
+OUTP
+  SREF
+ENDO
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END
