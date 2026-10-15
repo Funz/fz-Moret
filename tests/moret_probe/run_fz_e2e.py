@@ -8,7 +8,7 @@ Runs examples/Moret/godiva.m6 (radius 8.5 / 8.7407 / 9.0) with the
 localhost_Moret calculator (.fz/calculators/Moret.sh), which reads MORET_CMD,
 MORET_RELEASE and MORET_OPTS from the environment.
 
-Results: tests/moret_probe/results-fz-e2e/ (case directories + results.csv/.txt)
+Results: tests/moret_probe/results-fz-e2e$E2E_SUFFIX/ (case directories + results.csv/.txt)
 """
 
 import os
@@ -19,7 +19,7 @@ from pathlib import Path
 import fz
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "tests" / "moret_probe" / "results-fz-e2e"
+OUT = ROOT / "tests" / "moret_probe" / ("results-fz-e2e" + os.environ.get("E2E_SUFFIX", ""))
 RELEASE = os.environ.get("MORET_RELEASE", "6.0")
 
 if __name__ == "__main__":
@@ -39,5 +39,7 @@ if __name__ == "__main__":
     )
     results.to_csv(OUT / "results.csv", index=False)
     (OUT / "results.txt").write_text(results.T.to_string())
-    print(results[["radius", "status", "moret_status", "mean_keff", "sigma_keff"]].to_string())
+    cols = ["radius", "status", "moret_status", "mean_keff", "sigma_keff",
+            "keff_estimator", "active_cycles", "transient_cycles", "moret_version", "cpu_time"]
+    print(results[[c for c in cols if c in results]].to_string())
     print(f"Results: {OUT}")

@@ -25,7 +25,8 @@ def test_model_files():
 
     # Check required fields
     required_fields = ['id', 'varprefix', 'delim', 'commentline', 'output']
-    expected_outputs = ['moret_status', 'mean_keff', 'sigma_keff', 'dkeff', 'sigma_dkeff']
+    expected_outputs = ['moret_status', 'mean_keff', 'sigma_keff', 'keff_estimator', 'active_cycles',
+                        'transient_cycles', 'dkeff', 'sigma_dkeff', 'moret_warnings', 'moret_version', 'cpu_time']
     for field in required_fields:
         assert field in model, f"Missing required field: {field}"
         print(f"✓ Has field '{field}': {model[field] if field != 'output' else f'{len(model[field])} outputs'}")

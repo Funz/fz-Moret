@@ -1,0 +1,122 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                55555555
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                55555555
+                MMMM    MMMM OO        OO RR        RR EE                TT                     55
+                MM MM  MM MM OO        OO RR        RR EE                TT                     55
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     55
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     555555
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     5555555
+                MM        MM OO        OO RR    RR     EE                TT                           55
+                MM        MM OO        OO RR     RR    EE                TT                           55
+                MM        MM OO        OO RR      RR   EE                TT                           55
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                     5555555
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                     555555
+
+
+                           <<<<<<< MORET 5.D.1 of Monday, January 23 2017 - 14h15m42s >>>>>>>
+
+compiler used: Intel(R) Fortran Intel(R) 64 Compiler XE for applications running on Intel(R) 64, Version 14.0.4.211 Build 20140805
+on machine: build-host.example
+by developer: developer
+compilation date: Monday, January 23 2017 - 14h31m33s
+
+
+               ==========================================================================================
+               |                             FIRST READING OF THE RESOURCE                              |
+               |                                  EVALUATION DATA SET                                   |
+               ==========================================================================================
+
+
+                                           =================================
+                                           |      RESOURCES REQUESTED      |
+                                           =================================
+                                           | MODULES       |             1 |
+                                           | VOLUMES-HOLES |             1 |
+                                           | TYPES         |             1 |
+                                           | LATTICES      |             0 |
+                                           | OPERATORS     |             1 |
+                                           | MATERIALS     |             1 |
+                                           | NUCLIDES      |             3 |
+                                           | GROUPS        |             0 |
+                                           | LEGENDRE      |             0 |
+                                           =================================
+
+:MORET_BEGIN:
+
+:ERREUR XMLC:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H4d XMLC supprime en 6.0.0 (skills v2 coherents):
+
+:* Attendu    : Error 20 (XMLC keyword is no longer available):
+
+::
+
+:GEOM:
+
+:  MODU 0:
+
+:    TYPE 1 SPHE 8.7407:
+
+:    VOLU 1 0 1 UMET 0. 0. 0.:
+
+:  ENDM:
+
+:ENDG:
+
+::
+
+:MATE:
+
+:  CONT:
+
+:    LIBR jeff311.xml:
+
+:    TEMP 300:
+
+:    COMP UMET:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.49988E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:  ENDM:
+
+::
+
+:OUTP:
+
+:  XMLC:
+
+:ENDO:
+
+Error message number 1 from ERROR_READING_INPUT occurred when reading the data input.
+Stop on string ENDO in column 1 of the line:
+ENDO
+The code was waiting for an INTEGER.
+
+
+               ==========================================================================================
+               |                            ABNORMAL END OF THE CALCULATION                             |
+               ==========================================================================================
+
+
+CPU time (s)  :
+
+reading        :             0.5
+verification   :             0.0
+passive simu.  :             0.0
+active simu.   :             0.0
+outputs        :             0.0
+global         :             0.5

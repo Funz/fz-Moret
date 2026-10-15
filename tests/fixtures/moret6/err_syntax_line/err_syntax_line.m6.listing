@@ -1,0 +1,75 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                  6666
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                 666666
+                MMMM    MMMM OO        OO RR        RR EE                TT                     66    66
+                MM MM  MM MM OO        OO RR        RR EE                TT                     66
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     66
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     6666666
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     66666666
+                MM        MM OO        OO RR    RR     EE                TT                     66    66
+                MM        MM OO        OO RR     RR    EE                TT                     66    66
+                MM        MM OO        OO RR      RR   EE                TT                     66    66
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                      666666
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                       6666
+
+
+                                <<<<<<< MORET 6.0.0 (commit short hash: 052de83) >>>>>>>
+
+Compiled on processor: Unknown P6 family
+Compiled on OS: Ubuntu 22.04.5 LTS
+Compiled with: Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+Runned on computer: calc-host.example
+Runned by user: user
+Run date: Thursday, October 15 2026 - 11h53m11s
+
+Input file MD5: b101fb1c5ec152d4d6effc2a2a036341
+
+:MORET_BEGIN:
+
+:ERREUR ligne non commentee avant GEOM:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H4c erreur de syntaxe Error 1 (not one of the expected keywords):
+
+:Ceci n est pas un commentaire:
+
+Error message number 1 from ERROR_READING_DATA occurred when reading the data input.
+Syntax error in the data input.
+Stop on character string Ceci in column 1 of the line:
+Ceci n est pas un commentaire
+The word "Ceci" is not one of the expected keywords.
+The content of a data input is as follows:
+a MANDATORY title line (first non-empty line read)
+    GEOM ... ENDG: mandatory
+    BOUN ... ENDB: optional (after GEOM block)
+    GRAP ... ENDG: optional (after GEOM and BOUN blocks)
+    PAIN ... ENDP: optional (after GEOM and BOUN blocks)
+    MATE ... ENDM: mandatory
+    ASSO ... ENDA: optional
+    OUTP ... ENDO: optional (after GEOM, MATE and ASSO blocks)
+    SOUR ... ENDS: mandatory (after GEOM, MATE, ASSO and OUTP blocks)
+    ESTI ... ENDE: optional
+    SIMU ... ENDS: optional
+    TERM ... ENDT: optional
+ENDD: mandatory at the end of the data input
+The character "*" introduces a comment until the end of the line.
+
+
+               ==========================================================================================
+               |                            ABNORMAL END OF THE CALCULATION                             |
+               ==========================================================================================
+
+
+calc. time (s) :             CPU              real
+
+reading        :             0.0               0.1
+verification   :             0.0               0.0
+passive simu.  :             0.0               0.0
+active simu.   :             0.0               0.0
+outputs        :             0.0               0.0
+global         :             0.0               0.1

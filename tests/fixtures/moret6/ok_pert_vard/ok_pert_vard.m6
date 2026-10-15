@@ -1,0 +1,39 @@
+MORET_BEGIN
+GODIVA VARD sans compte
+* Hypothese : H33b skills v0.2 : VARD v(1)..v(n) sans compte ; densite +1 pct / -1 pct
+* Attendu    : NORMAL END, dkeff_1 proche de ok_pert_dens_repl (+8.26E-03)
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE 8.7407
+    VOLU 1 0 1 m1 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+ASSO
+  MEDI m1 UMET
+    VARD 0.01 -0.01
+ENDA
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 100
+ENDT
+
+ENDD
+MORET_END

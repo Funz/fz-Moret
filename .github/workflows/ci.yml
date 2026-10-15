@@ -65,10 +65,15 @@ jobs:
       run: |
         python tests/test_plugin.py
 
-    - name: Test calculator script and output extraction (real MORET 6 outputs)
+    - name: Check that the model JSON matches its generator (tools/moret_outputs.py)
+      run: |
+        python tools/make_model.py --check
+
+    - name: Test calculator script, output extraction (real MORET 6 / 5 outputs) and fz end-to-end
       run: |
         pip install pytest
-        pytest tests/test_calculator.py tests/test_outputs_moret6.py -v
+        pytest tests/test_calculator.py tests/test_outputs.py tests/test_fz_e2e.py -v
+
 
   lint:
     name: Lint Shell Scripts

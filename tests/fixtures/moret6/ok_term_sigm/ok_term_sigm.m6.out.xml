@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<calculation code="MORET 6.0.0" commit_short_hash="052de83" compiler="Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000" compil_processor="Unknown P6 family" compil_os="Ubuntu 22.04.5 LTS" calculation_computer="calc-host.example" calculation_author="user" calculation_date="Thursday, October 15 2026 - 11h55m49s" input_file_md5="1896cfae41333f91de46ab90ceced8df">
+ <title>GODIVA arret sur sigma</title>
+ <sources_nb>1000</sources_nb>
+ <neutrons_nb pass="30000" acti="29000"/>
+ <cycles_nb pass="30" acti="29"/>
+ <keff system="initial" nb_of_cycles="29">
+  <esti name="SOURCE-COLLISION">
+   <mean>9.8990932E-01 9.9450062E-01 9.9170233E-01 9.8504859E-01 9.9501249E-01 9.9270504E-01 9.9258220E-01 9.9418606E-01 9.9334155E-01 9.8924005E-01 9.9474200E-01 9.9625973E-01 9.9259291E-01 9.9519472E-01 9.9446012E-01 9.9708811E-01 9.9675070E-01 9.9550389E-01 9.9591817E-01 9.9432474E-01 9.9279569E-01 9.9566696E-01 9.9374220E-01 9.9499176E-01 9.9521574E-01 9.9567580E-01 9.9475013E-01 9.9413429E-01 9.9368041E-01</mean>
+   <std>.0000000E+00 4.5912933E-03 3.8544833E-03 7.1903321E-03 1.1414900E-02 9.6016135E-03 8.1157741E-03 7.2091407E-03 6.4137070E-03 7.0520062E-03 8.4237925E-03 7.8381801E-03 8.0889279E-03 7.9279803E-03 7.4170154E-03 7.4190236E-03 6.9771225E-03 6.6952099E-03 6.3465700E-03 6.2281671E-03 6.1183137E-03 6.5019123E-03 6.5041144E-03 6.3513478E-03 6.0961150E-03 5.8749986E-03 5.7285048E-03 5.5543717E-03 5.3786047E-03</std>
+  </esti>
+  <esti name="SOURCE-TRACK-LENGTH">
+   <mean>9.7151351E-01 9.7269696E-01 9.7977808E-01 9.7777173E-01 9.9120272E-01 9.8850119E-01 9.9014298E-01 9.9324851E-01 9.9004478E-01 9.8814954E-01 9.9383509E-01 9.9378786E-01 9.9001331E-01 9.9090542E-01 9.9088804E-01 9.9510788E-01 9.9573308E-01 9.9524895E-01 9.9637102E-01 9.9408073E-01 9.9242772E-01 9.9378191E-01 9.9253088E-01 9.9115047E-01 9.9130772E-01 9.9247302E-01 9.9130411E-01 9.9107506E-01 9.9058148E-01</mean>
+   <std>.0000000E+00 1.1834498E-03 7.1140107E-03 5.4157182E-03 1.4070873E-02 1.1802171E-02 1.0108869E-02 9.2890384E-03 8.7963281E-03 8.0927286E-03 9.2687693E-03 8.4613218E-03 8.6502469E-03 8.0581076E-03 7.5017101E-03 8.1882973E-03 7.7169339E-03 7.2916845E-03 6.9879183E-03 7.0137975E-03 6.8731874E-03 6.6917808E-03 6.5154524E-03 6.3889782E-03 6.1301098E-03 6.0037939E-03 5.8942220E-03 5.6844310E-03 5.5070783E-03</std>
+  </esti>
+  <esti name="SOURCE-ABSORPTION">
+   <mean>9.7925669E-01 1.0102327E+00 1.0049739E+00 9.9161870E-01 9.8996323E-01 9.9818167E-01 9.9996649E-01 1.0003716E+00 9.9822933E-01 9.9657619E-01 9.9027407E-01 9.8829334E-01 9.8966367E-01 9.9238228E-01 9.9309992E-01 9.9175418E-01 9.9255552E-01 9.9373571E-01 9.9312383E-01 9.9138487E-01 9.9037263E-01 9.9017378E-01 9.9024149E-01 9.9217355E-01 9.9399900E-01 9.9353088E-01 9.9363228E-01 9.9368393E-01 9.9410060E-01</mean>
+   <std>.0000000E+00 3.0975994E-02 1.8641152E-02 1.8764509E-02 1.4628898E-02 1.4498705E-02 1.2382946E-02 1.0731595E-02 9.7038007E-03 8.8353776E-03 1.0177778E-02 9.4997841E-03 8.8453218E-03 8.6286402E-03 8.0648198E-03 7.6630399E-03 7.2426396E-03 6.9296652E-03 6.5833038E-03 6.4830454E-03 6.2491338E-03 5.9616325E-03 5.6969395E-03 5.7864816E-03 5.8426852E-03 5.6329552E-03 5.4212620E-03 5.2243142E-03 5.0581382E-03</std>
+  </esti>
+  <esti name="BALANCE-COLLISION">
+   <mean>9.8047356E-01 9.9827512E-01 9.9545241E-01 9.8731852E-01 9.9162423E-01 9.9416529E-01 9.9543884E-01 9.9658008E-01 9.9555581E-01 9.9229742E-01 9.9304440E-01 9.9354228E-01 9.9158238E-01 9.9451111E-01 9.9434917E-01 9.9504123E-01 9.9534785E-01 9.9509943E-01 9.9480728E-01 9.9329017E-01 9.9200831E-01 9.9346111E-01 9.9223659E-01 9.9388110E-01 9.9497569E-01 9.9504294E-01 9.9445622E-01 9.9412092E-01 9.9393593E-01</mean>
+   <std>.0000000E+00 1.7801555E-02 1.0658304E-02 1.1088728E-02 9.6080712E-03 8.2462320E-03 7.0847447E-03 6.2408040E-03 5.5983694E-03 5.9741509E-03 5.4552063E-03 5.0047258E-03 5.0035033E-03 5.4805150E-03 5.1046510E-03 4.8248546E-03 4.5425215E-03 4.2899288E-03 4.0683696E-03 4.1470581E-03 4.1476909E-03 4.2130761E-03 4.2078466E-03 4.3514243E-03 4.3148844E-03 4.1461522E-03 4.0325479E-03 3.9002998E-03 3.7679479E-03</std>
+  </esti>
+  <esti name="BALANCE-TRACK-LENGTH">
+   <mean>9.6970972E-01 9.8550723E-01 9.8817500E-01 9.8311849E-01 9.8956679E-01 9.9214940E-01 9.9460919E-01 9.9663127E-01 9.9436939E-01 9.9240924E-01 9.9332342E-01 9.9293021E-01 9.9093377E-01 9.9287346E-01 9.9312575E-01 9.9469842E-01 9.9545711E-01 9.9564327E-01 9.9576194E-01 9.9378541E-01 9.9242766E-01 9.9294639E-01 9.9207125E-01 9.9214670E-01 9.9311014E-01 9.9361618E-01 9.9283892E-01 9.9257546E-01 9.9242599E-01</mean>
+   <std>.0000000E+00 1.5797505E-02 9.5028444E-03 8.4095395E-03 9.1658543E-03 7.9169730E-03 7.1288783E-03 6.4964955E-03 6.1596879E-03 5.8477008E-03 5.3678623E-03 4.9159162E-03 4.9430919E-03 4.9705099E-03 4.6341659E-03 4.6113254E-03 4.3975276E-03 4.1502062E-03 3.9274954E-03 4.2177447E-03 4.2354017E-03 4.0714763E-03 3.9876460E-03 3.8186259E-03 3.7872902E-03 3.6737298E-03 3.6194883E-03 3.4977625E-03 3.3783034E-03</std>
+  </esti>
+  <esti name="BALANCE-ABSORPTION">
+   <mean>9.7831683E-01 1.0097052E+00 1.0037149E+00 9.9075223E-01 9.8912521E-01 9.9773519E-01 9.9961039E-01 9.9980275E-01 9.9774330E-01 9.9606711E-01 9.9001787E-01 9.8821352E-01 9.8947572E-01 9.9233097E-01 9.9307064E-01 9.9174798E-01 9.9252154E-01 9.9366641E-01 9.9299189E-01 9.9135238E-01 9.9033395E-01 9.9022263E-01 9.9036656E-01 9.9225622E-01 9.9420918E-01 9.9363480E-01 9.9368825E-01 9.9379105E-01 9.9420860E-01</mean>
+   <std>.0000000E+00 3.1388405E-02 1.9086517E-02 1.8713031E-02 1.4586079E-02 1.4695834E-02 1.2561008E-02 1.0879853E-02 9.8136544E-03 8.9362106E-03 1.0096033E-02 9.3913392E-03 8.7304974E-03 8.5723537E-03 8.0146322E-03 7.6127827E-03 7.1926816E-03 6.8772902E-03 6.5401425E-03 6.4174845E-03 6.1886184E-03 5.9016662E-03 5.6410737E-03 5.7219514E-03 5.8254197E-03 5.6262781E-03 5.4141525E-03 5.2182206E-03 5.0523510E-03</std>
+  </esti>
+  <esti name="COMBI. 3 SOURCE">
+   <mean>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 9.9173434E-01 9.9244671E-01 9.9207596E-01 9.9043614E-01 9.9163911E-01 9.9202496E-01 9.9366877E-01 9.9432852E-01 9.9455046E-01 9.9467020E-01 9.9283943E-01 9.9152652E-01 9.9217281E-01 9.9142111E-01 9.9174856E-01 9.9280764E-01 9.9314802E-01 9.9266775E-01 9.9256194E-01 9.9254994E-01</mean>
+   <std>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 5.8773596E-03 5.3475957E-03 4.9092463E-03 4.7347475E-03 4.7967827E-03 4.4767819E-03 4.4042438E-03 4.1753602E-03 3.9416293E-03 3.7304239E-03 3.9873836E-03 4.0085015E-03 3.9295617E-03 3.8080135E-03 3.6884790E-03 3.6862521E-03 3.5541034E-03 3.4556755E-03 3.3313557E-03 3.2144522E-03</std>
+  </esti>
+  <esti name="COMBI. 3 BALANCE">
+   <mean>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 9.9187166E-01 9.9310301E-01 9.9302697E-01 9.9094598E-01 9.9260364E-01 9.9301668E-01 9.9421541E-01 9.9497012E-01 9.9524452E-01 9.9517519E-01 9.9325067E-01 9.9194164E-01 9.9254130E-01 9.9171180E-01 9.9208898E-01 9.9322890E-01 9.9359399E-01 9.9298735E-01 9.9279152E-01 9.9275723E-01</mean>
+   <std>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 5.6799873E-03 5.2380502E-03 4.7826057E-03 4.7261558E-03 4.8681468E-03 4.5460901E-03 4.4031300E-03 4.1969029E-03 3.9654959E-03 3.7517513E-03 3.9849511E-03 4.0000966E-03 3.8771041E-03 3.7743085E-03 3.6484856E-03 3.6824577E-03 3.5532747E-03 3.4754913E-03 3.3543992E-03 3.2368412E-03</std>
+  </esti>
+  <esti name="COMBI. GENERAL">
+   <mean>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 9.8002953E-01 9.8715802E-01 9.9176540E-01 9.9174550E-01 9.9428983E-01 9.9453635E-01 9.9587549E-01 9.9624693E-01 9.9669324E-01 9.9647566E-01 9.9303215E-01 9.9204467E-01 9.9511543E-01 9.9412121E-01 9.9484250E-01 9.9679667E-01 9.9706443E-01 9.9646577E-01 9.9571165E-01 9.9568151E-01</mean>
+   <std>1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.6227940E-03 3.7721138E-03 4.0281006E-03 3.7648186E-03 4.5022733E-03 4.1960671E-03 3.9931863E-03 3.7521337E-03 3.5537963E-03 3.3696110E-03 3.6972320E-03 3.6735396E-03 3.7035486E-03 3.5968979E-03 3.5029332E-03 3.4154495E-03 3.2932834E-03 3.2072320E-03 3.1075553E-03 2.9986741E-03</std>
+  </esti>
+ </keff>
+ <keff_recalculated system="initial" min_nb_of_initial_cycles_suppressed="0" max_nb_of_initial_cycles_suppressed="28">
+  <esti name="SOURCE-COLLISION">
+   <mean>9.9368041E-01 9.9381509E-01 9.9361966E-01 9.9390865E-01 9.9506151E-01 9.9340290E-01 9.9393486E-01 9.9402984E-01 9.9348779E-01 9.9383290E-01 9.9601744E-01 9.9303166E-01 9.9185972E-01 9.9456401E-01 9.9226706E-01 9.9284501E-01 9.8948633E-01 9.8933085E-01 9.9069653E-01 9.8942867E-01 9.9224857E-01 9.9600280E-01 9.8743698E-01 9.9344357E-01 9.8738595E-01 9.8408459E-01 9.7638704E-01 9.7923924E-01 9.8097195E-01</mean>
+   <std>5.3786047E-03 5.5725060E-03 5.7793051E-03 5.9985163E-03 6.1270621E-03 6.1493997E-03 6.3987611E-03 6.6957975E-03 6.9995617E-03 7.3497940E-03 7.3972398E-03 7.1549288E-03 7.4864540E-03 7.4318009E-03 7.5559418E-03 8.0926059E-03 7.9526371E-03 8.6437755E-03 9.3498503E-03 1.0241173E-02 1.1007374E-02 1.1732813E-02 9.2581920E-03 8.3359985E-03 7.0136354E-03 7.9887547E-03 3.0225524E-03 1.7327064E-03 .0000000E+00</std>
+  </esti>
+  <esti name="SOURCE-TRACK-LENGTH">
+   <mean>9.9058148E-01 9.9126248E-01 9.9190626E-01 9.9182803E-01 9.9263104E-01 9.9045206E-01 9.9112417E-01 9.9072100E-01 9.8956547E-01 9.9082300E-01 9.9186145E-01 9.8859316E-01 9.8831815E-01 9.9104312E-01 9.9027914E-01 9.9025303E-01 9.8501054E-01 9.8328338E-01 9.8294380E-01 9.7958135E-01 9.8280538E-01 9.8573510E-01 9.8052299E-01 9.8310881E-01 9.8785034E-01 9.8604249E-01 9.7418813E-01 9.8082598E-01 9.7676122E-01</mean>
+   <std>5.5070783E-03 5.6635953E-03 5.8392967E-03 6.0678304E-03 6.2600490E-03 6.1184183E-03 6.3518053E-03 6.6339906E-03 6.8514255E-03 7.0806403E-03 7.3829442E-03 6.9987272E-03 7.4175381E-03 7.3444088E-03 7.8089083E-03 8.3880662E-03 7.0726180E-03 7.4559637E-03 8.1591233E-03 8.2186620E-03 8.4522229E-03 8.9897646E-03 8.4577133E-03 9.5281162E-03 1.0121975E-02 1.2857297E-02 7.0404864E-03 4.0647542E-03 .0000000E+00</std>
+  </esti>
+  <esti name="SOURCE-ABSORPTION">
+   <mean>9.9410060E-01 9.9463074E-01 9.9290563E-01 9.9284599E-01 9.9449770E-01 9.9496255E-01 9.9303597E-01 9.9223418E-01 9.9171164E-01 9.9224267E-01 9.9279766E-01 9.9643903E-01 9.9819984E-01 9.9770560E-01 9.9570436E-01 9.9517275E-01 9.9698850E-01 9.9628947E-01 9.9469769E-01 9.9595646E-01 1.0001355E+00 1.0038865E+00 1.0064420E+00 1.0088938E+00 1.0033504E+00 9.9473560E-01 9.9903816E-01 1.0004230E+00 1.0057673E+00</mean>
+   <std>5.0581382E-03 5.2132584E-03 5.1052679E-03 5.3051880E-03 5.2473745E-03 5.4492576E-03 5.3239807E-03 5.5081915E-03 5.7509864E-03 6.0202686E-03 6.3188975E-03 5.4595197E-03 5.4812562E-03 5.8114730E-03 5.8327421E-03 6.2392926E-03 6.4475164E-03 6.9678722E-03 7.4310829E-03 8.0966490E-03 7.7533012E-03 7.6941029E-03 8.3800243E-03 9.4814971E-03 9.4209464E-03 4.9225122E-03 3.3820459E-03 5.3443083E-03 .0000000E+00</std>
+  </esti>
+  <esti name="BALANCE-COLLISION">
+   <mean>9.9393593E-01 9.9441673E-01 9.9361451E-01 9.9376095E-01 9.9499471E-01 9.9441753E-01 9.9387610E-01 9.9345773E-01 9.9292863E-01 9.9320698E-01 9.9479830E-01 9.9448075E-01 9.9421380E-01 9.9584819E-01 9.9339910E-01 9.9349317E-01 9.9257556E-01 9.9193572E-01 9.9203202E-01 9.9228036E-01 9.9537095E-01 9.9899593E-01 9.9542823E-01 1.0004501E+00 9.9419911E-01 9.8743743E-01 9.8434185E-01 9.8691203E-01 9.8875628E-01</mean>
+   <std>3.7679479E-03 3.8730869E-03 3.9321303E-03 4.0835548E-03 4.0516684E-03 4.1810753E-03 4.3302197E-03 4.5105314E-03 4.6980257E-03 4.9304281E-03 4.9189912E-03 5.1894526E-03 5.4969582E-03 5.5873109E-03 5.3686923E-03 5.7660152E-03 6.1486378E-03 6.6479834E-03 7.2817368E-03 8.0455798E-03 8.3050908E-03 8.4727016E-03 8.8737990E-03 8.6565386E-03 7.3342862E-03 3.6677487E-03 2.7820087E-03 1.8442559E-03 .0000000E+00</std>
+  </esti>
+  <esti name="BALANCE-TRACK-LENGTH">
+   <mean>9.9242599E-01 9.9323729E-01 9.9293850E-01 9.9291649E-01 9.9391520E-01 9.9302166E-01 9.9249815E-01 9.9173134E-01 9.9082399E-01 9.9155147E-01 9.9243481E-01 9.9187757E-01 9.9207007E-01 9.9363843E-01 9.9200836E-01 9.9167625E-01 9.8962917E-01 9.8813192E-01 9.8716136E-01 9.8608769E-01 9.8940506E-01 9.9242161E-01 9.9079047E-01 9.9378586E-01 9.9376662E-01 9.8815010E-01 9.8211109E-01 9.8685154E-01 9.8824104E-01</mean>
+   <std>3.3783034E-03 3.3987322E-03 3.5133749E-03 3.6511347E-03 3.6552921E-03 3.6952903E-03 3.8206765E-03 3.9171186E-03 3.9965710E-03 4.1314611E-03 4.2542355E-03 4.4587783E-03 4.7248387E-03 4.7447805E-03 4.7636504E-03 5.1045306E-03 5.0507385E-03 5.2439283E-03 5.6451895E-03 6.1270745E-03 5.7593489E-03 5.5630774E-03 6.1413569E-03 6.3436169E-03 7.7692765E-03 6.9301745E-03 4.8078459E-03 1.3895051E-03 .0000000E+00</std>
+  </esti>
+  <esti name="BALANCE-ABSORPTION">
+   <mean>9.9420860E-01 9.9477616E-01 9.9306070E-01 9.9311172E-01 9.9476161E-01 9.9526763E-01 9.9328861E-01 9.9248984E-01 9.9207749E-01 9.9261798E-01 9.9323043E-01 9.9676959E-01 9.9844041E-01 9.9805406E-01 9.9596105E-01 9.9542783E-01 9.9723704E-01 9.9659860E-01 9.9509580E-01 9.9652034E-01 1.0005557E+00 1.0043795E+00 1.0067359E+00 1.0089364E+00 1.0035800E+00 9.9420495E-01 9.9918152E-01 1.0012332E+00 1.0058998E+00</mean>
+   <std>5.0523510E-03 5.2029890E-03 5.0974804E-03 5.2971916E-03 5.2392356E-03 5.4367443E-03 5.2889252E-03 5.4715625E-03 5.7223036E-03 5.9890481E-03 6.2799151E-03 5.4843171E-03 5.5404750E-03 5.8839278E-03 5.8787663E-03 6.2887790E-03 6.5054919E-03 7.0380758E-03 7.5320207E-03 8.1766753E-03 7.9509068E-03 7.9044340E-03 8.7122531E-03 9.9742500E-03 1.0304940E-02 5.5227299E-03 3.3865348E-03 4.6666289E-03 .0000000E+00</std>
+  </esti>
+  <esti name="COMBI. 3 SOURCE">
+   <mean>9.9254994E-01 9.9306847E-01 9.9251076E-01 9.9245140E-01 9.9380447E-01 9.9301660E-01 9.9229525E-01 9.9161944E-01 9.9073242E-01 9.9147147E-01 9.9236585E-01 9.9323674E-01 9.9443186E-01 9.9491762E-01 9.9365201E-01 9.9329006E-01 9.9154906E-01 9.9005501E-01 9.8875279E-01 9.8701151E-01 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</mean>
+   <std>3.2144522E-03 3.2748864E-03 3.3307343E-03 3.4609073E-03 3.3436393E-03 3.4079190E-03 3.4692548E-03 3.5726786E-03 3.6528510E-03 3.7286070E-03 3.8536183E-03 3.9939981E-03 4.0716275E-03 4.2808492E-03 4.3046977E-03 4.6076430E-03 4.8422824E-03 5.0902926E-03 5.4063516E-03 5.8658914E-03 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</std>
+  </esti>
+  <esti name="COMBI. 3 BALANCE">
+   <mean>9.9275723E-01 9.9345591E-01 9.9293807E-01 9.9292549E-01 9.9412351E-01 9.9350960E-01 9.9264108E-01 9.9175961E-01 9.9085753E-01 9.9151982E-01 9.9235607E-01 9.9320410E-01 9.9426457E-01 9.9478336E-01 9.9328907E-01 9.9284708E-01 9.9117099E-01 9.8934869E-01 9.8791775E-01 9.8642749E-01 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</mean>
+   <std>3.2368412E-03 3.2560943E-03 3.3254175E-03 3.4558519E-03 3.3912574E-03 3.4874565E-03 3.5207375E-03 3.5868465E-03 3.6636053E-03 3.7690438E-03 3.9059312E-03 4.0639061E-03 4.2043579E-03 4.4033374E-03 4.3538598E-03 4.6527281E-03 4.9143308E-03 5.1170990E-03 5.4048859E-03 5.9010759E-03 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</std>
+  </esti>
+  <esti name="COMBI. GENERAL">
+   <mean>9.9568151E-01 9.9906551E-01 9.9908673E-01 9.9928502E-01 1.0005262E+00 9.9961765E-01 9.9908926E-01 9.9851921E-01 9.9759281E-01 9.9758577E-01 9.9810353E-01 9.9870388E-01 9.9960239E-01 1.0005869E+00 9.9913824E-01 9.9863035E-01 9.9877786E-01 9.9687141E-01 9.9573883E-01 1.0036800E+00 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</mean>
+   <std>2.9986741E-03 2.7657028E-03 2.8700876E-03 2.9799270E-03 2.7916025E-03 2.8088033E-03 2.9131321E-03 2.9674877E-03 3.0397171E-03 3.1770450E-03 3.3052498E-03 3.4306295E-03 3.4773071E-03 3.5340007E-03 3.7053501E-03 3.9632211E-03 2.7602851E-03 2.6144925E-03 2.7519780E-03 1.9250560E-03 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30 1.0000000E+30</std>
+  </esti>
+ </keff_recalculated>
+ <source_fractions_in_stratification_zones>
+  <zoning type="fissile_volumes">
+   <fissile_volumes>V_1:M_0</fissile_volumes>
+  </zoning>
+  <initial>1.0000000E+00</initial>
+  <first_active_cycle>1.0000000E+00</first_active_cycle>
+  <final>1.0000000E+00</final>
+  <mean>1.0000000E+00</mean>
+  <std>.0000000E+00</std>
+  <zero_values_percentage>.0000000E+00</zero_values_percentage>
+  <nonzero_values_percentage>1.0000000E+02</nonzero_values_percentage>
+  <increasing_values_percentage>.0000000E+00</increasing_values_percentage>
+  <decreasing_values_percentage>.0000000E+00</decreasing_values_percentage>
+ </source_fractions_in_stratification_zones>
+ <score name="RATE_KEFF" src_neut_norm="1" vol_norm="0">
+  <particle name="neutron">
+   <syst name="initial" num="0">
+    <energy_binning energies_nb="2" E0="1.0000000E+01">
+     <name_list>EB1</name_list>
+     <energies>2.0000000E+01 1.0000000E-11</energies>
+     <glob_volumes>
+      <birth>
+       <mean>1.0000000E+00</mean>
+       <std>.0000000E+00</std>
+      </birth>
+      <esti name="COLLISION">
+       <glob_nuclides>
+        <reac name="N_ABS" MT="27">
+         <mean>4.2686055E-01</mean>
+         <std>2.4315950E-03</std>
+        </reac>
+        <reac name="N_EXC" MT="-16">
+         <mean>2.6608729E-03</mean>
+         <std>1.1933224E-04</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19">
+         <mean>9.9368041E-01</mean>
+         <std>5.3786047E-03</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+      <esti name="TRACK-LENGTH">
+       <glob_nuclides>
+        <reac name="N_ABS" MT="27">
+         <mean>4.2528065E-01</mean>
+         <std>2.4674688E-03</std>
+        </reac>
+        <reac name="N_EXC" MT="-16">
+         <mean>2.7069106E-03</mean>
+         <std>1.2202493E-04</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19">
+         <mean>9.9058148E-01</mean>
+         <std>5.5070783E-03</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+      <esti name="ABSORPTION">
+       <glob_nuclides>
+        <reac name="N_ABS" MT="27">
+         <mean>4.2706897E-01</mean>
+         <std>2.2947418E-03</std>
+        </reac>
+        <reac name="N_EXC" MT="-16">
+         <mean>2.6323174E-03</mean>
+         <std>1.4466512E-04</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19">
+         <mean>9.9410060E-01</mean>
+         <std>5.0581382E-03</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+     </glob_volumes>
+     <glob_faces>
+      <leak>
+       <mean>5.7548276E-01</mean>
+       <std>2.2956484E-03</std>
+      </leak>
+     </glob_faces>
+    </energy_binning>
+    <glob_energy_bounds>
+     <energy_leak>
+      <mean>.0000000E+00</mean>
+      <std>.0000000E+00</std>
+     </energy_leak>
+    </glob_energy_bounds>
+   </syst>
+  </particle>
+ </score>
+ <score name="SOURCES_SUMMARY" src_neut_norm="0" vol_norm="0">
+  <particle name="neutron">
+   <syst name="initial" num="0">
+    <energy_binning energies_nb="2" E0="1.0000000E+01">
+     <name_list>EB1</name_list>
+     <energies>2.0000000E+01 1.0000000E-11</energies>
+     <volume name="V_1:M_0">
+      <birth>
+       <mean>1.0000000E+03</mean>
+       <std>.0000000E+00</std>
+      </birth>
+     </volume>
+     <medium name="UMET">
+      <birth>
+       <mean>1.0000000E+03</mean>
+       <std>.0000000E+00</std>
+      </birth>
+     </medium>
+     <glob_volumes>
+      <birth>
+       <mean>1.0000000E+03</mean>
+       <std>.0000000E+00</std>
+      </birth>
+     </glob_volumes>
+    </energy_binning>
+   </syst>
+  </particle>
+ </score>
+ <score name="LEAK_REFL_SUMMARY" src_neut_norm="1" vol_norm="0">
+  <particle name="neutron">
+   <syst name="initial" num="0">
+    <energy_binning energies_nb="2" E0="1.0000000E+01">
+     <name_list>EB1</name_list>
+     <energies>2.0000000E+01 1.0000000E-11</energies>
+     <face name="F_1:V_1:M_0">
+      <leak mean_leth="2.3149895E+00" energy_eV_corresp_to_mean_leth="9.8767223E+05">
+       <mean>5.7548276E-01</mean>
+       <std>2.2956484E-03</std>
+      </leak>
+      <refl mean_leth="n/a" energy_eV_corresp_to_mean_leth="n/a">
+       <mean>.0000000E+00</mean>
+       <std>.0000000E+00</std>
+      </refl>
+     </face>
+     <glob_faces>
+      <leak mean_leth="2.3149895E+00" energy_eV_corresp_to_mean_leth="9.8767223E+05">
+       <mean>5.7548276E-01</mean>
+       <std>2.2956484E-03</std>
+      </leak>
+      <refl mean_leth="n/a" energy_eV_corresp_to_mean_leth="n/a">
+       <mean>.0000000E+00</mean>
+       <std>.0000000E+00</std>
+      </refl>
+     </glob_faces>
+    </energy_binning>
+   </syst>
+  </particle>
+ </score>
+ <score name="2G_SUMMARY" src_neut_norm="1" vol_norm="0">
+  <particle name="neutron">
+   <syst name="initial" num="0">
+    <energy_binning energies_nb="3" E0="1.0000000E+01">
+     <name_list>EB2_4EV</name_list>
+     <energies>2.0000000E+01 4.0000000E-06 1.0000000E-11</energies>
+     <slowing_down_density_at_thermal_cutoff>
+      <esti name="TRACK-LENGTH">.0000000E+00</esti>
+     </slowing_down_density_at_thermal_cutoff>
+     <medium name="UMET">
+      <birth mean_leth="1.9230597E+00" energy_eV_corresp_to_mean_leth="1.4615908E+06">
+       <mean>1.0000000E+00 .0000000E+00</mean>
+       <std>.0000000E+00 .0000000E+00</std>
+      </birth>
+      <esti name="TRACK-LENGTH">
+       <flux>
+        <mean>6.7276938E+00 .0000000E+00</mean>
+        <std>3.6100914E-02 .0000000E+00</std>
+       </flux>
+       <glob_nuclides>
+        <reac name="N_TOT" MT="1" mean_leth="2.6006413E+00" energy_eV_corresp_to_mean_leth="7.4225964E+05">
+         <mean>2.6351353E+00 .0000000E+00</mean>
+         <std>1.5787629E-02 .0000000E+00</std>
+        </reac>
+        <reac name="N_ABS" MT="27" mean_leth="2.5772785E+00" energy_eV_corresp_to_mean_leth="7.5980503E+05">
+         <mean>4.2528065E-01 .0000000E+00</mean>
+         <std>2.4674688E-03 .0000000E+00</std>
+        </reac>
+        <reac name="N_EXC" MT="-16" mean_leth="2.5454194E-01" energy_eV_corresp_to_mean_leth="7.7527154E+06">
+         <mean>2.7069106E-03 .0000000E+00</mean>
+         <std>1.2202493E-04 .0000000E+00</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19" mean_leth="2.4098829E+00" energy_eV_corresp_to_mean_leth="8.9825815E+05">
+         <mean>9.9058148E-01 .0000000E+00</mean>
+         <std>5.5070783E-03 .0000000E+00</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+     </medium>
+     <glob_volumes>
+      <birth mean_leth="1.9230597E+00" energy_eV_corresp_to_mean_leth="1.4615908E+06">
+       <mean>1.0000000E+00 .0000000E+00</mean>
+       <std>.0000000E+00 .0000000E+00</std>
+      </birth>
+      <esti name="TRACK-LENGTH">
+       <flux>
+        <mean>6.7276938E+00 .0000000E+00</mean>
+        <std>3.6100914E-02 .0000000E+00</std>
+       </flux>
+       <glob_nuclides>
+        <reac name="N_TOT" MT="1" mean_leth="2.6006413E+00" energy_eV_corresp_to_mean_leth="7.4225964E+05">
+         <mean>2.6351353E+00 .0000000E+00</mean>
+         <std>1.5787629E-02 .0000000E+00</std>
+        </reac>
+        <reac name="N_ABS" MT="27" mean_leth="2.5772785E+00" energy_eV_corresp_to_mean_leth="7.5980503E+05">
+         <mean>4.2528065E-01 .0000000E+00</mean>
+         <std>2.4674688E-03 .0000000E+00</std>
+        </reac>
+        <reac name="N_EXC" MT="-16" mean_leth="2.5454194E-01" energy_eV_corresp_to_mean_leth="7.7527154E+06">
+         <mean>2.7069106E-03 .0000000E+00</mean>
+         <std>1.2202493E-04 .0000000E+00</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19" mean_leth="2.4098829E+00" energy_eV_corresp_to_mean_leth="8.9825815E+05">
+         <mean>9.9058148E-01 .0000000E+00</mean>
+         <std>5.5070783E-03 .0000000E+00</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+     </glob_volumes>
+     <glob_faces>
+      <leak mean_leth="2.3149895E+00" energy_eV_corresp_to_mean_leth="9.8767223E+05">
+       <mean>5.7548276E-01 .0000000E+00</mean>
+       <std>2.2956484E-03 .0000000E+00</std>
+      </leak>
+     </glob_faces>
+    </energy_binning>
+    <energy_binning energies_nb="2" E0="1.0000000E+01">
+     <name_list>EB1</name_list>
+     <energies>2.0000000E+01 1.0000000E-11</energies>
+     <medium name="UMET">
+      <birth mean_leth="1.9230597E+00" energy_eV_corresp_to_mean_leth="1.4615908E+06">
+       <mean>1.0000000E+00</mean>
+       <std>.0000000E+00</std>
+      </birth>
+      <esti name="TRACK-LENGTH">
+       <flux>
+        <mean>6.7276938E+00</mean>
+        <std>3.6100914E-02</std>
+       </flux>
+       <glob_nuclides>
+        <reac name="N_TOT" MT="1" mean_leth="2.6006413E+00" energy_eV_corresp_to_mean_leth="7.4225964E+05">
+         <mean>2.6351353E+00</mean>
+         <std>1.5787629E-02</std>
+        </reac>
+        <reac name="N_ABS" MT="27" mean_leth="2.5772785E+00" energy_eV_corresp_to_mean_leth="7.5980503E+05">
+         <mean>4.2528065E-01</mean>
+         <std>2.4674688E-03</std>
+        </reac>
+        <reac name="N_EXC" MT="-16" mean_leth="2.5454194E-01" energy_eV_corresp_to_mean_leth="7.7527154E+06">
+         <mean>2.7069106E-03</mean>
+         <std>1.2202493E-04</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19" mean_leth="2.4098829E+00" energy_eV_corresp_to_mean_leth="8.9825815E+05">
+         <mean>9.9058148E-01</mean>
+         <std>5.5070783E-03</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+     </medium>
+     <glob_volumes>
+      <birth mean_leth="1.9230597E+00" energy_eV_corresp_to_mean_leth="1.4615908E+06">
+       <mean>1.0000000E+00</mean>
+       <std>.0000000E+00</std>
+      </birth>
+      <esti name="TRACK-LENGTH">
+       <flux>
+        <mean>6.7276938E+00</mean>
+        <std>3.6100914E-02</std>
+       </flux>
+       <glob_nuclides>
+        <reac name="N_TOT" MT="1" mean_leth="2.6006413E+00" energy_eV_corresp_to_mean_leth="7.4225964E+05">
+         <mean>2.6351353E+00</mean>
+         <std>1.5787629E-02</std>
+        </reac>
+        <reac name="N_ABS" MT="27" mean_leth="2.5772785E+00" energy_eV_corresp_to_mean_leth="7.5980503E+05">
+         <mean>4.2528065E-01</mean>
+         <std>2.4674688E-03</std>
+        </reac>
+        <reac name="N_EXC" MT="-16" mean_leth="2.5454194E-01" energy_eV_corresp_to_mean_leth="7.7527154E+06">
+         <mean>2.7069106E-03</mean>
+         <std>1.2202493E-04</std>
+        </reac>
+        <reac name="NU_TOT_FIS" MT="-19" mean_leth="2.4098829E+00" energy_eV_corresp_to_mean_leth="8.9825815E+05">
+         <mean>9.9058148E-01</mean>
+         <std>5.5070783E-03</std>
+        </reac>
+       </glob_nuclides>
+      </esti>
+     </glob_volumes>
+     <glob_faces>
+      <leak mean_leth="2.3149895E+00" energy_eV_corresp_to_mean_leth="9.8767223E+05">
+       <mean>5.7548276E-01</mean>
+       <std>2.2956484E-03</std>
+      </leak>
+     </glob_faces>
+    </energy_binning>
+   </syst>
+  </particle>
+ </score>
+ <kinetics>
+  <effective_mean_prompt_neutron_life_time desc="t_eff" unit="microsecond">
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>5.6561320E-03</mean>
+    <std>7.7642222E-05</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>5.6249852E-03</mean>
+    <std>8.0917059E-05</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>5.5794321E-03</mean>
+    <std>8.5838018E-05</std>
+   </esti>
+  </effective_mean_prompt_neutron_life_time>
+  <effective_mean_prompt_neutron_generation_time desc="lambda_eff = t_eff / keff" unit="microsecond">
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>5.6843051E-03</mean>
+    <std>6.1909141E-05</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>5.6686198E-03</mean>
+    <std>6.0336080E-05</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>5.6128510E-03</mean>
+    <std>9.2135690E-05</std>
+   </esti>
+  </effective_mean_prompt_neutron_generation_time>
+  <keff>
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>9.9368041E-01</mean>
+    <std>5.3786047E-03</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>9.9058148E-01</mean>
+    <std>5.5070783E-03</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>9.9410060E-01</mean>
+    <std>5.0581382E-03</std>
+   </esti>
+  </keff>
+  <beta_eff unit="1E-5">
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>4.3816206E+02</mean>
+    <std>4.4506110E+01</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>4.9174124E+02</mean>
+    <std>3.6515519E+01</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>3.7986186E+02</mean>
+    <std>4.9744270E+01</std>
+   </esti>
+  </beta_eff>
+  <alpha desc="(keff (1 - beta_eff) - 1) / t_eff" unit="second-1">
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>-1.7325808E+06</mean>
+    <std>9.5222454E+05</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>-2.3733490E+06</mean>
+    <std>1.0059269E+06</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>-1.6003612E+06</mean>
+    <std>9.0792764E+05</std>
+   </esti>
+  </alpha>
+  <alpha_rossi desc="-beta_eff / t_eff" unit="second-1">
+   <esti method="next_fission_proba" name="COLLISION">
+    <mean>-7.7475263E+05</mean>
+    <std>7.7120686E+04</std>
+   </esti>
+   <esti method="next_fission_proba" name="TRACK-LENGTH">
+    <mean>-8.7403730E+05</mean>
+    <std>6.5988248E+04</std>
+   </esti>
+   <esti method="next_fission_proba" name="ABSORPTION">
+    <mean>-6.8105360E+05</mean>
+    <std>8.6795303E+04</std>
+   </esti>
+  </alpha_rossi>
+ </kinetics>
+ <neutron_stats>
+  <simulated_neutrons>29000</simulated_neutrons>
+  <neutron_scatterings>64096</neutron_scatterings>
+  <excess_neutrons_scattered>74</excess_neutrons_scattered>
+  <neutron_leakages_out_off_energy_range>0</neutron_leakages_out_off_energy_range>
+  <neutron_leakages_out_off_external_volume>16657</neutron_leakages_out_off_external_volume>
+  <neutron_sterile_captures>1289</neutron_sterile_captures>
+  <neutron_induced_fissions>11096</neutron_induced_fissions>
+  <prompt_neutrons_from_induced_fission_produced_and_simulated>28644</prompt_neutrons_from_induced_fission_produced_and_simulated>
+  <delayed_neutrons_from_induced_fission_produced>183</delayed_neutrons_from_induced_fission_produced>
+  <neutrons_produced_from_delayed_neutron_induced_fission>110</neutrons_produced_from_delayed_neutron_induced_fission>
+  <delayed_neutrons_from_induced_fission_simulated>147</delayed_neutrons_from_induced_fission_simulated>
+ </neutron_stats>
+ <precursor_groups>
+  <precursor_group global_index="1" system_index="1" index_in_the_system="1">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">2.4283633E-04</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">8.0213689E+07</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">1.9478798E+04</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="2" system_index="1" index_in_the_system="2">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">9.0196351E-04</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">3.5346056E+07</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">3.1880852E+04</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="3" system_index="1" index_in_the_system="3">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">5.5505446E-04</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">2.3515911E+07</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">1.3052611E+04</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="4" system_index="1" index_in_the_system="4">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">1.1447998E-03</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">7.5164234E+06</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">8.6048002E+03</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="5" system_index="1" index_in_the_system="5">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">1.3529453E-03</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">3.4191868E+06</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">4.6259726E+03</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="6" system_index="1" index_in_the_system="6">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">4.5098175E-04</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">1.5004028E+06</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">6.7665428E+02</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="7" system_index="1" index_in_the_system="7">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">4.1629085E-04</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">6.1170273E+05</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">2.5464625E+02</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group global_index="8" system_index="1" index_in_the_system="8">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">.0000000E+00</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">3.4690904E-05</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros">2.8132561E+05</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">9.7594396E+00</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group desc="total" global_index="9">
+   <produced_delayed_fraction_by_induced_fissions desc="produced delayed neutrons / produced neutrons">6.3328669E-03</produced_delayed_fraction_by_induced_fissions>
+   <simulated_delayed_fraction_by_induced_fissions desc="simulated delayed neutrons / produced neutrons">5.0995629E-03</simulated_delayed_fraction_by_induced_fissions>
+   <mean_decay_time_of_produced_delayed_fraction unit="micros" desc="each group weighted by simulated_delayed_fraction_by_induced_fissions">1.5409967E+07</mean_decay_time_of_produced_delayed_fraction>
+   <delayed_part_of_mean_neutron_generation_time unit="micros-1" desc="simulated_delayed_fraction_by_induced_fissions * mean_decay_time_of_produced_delayed_fraction">7.8584094E+04</delayed_part_of_mean_neutron_generation_time>
+  </precursor_group>
+  <precursor_group_system system_index="1">
+   <library name="/opt/moret/lib/xml/jeff311.xml">
+    <nuclides>U234 U235 U238</nuclides>
+   </library>
+  </precursor_group_system>
+ </precursor_groups>
+ <neutron_ratios>
+  <average_prompt_neutrons_per_induced_fission desc="prompt_neutrons_from_induced_fission_produced_and_simulated / induced_fissions">
+   <mean>2.5814479E+00</mean>
+   <std>1.8987894E-03</std>
+  </average_prompt_neutrons_per_induced_fission>
+  <average_delayed_neutrons_per_induced_fission desc="delayed_neutrons_from_induced_fission_produced / induced_fissions">
+   <mean>1.6451708E-02</mean>
+   <std>2.8069756E-05</std>
+  </average_delayed_neutrons_per_induced_fission>
+  <average_total_neutrons_per_induced_fission desc="(prompt_neutrons_from_induced_fission_produced_and_simulated + delayed_neutrons_from_induced_fission_produced) / induced_fissions">
+   <mean>2.5978996E+00</mean>
+   <std>1.8951526E-03</std>
+  </average_total_neutrons_per_induced_fission>
+  <prompt_keff desc="prompt_neutrons_from_induced_fission_produced_and_simulated / simulated_neutrons">
+   <mean>9.8773168E-01</mean>
+   <std>6.8903982E-03</std>
+  </prompt_keff>
+  <beta desc="delayed_neutrons_from_induced_fission_produced / (prompt_neutrons_from_induced_fission_produced_and_simulated + delayed_neutrons_from_induced_fission_produced)">
+   <mean>6.3326913E-03</mean>
+   <std>1.2259344E-05</std>
+  </beta>
+  <beta_eff desc="neutrons_from_induced_fission_produced_from_delayed / (prompt_neutrons_from_induced_fission_produced_and_simulated + delayed_neutrons_from_induced_fission_produced)">
+   <mean>3.8241247E-03</mean>
+   <std>5.2564046E-04</std>
+  </beta_eff>
+  <keff desc="(prompt_neutrons_from_induced_fission_produced_and_simulated + delayed_neutrons_from_induced_fission_produced) / simulated_neutrons">
+   <mean>9.9402655E-01</mean>
+   <std>6.9333651E-03</std>
+  </keff>
+  <reactivity desc="(keff - 1) / keff">
+   <mean>-5.9608035E-03</mean>
+   <std>6.9600881E-03</std>
+  </reactivity>
+  <mean_prompt_neutron_life_time unit="micros">
+   <mean>6.1458278E-03</mean>
+   <std>5.0527024E-05</std>
+  </mean_prompt_neutron_life_time>
+  <mean_prompt_neutron_generation_time unit="micros">
+   <mean>6.1824396E-03</mean>
+   <std>6.8468374E-05</std>
+  </mean_prompt_neutron_generation_time>
+  <mean_neutron_life_time unit="micros">
+   <mean>8.8485296E+04</mean>
+   <std>1.7557037E+04</std>
+  </mean_neutron_life_time>
+  <mean_neutron_generation_time unit="micros">
+   <mean>8.9011296E+04</mean>
+   <std>1.7679407E+04</std>
+  </mean_neutron_generation_time>
+  <growth_rate unit="micros-1" desc="reactivity / mean_neutron_generation_time">
+   <mean>-6.5115806E-08</mean>
+   <std>7.6492853E-08</std>
+  </growth_rate>
+ </neutron_ratios>
+ <info_message>Information message number 2 from WARN_ACE_DATA occurred when loading the ACE data.<br/>Slight difference between the temperature defined in the library and the one defined in the cross-section file<br/>for some nuclides.<br/>The temperature defined in the cross-section file is used.<br/>The nuclides are listed below.<br/>  Nuclide     Library                                             Temp. libr. (MeV)     Cross-section file                                  Temp. cross-section file (MeV)<br/>- U234        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922340_311.03c            2.5852000E-08<br/>- U235        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922350_311.03c            2.5852000E-08<br/>- U238        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922380_311.03c            2.5852000E-08</info_message>
+ <end_message>NORMAL END</end_message>
+ <cpu_time>
+  <read>2.6434000E+00</read>
+  <check>8.5190000E-03</check>
+  <simu_inactive>2.0953500E-01</simu_inactive>
+  <simu_active>2.7498600E-01</simu_active>
+  <output>9.5150000E-03</output>
+  <global>3.1459550E+00</global>
+ </cpu_time>
+ <real_time>
+  <read>3.4094050E+00</read>
+  <check>1.0229111E-02</check>
+  <simu_inactive>2.1532202E-01</simu_inactive>
+  <simu_active>2.8383398E-01</simu_active>
+  <output>1.0210991E-02</output>
+  <global>3.9290011E+00</global>
+ </real_time>
+ <output_files>
+  <expected number="2">.listing .out.xml</expected>
+  <existing number="2">.listing .out.xml</existing>
+ </output_files>
+</calculation>

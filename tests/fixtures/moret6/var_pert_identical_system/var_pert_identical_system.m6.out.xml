@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<calculation code="MORET 6.0.0" commit_short_hash="052de83" compiler="Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000" compil_processor="Unknown P6 family" compil_os="Ubuntu 22.04.5 LTS" calculation_computer="calc-host.example" calculation_author="user" calculation_date="Thursday, October 15 2026 - 12h01m53s" input_file_md5="b42c491472fd5a0fb69ed84a9ef3329f">
+ <title>GODIVA systeme perturbe identique au systeme initial</title>

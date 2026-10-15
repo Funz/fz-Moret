@@ -81,6 +81,30 @@ Fichiers de référence anonymisés : `tests/fixtures/moret6/` ; tests : `tests/
 | — | Graine par défaut 0 : résultats identiques d'un calcul à l'autre (réplications : `SOUR SEED`) |
 | — | Erreurs confirmées : `!` (Error 14), `SOUR` avant `OUTP` (19), ligne non commentée avant `GEOM` (1), deux volumes externes (6), `XMLC` (20) |
 
+## Acquis (4ᵉ exécution, 2026-10-15 ; MORET 6.0.0 builds d9ff307 et 052de83, MORET 5.D.1)
+
+Deux installations MORET 6.0.0 coexistent : le lanceur `moret.py 6.0` (build `d9ff307`) et le script
+de conteneur `moret6.sh` (build `052de83`, sans argument de version : `MORET_RELEASE=`). keff identiques
+sur tous les cas ; le numéro de version (`MORET 6.0.0`) ne les distingue pas, seul le `commit short hash`
+(sortie `moret_version`). Confrontation aux skills MORET v0.2 :
+
+| Id | Résultat |
+|---|---|
+| fz | **Défaut bloquant corrigé** : fz nomme les cas `radius=8.5,u5=...` ; la virgule casse `singularity --bind` des scripts de conteneur (« mount source ... doesn't exist », aucune sortie). `Moret.sh` exécute alors MORET dans `MORET_TMPDIR` puis rapatrie les sorties. `run_fz_e2e.py` : 3 cas `done` avec les deux lanceurs, keff 0,97508 / 0,99381 / 1,02402 |
+| H20 | **Tranchée** : `TAYL ... DENS c` est relatif (0.01 → Δk +8,35E-03, contre +8,26E-03 pour +1 % par `REPL`). Les colonnes sont les systèmes perturbés : le « +2,6E-04 » de `ok_pert_tayl` est le système 2 = U235 −1 % **et** densité +1 % (skills v0.2 : « DENS non vérifié, absolu suggéré » → faux) |
+| H21 | `XMLZ 1` : `<entrée>.out.xml.gz` ; conservé par `moret6.sh`, **non recopié** par `moret.py` (statut lu sur le listing) |
+| H22 | `STOP` : bannière `STOP OPTION / NO SIMULATION` puis `NORMAL END` ; statut plugin `NORMAL END (STOP OPTION, NO SIMULATION)` |
+| H23 | `OUTP SKIP` : keff final inchangé ; H24 `SREF` avec `REPL` : aucun changement visible |
+| H25/H26 | `KEFF SIGM 0.003` : arrêt à 29 cycles actifs ; `SIGM 0.0001 SUPE 0.98` (r = 9 cm) : arrêt à 20 cycles, σ = 0,004 ≫ 0,0001, sans message : σ cible non garanti |
+| H27 | `ESTI PRIN` : fichier `<entrée>.keff`, non recopié par `moret.py` |
+| H28–H31 | Error 15 `ERROR_MATERIALS` (nuclide), Error 19 `ERROR_CROSS_SECTIONS_CONT` (bibliothèque), Error 1 (`ENDD` absent), Error 81 (chevauchement) ; avec `NOTG` le chevauchement passe : fin normale, keff 1,644 |
+| H32 | MORET 5.D.1 : mêmes noms de sorties, même format de listing (keff, Δkeff `PERT`/`VARD`/`TAYL`) ; refuse la syntaxe de perturbation MORET 6 ; accepte le milieu numérique (association par rang) |
+| H33 | `REPL 2 a b` **accepté** (manuel MORET 6 juste, skills v0.2 « Error 12 » non reproduit) ; `VARD 2 0.01 -0.01` lu comme 3 systèmes (+200 %) : skills v0.2 justes, manuel MORET 6 faux ; `REPL a b` sans compte → Error 8 |
+| H34 | Conteneur `VOLU` inexistant : Error 38 avec `d9ff307`, **SIGSEGV sans message** avec `052de83` (régression du build le plus récent) |
+| H35 | Réseau débordant son conteneur : fin normale, keff 0,98351 au lieu de 1,04814, seul indice `WARN_GEOM 16` (sortie `moret_warnings`) |
+| H36 | Système perturbé identique au système initial (Δk = 0) : `forrtl: error (73): floating divide by zero` **après** impression de keff et Δk, pas de bannière (les deux builds, avec ou sans compte) ; statut plugin `NO END BANNER: forrtl: ...` |
+| H14 | `moret6.sh` renvoie un code non nul en cas de plantage (134) ou d'échec du conteneur (255), 0 en fin anormale ; `moret.py` : toujours 0 |
+
 ## Hypothèses testées
 
 | Id | Hypothèse | Cas |

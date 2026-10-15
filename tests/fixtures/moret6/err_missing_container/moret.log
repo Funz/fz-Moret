@@ -1,0 +1,18 @@
+Run /work/err_missing_container/err_missing_container.m6 with /opt/moret/containers/moret6.sif
+forrtl: severe (174): SIGSEGV, segmentation fault occurred
+Image              PC                Routine            Line        Source             
+libc.so.6          00000F29F1714520  Unknown               Unknown  Unknown
+moret              0000000000852A86  Unknown               Unknown  Unknown
+moret              000000000084FE86  Unknown               Unknown  Unknown
+moret              000000000084C207  Unknown               Unknown  Unknown
+moret              000000000081BF7C  Unknown               Unknown  Unknown
+moret              0000000000816BF3  Unknown               Unknown  Unknown
+moret              00000000008163DD  Unknown               Unknown  Unknown
+moret              000000000081637A  Unknown               Unknown  Unknown
+moret              0000000000511E72  Unknown               Unknown  Unknown
+moret              00000000005523F2  Unknown               Unknown  Unknown
+moret              0000000000658352  Unknown               Unknown  Unknown
+moret              000000000040891D  Unknown               Unknown  Unknown
+libc.so.6          00000F29F16FBD90  Unknown               Unknown  Unknown
+libc.so.6          00000F29F16FBE40  __libc_start_main     Unknown  Unknown
+moret              0000000000408835  Unknown               Unknown  Unknown

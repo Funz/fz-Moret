@@ -1,0 +1,15 @@
+Run /work/var_pert_identical_system/var_pert_identical_system.m6 with /opt/moret/containers/moret6.sif
+forrtl: error (73): floating divide by zero
+Image              PC                Routine            Line        Source             
+libc.so.6          000005831EEE3520  Unknown               Unknown  Unknown
+moret              0000000000AB230D  Unknown               Unknown  Unknown
+moret              00000000004BBFC6  Unknown               Unknown  Unknown
+moret              00000000004BB403  Unknown               Unknown  Unknown
+moret              00000000004A2FE5  Unknown               Unknown  Unknown
+moret              000000000079FD20  Unknown               Unknown  Unknown
+moret              000000000065836A  Unknown               Unknown  Unknown
+moret              000000000040891D  Unknown               Unknown  Unknown
+libc.so.6          000005831EECAD90  Unknown               Unknown  Unknown
+libc.so.6          000005831EECAE40  __libc_start_main     Unknown  Unknown
+moret              0000000000408835  Unknown               Unknown  Unknown
+/moret6.sh: line 25: 79927 Aborted                 (core dumped) ${code_dir}/bin/moret $(basename ${input_file})

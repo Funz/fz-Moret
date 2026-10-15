@@ -1,0 +1,1404 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                55555555
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                55555555
+                MMMM    MMMM OO        OO RR        RR EE                TT                     55
+                MM MM  MM MM OO        OO RR        RR EE                TT                     55
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     55
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     555555
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     5555555
+                MM        MM OO        OO RR    RR     EE                TT                           55
+                MM        MM OO        OO RR     RR    EE                TT                           55
+                MM        MM OO        OO RR      RR   EE                TT                           55
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                     5555555
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                     555555
+
+
+                           <<<<<<< MORET 5.D.1 of Monday, January 23 2017 - 14h15m42s >>>>>>>
+
+compiler used: Intel(R) Fortran Intel(R) 64 Compiler XE for applications running on Intel(R) 64, Version 14.0.4.211 Build 20140805
+on machine: build-host.example
+by developer: developer
+compilation date: Monday, January 23 2017 - 14h31m33s
+
+
+               ==========================================================================================
+               |                             FIRST READING OF THE RESOURCE                              |
+               |                                  EVALUATION DATA SET                                   |
+               ==========================================================================================
+
+
+                                           =================================
+                                           |      RESOURCES REQUESTED      |
+                                           =================================
+                                           | MODULES       |             1 |
+                                           | VOLUMES-HOLES |             1 |
+                                           | TYPES         |             1 |
+                                           | LATTICES      |             0 |
+                                           | OPERATORS     |             1 |
+                                           | MATERIALS     |             3 |
+                                           | NUCLIDES      |             9 |
+                                           | GROUPS        |             0 |
+                                           | LEGENDRE      |             0 |
+                                           =================================
+
+:MORET_BEGIN:
+
+:GODIVA perturbation MORET 5 PERT REPL:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H32a syntaxe MORET 5 (ASSO PERT n / MEDI / REPL) et format du dkeff par systeme perturbe dans le listing MORET 5:
+
+:* Attendu    : MORET 5 : NORMAL END, 2 systemes (U235 +1 pct / -1 pct), format identique a MORET 6:
+
+::
+
+:GEOM:
+
+:  MODU 0:
+
+:    TYPE 1 SPHE 8.7407:
+
+:    VOLU 1 0 1 m1 0. 0. 0.:
+
+:  ENDM:
+
+:ENDG:
+
+::
+
+:MATE:
+
+:  CONT:
+
+:    LIBR jeff311.xml:
+
+:    TEMP 300:
+
+:    COMP UMET:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.49988E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:    COMP UMET_P1:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.54488E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:    COMP UMET_P2:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.45488E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:  ENDM:
+
+::
+
+::
+
+::
+
+:ASSO:
+
+:  PERT 2:
+
+:    MEDI m1 UMET:
+
+:      REPL UMET_P1 UMET_P2:
+
+:ENDA:
+
+::
+
+:SOUR:
+
+               ==========================================================================================
+               |                             LOADING MATERIAL COMPOSITIONS                              |
+               ==========================================================================================
+
+Information message number 2 from WARN_ACE_CROSS_SECTIONS occurred when loading the ACE cross-sections.
+Slight difference between the temperature defined in the library and the one defined in the cross-section file
+for some nuclides.
+The temperature defined in the cross-section file is used.
+The nuclides are listed below.
+  Nuclide     Library                                             Temp. libr. (MeV)     Cross-section file                                  Temp. cross-section file (MeV)
+- U234        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922340_311.03c            2.5852000E-08
+- U235        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922350_311.03c            2.5852000E-08
+- U238        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922380_311.03c            2.5852000E-08
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92234.03c asked for the nuclide U234.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92235.03c asked for the nuclide U235.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 2.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4553 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4554 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4556 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 1.0000000E-11 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+Information message number 27 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Warning using the reaction 4557 in the DLW block from table 92238.03c asked for the nuclide U238.
+The last value of the distribution function of
+a outgoing energies distribution of the law 4 for the incident energy 3.0000000E+01 MeV is equal to 1.0000000E+00.
+It is set to 1.
+
+                                         TABLE OF LOADED MATERIAL COMPOSITIONS
+========================================================================================================================
+| Number   Name                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      UMET                                                                                                        |
+|               Density  18.7419                                                                                       |
+|               MORET nuclide   Libr. nuclide   Atom. prop.   Mass. prop.   Conc. (in 10+24)  Temp. (K)  Temp. Sab (K) |
+|               U234            U234            1.0250E-02    1.0200E-02    4.9190E-04        300.000                  |
+|               U235            U235            9.3768E-01    9.3710E-01    4.4999E-02        300.000                  |
+|               U238            U238            5.2067E-02    5.2700E-02    2.4986E-03        300.000                  |
+|----------------------------------------------------------------------------------------------------------------------|
+|   2      UMET_P1                                                                                                     |
+|               Density  18.9175                                                                                       |
+|               MORET nuclide   Libr. nuclide   Atom. prop.   Mass. prop.   Conc. (in 10+24)  Temp. (K)  Temp. Sab (K) |
+|               U234            U234            1.0155E-02    1.0105E-02    4.9190E-04        300.000                  |
+|               U235            U235            9.3826E-01    9.3768E-01    4.5449E-02        300.000                  |
+|               U238            U238            5.1583E-02    5.2211E-02    2.4986E-03        300.000                  |
+|----------------------------------------------------------------------------------------------------------------------|
+|   3      UMET_P2                                                                                                     |
+|               Density  18.5663                                                                                       |
+|               MORET nuclide   Libr. nuclide   Atom. prop.   Mass. prop.   Conc. (in 10+24)  Temp. (K)  Temp. Sab (K) |
+|               U234            U234            1.0347E-02    1.0296E-02    4.9190E-04        300.000                  |
+|               U235            U235            9.3709E-01    9.3651E-01    4.4549E-02        300.000                  |
+|               U238            U238            5.2560E-02    5.3199E-02    2.4986E-03        300.000                  |
+========================================================================================================================
+
+                                   TABLE OF LOADED NUCLIDES AND MATERIAL COMPOSITIONS
+========================================================================================================================
+| Number   MORET name Libr. name Format     Temp. K      Temp. MeV    Mass / neut.      Molar mass                     |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      U234       U234       ACE           300.000   2.5852E-08   232.0300          234.0391                       |
+|               Library: /opt/moret/lib/xml/jeff311.xml                                                                 |
+|               File: /opt/moret/lib/ace/311/300/922340_311.03c                                                         |
+|               Comment: U234 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9225  04/06/15    |
+|               Use in material UMET                                                                                   |
+|               Use in material UMET_P1                                                                                |
+|               Use in material UMET_P2                                                                                |
+|----------------------------------------------------------------------------------------------------------------------|
+|   2      U235       U235       ACE           300.000   2.5852E-08   233.0250          235.0427                       |
+|               Library: /opt/moret/lib/xml/jeff311.xml                                                                 |
+|               File: /opt/moret/lib/ace/311/300/922350_311.03c                                                         |
+|               Comment: U235 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9228  04/06/15    |
+|               Use in material UMET                                                                                   |
+|               Use in material UMET_P1                                                                                |
+|               Use in material UMET_P2                                                                                |
+|----------------------------------------------------------------------------------------------------------------------|
+|   3      U238       U238       ACE           300.000   2.5852E-08   236.0058          238.0493                       |
+|               Library: /opt/moret/lib/xml/jeff311.xml                                                                 |
+|               File: /opt/moret/lib/ace/311/300/922380_311.03c                                                         |
+|               Comment: U238 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9237  04/06/15    |
+|               Use in material UMET                                                                                   |
+|               Use in material UMET_P1                                                                                |
+|               Use in material UMET_P2                                                                                |
+========================================================================================================================
+
+:  UNIF 1000:
+
+:ENDS:
+
+::
+
+:TERM:
+
+:  CYCL PASS 30 ACTI 100:
+
+:ENDT:
+
+::
+
+:ENDD:
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 48
+                             Number of messages from WARN_ACE_CROSS_SECTIONS        : 1
+
+
+               ==========================================================================================
+               |                   NORMAL END FOR DATA READING - START OF CALCULATION                   |
+               ==========================================================================================
+
+
+     ==============================================================================================================
+     |                                            PERTURBATION SUMMARY                                            |
+     |                    NATURE OF MATERIAL COMPOSITIONS IN THE INITIAL AND PERTURBED SYSTEMS                    |
+     ==============================================================================================================
+     | NAME    |                                                |                                                 |
+     | MATERIAL|                INITIAL SYSTEM                  |              PERTURBED SYSTEM NO 1              |
+     |---------|------------------------------------------------|-------------------------------------------------|
+     | m1      | UMET                                           | UMET_P1                                         |
+     ==============================================================================================================
+     | NAME    |                                                |                                                 |
+     | MATERIAL|                INITIAL SYSTEM                  |              PERTURBED SYSTEM NO 2              |
+     |---------|------------------------------------------------|-------------------------------------------------|
+     | m1      | UMET                                           | UMET_P2                                         |
+     ==============================================================================================================
+
+     The anisotropy option applied to material which is replaced by another one is the Coveyou method,
+     in each of the systems (reference, initial, perturbed).
+
+
+========================================================================================================================
+|                                   SUMMARY OF MEDIA-MATERIALS-VOLUMES ASSOCIATIONS                                    |
+|                              IN THE REFERENCE SYSTEM (where the simulation takes place)                              |
+|                                     The reference system is the initial system.                                      |
+========================================================================================================================
+| NAME            NAME                LEGENDRE ORDER,     NAME           NAME            NAME            FORM          |
+| MEDIUM          MATERIAL            PROC. ANISOTROPY    VOLUME         MODULE          TYPE                          |
+|----------------------------------------------------------------------------------------------------------------------|
+| m1              UMET                equiprobable bins   1               0               1               SPHERE       |
+========================================================================================================================
+
+
+
+
+
+          ====================================================================================================
+          |                                CHARACTERISTICS OF THE SIMULATION                                 |
+          ====================================================================================================
+          |                                                                                                  |
+          |                                     Type of simulation: NATU                                     |
+          |                                                                                                  |
+          | No stratification of source sampling                                                             |
+          | Not necessarily sources placed for each cycle in each fissile set                                |
+          | Not necessarily sources placed in a fissile set when it is visited                               |
+          | Not necessarily sources placed for each cycle in each fissile set                                |
+          | No calculation of the fission matrix during the active cycles                                    |
+          | No calculation of the fission matrix during the inactive cycles                                  |
+          | No use of the fission matrix eigenvector                                                         |
+          | No use of the adjoint fission matrix eigenvector                                                 |
+          | No weighting of the production with the importance function                                      |
+          | Production in each fissile assembly estimated at the collisions                                  |
+          | to calculate the new source distribution                                                         |
+          | Potential fission sites created at the collisions                                                |
+          | Initial keff estimate used to normalise the neutrons produced: 1.00000                           |
+          | No simulation of decay products                                                                  |
+          | No use of the Woodcock method                                                                    |
+          | No use of splitting during volume changes                                                        |
+          | Absorption simulation: death of neutron during absorption                                        |
+          | No use of Russian roulette                                                                       |
+          |                                                                                                  |
+          | The simulation is performed between the following energies:                                      |
+          | - Emin: 1.0000E-11 MeV                                                                           |
+          | - Emax: 2.0000E+01 MeV                                                                           |
+          | Continuous energy calculation, lattice of  256830 energies                                       |
+          | Probability Tables are used for unresolved resonance range                                       |
+          |                                                                                                  |
+          |                                     Perturbation calculation                                     |
+          |                               using the correlated samples method                                |
+          | Simulation of neutrons in the initial system                                                     |
+          | Number of perturbed systems               : 2                                                    |
+          | Number of material replaced               : 1                                                    |
+          | Number of makeup generations              : 2                                                    |
+          |                                                                                                  |
+          |                                       Calculation of keff                                        |
+          | Standard estimator  : BALANCE-TRACK-LENGTH                                                       |
+          | Calculation of 5 other individual estimators:                                                    |
+          | - 3 SOURCE estimators  : COLLISION, TRACK-LENGTH, ABSORPTION                                     |
+          | - 2 BALANCE estimators: COLLISION, ABSORPTION                                                    |
+          | Calculations performed from cycle 10:                                                            |
+          | - combination of three SOURCE estimators                                                         |
+          | - combination of three BALANCE estimators                                                        |
+          | - general combination                                                                            |
+          |                                                                                                  |
+          | Initial index of random numbers         : 0                                                      |
+          |                                                                                                  |
+          | Number of neutrons per cycle            : 1000                                                   |
+          |                                                                                                  |
+          |                                      Termination criteria:                                       |
+          | - Minimum number of passive cycles            : 30                                               |
+          | - Minimum number of passive neutrons simulated: 0                                                |
+          | - Minimum number of active cycle              : 100                                              |
+          | - Minimum number of active neutrons simulated : 0                                                |
+          | - Lowest standard deviation less than         : 300 pcm                                          |
+          |                                                                                                  |
+          ====================================================================================================
+
+
+                                                   Alea jacta est...
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 48
+                             Number of messages from WARN_ACE_CROSS_SECTIONS        : 1
+
+
+
+
+
+Inactive cycles carried out: 30
+
+
+
+
+
+         =========================================================================================================================
+         |                   |                             |                   |                   |                   | ESTIM.  |
+         |    ESTIMATOR      |  KEFF ESTIMATOR WITH THE    |  COMBINATION OF   |  COMBINATION OF   |      GENERAL      |OF CYCLE |
+         |    BALANCE-TRACK-L| LOWEST STANDARD DEVIATION   |   THE 3 SOURCE    |   THE 3 BALANCE   |    COMBINATION    | NUMBER  |
+         |                   | FROM INDIVIDUAL ESTIMATORS  |  KEFF ESTIMATORS  |  KEFF ESTIMATORS  |                   |  FOR    |
+         |                   |                             |                   |                   |                   |TO REACH |
+=========|===================|=============================|===================|===================|===================|   THE   |
+| CYCLE  |   MEAN STANDARD   |   NAME    MEAN    STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |PRECISION|
+| ACTIVE |   KEFF DEVIATION  |           KEFF    DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |REQUIRED |
+|========|===================|=============================|===================|===================|===================|=========|
+|      1 |  0.95134  0.00000 | unavailable                 |  not calculated   |  not calculated   |  not calculated   |         |
+|      2 |  0.95227  0.00093 | inconsistent estimators     |  not calculated   |  not calculated   |  not calculated   |         |
+|      3 |  0.96392  0.01166 | BALA-COLL  0.96642  0.00929 |  not calculated   |  not calculated   |  not calculated   |      29 |
+|      4 |  0.96780  0.00911 | BALA-COLL  0.96727  0.00663 |  not calculated   |  not calculated   |  not calculated   |      20 |
+|      5 |  0.97485  0.00998 | BALA-TRAC  0.97485  0.00998 |  not calculated   |  not calculated   |  not calculated   |      56 |
+|      6 |  0.98544  0.01336 | BALA-ABSO  0.97064  0.01083 |  not calculated   |  not calculated   |  not calculated   |      79 |
+|      7 |  0.99027  0.01228 | BALA-COLL  0.99015  0.01168 |  not calculated   |  not calculated   |  not calculated   |     107 |
+|      8 |  0.98788  0.01090 | BALA-COLL  0.98740  0.01048 |  not calculated   |  not calculated   |  not calculated   |      98 |
+|      9 |  0.99200  0.01046 | BALA-TRAC  0.99200  0.01046 |  not calculated   |  not calculated   |  not calculated   |     110 |
+|     10 |  0.99400  0.00956 | BALA-TRAC  0.99400  0.00956 |  0.99621  0.00895 |  0.99471  0.00882 |  0.99024  0.00807 |      73 |
+|     11 |  0.99522  0.00874 | BALA-TRAC  0.99522  0.00874 |  0.99616  0.00810 |  0.99488  0.00798 |  0.99097  0.00731 |      66 |
+|     12 |  0.99313  0.00825 | BALA-TRAC  0.99313  0.00825 |  0.99476  0.00763 |  0.99352  0.00750 |  0.99041  0.00719 |      69 |
+|     13 |  0.99146  0.00777 | BALA-TRAC  0.99146  0.00777 |  0.99276  0.00734 |  0.99162  0.00720 |  0.98834  0.00676 |      66 |
+|     14 |  0.99254  0.00727 | BALA-TRAC  0.99254  0.00727 |  0.99397  0.00687 |  0.99274  0.00673 |  0.98930  0.00637 |      64 |
+|     15 |  0.99253  0.00677 | BALA-TRAC  0.99253  0.00677 |  0.99422  0.00640 |  0.99266  0.00627 |  0.98930  0.00593 |      59 |
+|     16 |  0.99218  0.00634 | BALA-TRAC  0.99218  0.00634 |  0.99430  0.00599 |  0.99292  0.00587 |  0.98969  0.00555 |      55 |
+|     17 |  0.99205  0.00596 | BALA-TRAC  0.99205  0.00596 |  0.99401  0.00563 |  0.99269  0.00552 |  0.98983  0.00521 |      52 |
+|     18 |  0.99239  0.00563 | BALA-TRAC  0.99239  0.00563 |  0.99408  0.00531 |  0.99287  0.00521 |  0.99011  0.00493 |      49 |
+|     19 |  0.99191  0.00535 | BALA-TRAC  0.99191  0.00535 |  0.99434  0.00503 |  0.99287  0.00492 |  0.99010  0.00466 |      46 |
+|     20 |  0.99018  0.00536 | BALA-TRAC  0.99018  0.00536 |  0.99215  0.00519 |  0.99059  0.00510 |  0.98842  0.00459 |      47 |
+|     21 |  0.98930  0.00517 | BALA-TRAC  0.98930  0.00517 |  0.99098  0.00507 |  0.98958  0.00495 |  0.98805  0.00439 |      45 |
+|     22 |  0.98822  0.00505 | BALA-TRAC  0.98822  0.00505 |  0.99017  0.00491 |  0.98881  0.00479 |  0.98721  0.00426 |      45 |
+|     23 |  0.98775  0.00485 | BALA-TRAC  0.98775  0.00485 |  0.98992  0.00470 |  0.98850  0.00459 |  0.98716  0.00407 |      43 |
+|     24 |  0.98772  0.00464 | BALA-TRAC  0.98772  0.00464 |  0.98986  0.00450 |  0.98856  0.00439 |  0.98723  0.00390 |      41 |
+|     25 |  0.98958  0.00482 | BALA-TRAC  0.98958  0.00482 |  0.99146  0.00459 |  0.99028  0.00452 |  0.98891  0.00396 |      44 |
+|     26 |  0.98939  0.00464 | BALA-TRAC  0.98939  0.00464 |  0.99092  0.00444 |  0.98990  0.00436 |  0.98822  0.00382 |      43 |
+|     27 |  0.98917  0.00447 | BALA-TRAC  0.98917  0.00447 |  0.98982  0.00441 |  0.98890  0.00429 |  0.98723  0.00375 |      43 |
+|     28 |  0.98907  0.00431 | BALA-TRAC  0.98907  0.00431 |  0.99006  0.00425 |  0.98912  0.00414 |  0.98744  0.00362 |      41 |
+|     29 |  0.98990  0.00424 | BALA-TRAC  0.98990  0.00424 |  0.99105  0.00422 |  0.99010  0.00412 |  0.98927  0.00368 |      44 |
+|     30 |  0.99008  0.00410 | BALA-TRAC  0.99008  0.00410 |  0.99127  0.00408 |  0.99028  0.00398 |  0.98956  0.00357 |      43 |
+|     31 |  0.99044  0.00398 | BALA-TRAC  0.99044  0.00398 |  0.99167  0.00397 |  0.99069  0.00387 |  0.98965  0.00349 |      42 |
+|     32 |  0.99086  0.00388 | BALA-TRAC  0.99086  0.00388 |  0.99215  0.00387 |  0.99104  0.00376 |  0.99012  0.00341 |      42 |
+|     33 |  0.99012  0.00383 | BALA-TRAC  0.99012  0.00383 |  0.99124  0.00386 |  0.99014  0.00375 |  0.98839  0.00343 |      44 |
+|     34 |  0.99015  0.00371 | BALA-TRAC  0.99015  0.00371 |  0.99128  0.00374 |  0.99024  0.00364 |  0.98880  0.00333 |      42 |
+|     35 |  0.99010  0.00361 | BALA-TRAC  0.99010  0.00361 |  0.99144  0.00364 |  0.99032  0.00354 |  0.98881  0.00324 |      41 |
+|     36 |  0.99050  0.00353 | BALA-TRAC  0.99050  0.00353 |  0.99204  0.00358 |  0.99085  0.00348 |  0.98901  0.00320 |      41 |
+|     37 |  0.99064  0.00343 | BALA-TRAC  0.99064  0.00343 |  0.99203  0.00349 |  0.99087  0.00339 |  0.98910  0.00311 |      40 |
+|     38 |  0.99051  0.00334 | BALA-TRAC  0.99051  0.00334 |  0.99179  0.00340 |  0.99064  0.00330 |  0.98895  0.00303 |      39 |
+|     39 |  0.98978  0.00334 | BALA-TRAC  0.98978  0.00334 |  0.99102  0.00341 |  0.99008  0.00328 |  0.98754  0.00304 |      41 |
+|     40 |  0.99032  0.00330 | BALA-TRAC  0.99032  0.00330 |  0.99156  0.00338 |  0.99064  0.00327 |  0.98861  0.00311 |      43 |
+|     41 |  0.99032  0.00322 | BALA-TRAC  0.99032  0.00322 |  0.99159  0.00330 |  0.99059  0.00319 |  0.98855  0.00303 |      42 |
+|     42 |  0.99040  0.00314 | BALA-TRAC  0.99040  0.00314 |  0.99145  0.00322 |  0.99066  0.00311 |  0.98904  0.00297 |         |
+|     43 |  0.99022  0.00307 | BALA-TRAC  0.99022  0.00307 |  0.99117  0.00316 |  0.99049  0.00304 |  0.98891  0.00290 |         |
+|     44 |  0.99111  0.00313 | BALA-TRAC  0.99111  0.00313 |  0.99204  0.00321 |  0.99138  0.00312 |  0.99047  0.00308 |      47 |
+|     45 |  0.99181  0.00314 | BALA-TRAC  0.99181  0.00314 |  0.99257  0.00319 |  0.99205  0.00313 |  0.99110  0.00310 |      48 |
+|     46 |  0.99183  0.00307 | BALA-TRAC  0.99183  0.00307 |  0.99257  0.00312 |  0.99204  0.00306 |  0.99105  0.00303 |      47 |
+|     47 |  0.99205  0.00301 | BALA-TRAC  0.99205  0.00301 |  0.99264  0.00305 |  0.99226  0.00300 |  0.99115  0.00297 |         |
+|     48 |  0.99231  0.00296 | BALA-TRAC  0.99231  0.00296 |  0.99286  0.00300 |  0.99250  0.00295 |  0.99151  0.00292 |         |
+|     49 |  0.99254  0.00291 | BALA-TRAC  0.99254  0.00291 |  0.99313  0.00295 |  0.99271  0.00289 |  0.99206  0.00288 |         |
+|     50 |  0.99273  0.00286 | BALA-TRAC  0.99273  0.00286 |  0.99333  0.00289 |  0.99292  0.00284 |  0.99234  0.00283 |         |
+|     51 |  0.99288  0.00280 | BALA-TRAC  0.99288  0.00280 |  0.99336  0.00284 |  0.99305  0.00279 |  0.99263  0.00278 |         |
+|     52 |  0.99246  0.00278 | BALA-TRAC  0.99246  0.00278 |  0.99295  0.00281 |  0.99265  0.00277 |  0.99225  0.00276 |         |
+|     53 |  0.99191  0.00278 | BALA-TRAC  0.99191  0.00278 |  0.99224  0.00284 |  0.99201  0.00277 |  0.99149  0.00276 |         |
+|     54 |  0.99186  0.00273 | BALA-TRAC  0.99186  0.00273 |  0.99210  0.00279 |  0.99195  0.00272 |  0.99146  0.00270 |         |
+|     55 |  0.99280  0.00284 | BALA-TRAC  0.99280  0.00284 |  0.99304  0.00290 |  0.99285  0.00282 |  0.99209  0.00276 |         |
+|     56 |  0.99334  0.00284 | BALA-TRAC  0.99334  0.00284 |  0.99361  0.00290 |  0.99338  0.00281 |  0.99248  0.00274 |         |
+|     57 |  0.99354  0.00280 | BALA-TRAC  0.99354  0.00280 |  0.99385  0.00286 |  0.99358  0.00277 |  0.99283  0.00270 |         |
+|     58 |  0.99333  0.00276 | BALA-TRAC  0.99333  0.00276 |  0.99372  0.00282 |  0.99346  0.00272 |  0.99268  0.00266 |         |
+|     59 |  0.99319  0.00271 | BALA-TRAC  0.99319  0.00271 |  0.99344  0.00278 |  0.99323  0.00269 |  0.99250  0.00262 |         |
+|     60 |  0.99360  0.00270 | BALA-TRAC  0.99360  0.00270 |  0.99379  0.00276 |  0.99361  0.00267 |  0.99295  0.00261 |         |
+|     61 |  0.99404  0.00269 | BALA-TRAC  0.99404  0.00269 |  0.99406  0.00273 |  0.99396  0.00265 |  0.99331  0.00259 |         |
+|     62 |  0.99444  0.00268 | BALA-TRAC  0.99444  0.00268 |  0.99440  0.00271 |  0.99433  0.00263 |  0.99372  0.00258 |         |
+|     63 |  0.99451  0.00263 | BALA-TRAC  0.99451  0.00263 |  0.99453  0.00267 |  0.99449  0.00260 |  0.99384  0.00254 |         |
+|     64 |  0.99414  0.00262 | BALA-TRAC  0.99414  0.00262 |  0.99413  0.00265 |  0.99412  0.00258 |  0.99347  0.00253 |         |
+|     65 |  0.99356  0.00264 | BALA-TRAC  0.99356  0.00264 |  0.99362  0.00266 |  0.99367  0.00259 |  0.99306  0.00255 |         |
+|     66 |  0.99419  0.00268 | BALA-TRAC  0.99419  0.00268 |  0.99413  0.00267 |  0.99423  0.00261 |  0.99330  0.00255 |         |
+|     67 |  0.99410  0.00264 | BALA-TRAC  0.99410  0.00264 |  0.99397  0.00264 |  0.99412  0.00257 |  0.99322  0.00252 |         |
+|     68 |  0.99415  0.00260 | BALA-TRAC  0.99415  0.00260 |  0.99413  0.00260 |  0.99422  0.00254 |  0.99344  0.00248 |         |
+|     69 |  0.99420  0.00256 | BALA-TRAC  0.99420  0.00256 |  0.99411  0.00256 |  0.99424  0.00250 |  0.99348  0.00245 |         |
+|     70 |  0.99429  0.00253 | BALA-TRAC  0.99429  0.00253 |  0.99421  0.00253 |  0.99436  0.00246 |  0.99359  0.00242 |         |
+|     71 |  0.99468  0.00252 | BALA-TRAC  0.99468  0.00252 |  0.99446  0.00251 |  0.99460  0.00244 |  0.99365  0.00238 |         |
+|     72 |  0.99443  0.00250 | BALA-TRAC  0.99443  0.00250 |  0.99417  0.00249 |  0.99434  0.00242 |  0.99343  0.00236 |         |
+|     73 |  0.99464  0.00247 | BALA-TRAC  0.99464  0.00247 |  0.99446  0.00247 |  0.99456  0.00240 |  0.99374  0.00234 |         |
+|     74 |  0.99483  0.00245 | BALA-TRAC  0.99483  0.00245 |  0.99465  0.00245 |  0.99469  0.00237 |  0.99387  0.00231 |         |
+|     75 |  0.99484  0.00241 | BALA-TRAC  0.99484  0.00241 |  0.99471  0.00241 |  0.99469  0.00234 |  0.99383  0.00228 |         |
+|     76 |  0.99476  0.00238 | BALA-TRAC  0.99476  0.00238 |  0.99491  0.00239 |  0.99478  0.00231 |  0.99381  0.00225 |         |
+|     77 |  0.99495  0.00236 | BALA-TRAC  0.99495  0.00236 |  0.99516  0.00237 |  0.99504  0.00229 |  0.99428  0.00224 |         |
+|     78 |  0.99488  0.00233 | BALA-TRAC  0.99488  0.00233 |  0.99511  0.00234 |  0.99504  0.00226 |  0.99428  0.00221 |         |
+|     79 |  0.99536  0.00235 | BALA-TRAC  0.99536  0.00235 |  0.99554  0.00234 |  0.99554  0.00228 |  0.99500  0.00226 |         |
+|     80 |  0.99489  0.00237 | BALA-TRAC  0.99489  0.00237 |  0.99510  0.00236 |  0.99511  0.00230 |  0.99461  0.00227 |         |
+|     81 |  0.99477  0.00234 | BALA-TRAC  0.99477  0.00234 |  0.99504  0.00233 |  0.99509  0.00227 |  0.99462  0.00224 |         |
+|     82 |  0.99515  0.00235 | BALA-TRAC  0.99515  0.00235 |  0.99540  0.00233 |  0.99541  0.00227 |  0.99487  0.00222 |         |
+|     83 |  0.99497  0.00232 | BALA-TRAC  0.99497  0.00232 |  0.99514  0.00231 |  0.99513  0.00225 |  0.99459  0.00221 |         |
+|     84 |  0.99454  0.00234 | BALA-TRAC  0.99454  0.00234 |  0.99472  0.00233 |  0.99471  0.00227 |  0.99421  0.00222 |         |
+|     85 |  0.99502  0.00236 | BALA-TRAC  0.99502  0.00236 |  0.99522  0.00234 |  0.99522  0.00229 |  0.99484  0.00226 |         |
+|     86 |  0.99542  0.00236 | BALA-TRAC  0.99542  0.00236 |  0.99557  0.00234 |  0.99560  0.00229 |  0.99518  0.00227 |         |
+|     87 |  0.99582  0.00237 | BALA-TRAC  0.99582  0.00237 |  0.99596  0.00235 |  0.99602  0.00231 |  0.99564  0.00229 |         |
+|     88 |  0.99621  0.00238 | BALA-TRAC  0.99621  0.00238 |  0.99646  0.00237 |  0.99644  0.00232 |  0.99622  0.00230 |         |
+|     89 |  0.99661  0.00238 | BALA-TRAC  0.99661  0.00238 |  0.99668  0.00236 |  0.99664  0.00230 |  0.99623  0.00228 |         |
+|     90 |  0.99673  0.00236 | BALA-TRAC  0.99673  0.00236 |  0.99675  0.00233 |  0.99679  0.00228 |  0.99637  0.00226 |         |
+|     91 |  0.99705  0.00235 | BALA-TRAC  0.99705  0.00235 |  0.99701  0.00232 |  0.99708  0.00227 |  0.99662  0.00226 |         |
+|     92 |  0.99684  0.00234 | BALA-TRAC  0.99684  0.00234 |  0.99674  0.00231 |  0.99679  0.00227 |  0.99637  0.00225 |         |
+|     93 |  0.99696  0.00231 | BALA-TRAC  0.99696  0.00231 |  0.99682  0.00229 |  0.99691  0.00225 |  0.99650  0.00223 |         |
+|     94 |  0.99682  0.00229 | BALA-TRAC  0.99682  0.00229 |  0.99669  0.00227 |  0.99677  0.00223 |  0.99642  0.00221 |         |
+|     95 |  0.99664  0.00228 | BALA-TRAC  0.99664  0.00228 |  0.99649  0.00225 |  0.99649  0.00222 |  0.99604  0.00220 |         |
+|     96 |  0.99684  0.00226 | BALA-TRAC  0.99684  0.00226 |  0.99673  0.00224 |  0.99668  0.00221 |  0.99630  0.00219 |         |
+|     97 |  0.99681  0.00224 | BALA-TRAC  0.99681  0.00224 |  0.99665  0.00222 |  0.99666  0.00218 |  0.99628  0.00216 |         |
+|     98 |  0.99703  0.00223 | BALA-TRAC  0.99703  0.00223 |  0.99690  0.00221 |  0.99695  0.00218 |  0.99660  0.00216 |         |
+|     99 |  0.99660  0.00225 | BALA-TRAC  0.99660  0.00225 |  0.99648  0.00223 |  0.99658  0.00219 |  0.99631  0.00216 |         |
+|    100 |  0.99624  0.00225 | BALA-TRAC  0.99624  0.00225 |  0.99619  0.00223 |  0.99634  0.00218 |  0.99607  0.00215 |         |
+==================================================================================================================================
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 48
+                             Number of messages from WARN_ACE_CROSS_SECTIONS        : 1
+
+########################################################################################################################
+########################################################################################################################
+##                                                                                                                    ##
+##                                                   INITIAL SYSTEM                                                   ##
+##                                                FINAL KEFF ESTIMATE                                                 ##
+##                                                                                                                    ##
+##                                                          KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA            ##
+##                 CYCLE    100  LOWEST SIGMA ESTI.       0.99607 +/-  0.00215  :  0.98961 < KEFF < 1.00253           ##
+##                                                                                                                    ##
+##                               COMBI. GENERAL           0.99607 +/-  0.00215  :  0.98961 < KEFF < 1.00253           ##
+##                               COMBI. 3 BALANCE         0.99634 +/-  0.00218  :  0.98978 < KEFF < 1.00289           ##
+##                               COMBI. 3 SOURCE          0.99619 +/-  0.00223  :  0.98951 < KEFF < 1.00287           ##
+##                               BALANCE-TRACK-LENGTH     0.99624 +/-  0.00225  :  0.98948 < KEFF < 1.00299           ##
+##                               BALANCE-COLLISION        0.99600 +/-  0.00278  :  0.98766 < KEFF < 1.00434           ##
+##                               SOURCE-TRACK-LENGTH      0.99745 +/-  0.00322  :  0.98778 < KEFF < 1.00712           ##
+##                               SOURCE-COLLISION         0.99748 +/-  0.00368  :  0.98643 < KEFF < 1.00853           ##
+##                               SOURCE-ABSORPTION        0.99460 +/-  0.00404  :  0.98249 < KEFF < 1.00671           ##
+##                               BALANCE-ABSORPTION       0.99456 +/-  0.00404  :  0.98243 < KEFF < 1.00670           ##
+##                                                                                                                    ##
+##                                               PERTURBED SYSTEM NO 1                                                ##
+##                                        FINAL ESTIMATE OF THE EFFECT ON KEFF                                        ##
+##                                   OF PERTURBATIONS APPLIED TO THE INITIAL SYSTEM                                   ##
+##                                                                                                                    ##
+##                                                     DELTA KEFF     STANDARD DEV.    INTERVAL TO +/- 3 SIGMA        ##
+##                 CYCLE    100  LOWEST SIGMA ESTI.   +7.9367E-03 +/- 4.5461E-05 : +7.8003E-03 < DKEFF < +8.0731E-03  ##
+##                                                                                                                    ##
+##                               COMBI. GENERAL       +7.9367E-03 +/- 4.5461E-05 : +7.8003E-03 < DKEFF < +8.0731E-03  ##
+##                               COMBI. 3 BALANCE     +7.9343E-03 +/- 4.7900E-05 : +7.7906E-03 < DKEFF < +8.0780E-03  ##
+##                               BALANCE-TRACK-LENGTH +7.9367E-03 +/- 4.8187E-05 : +7.7921E-03 < DKEFF < +8.0813E-03  ##
+##                               BALANCE-COLLISION    +7.9252E-03 +/- 5.5115E-05 : +7.7599E-03 < DKEFF < +8.0906E-03  ##
+##                               COMBI. 3 SOURCE      +7.9859E-03 +/- 7.2805E-05 : +7.7675E-03 < DKEFF < +8.2043E-03  ##
+##                               BALANCE-ABSORPTION   +7.8123E-03 +/- 8.8783E-05 : +7.5459E-03 < DKEFF < +8.0786E-03  ##
+##                               SOURCE-TRACK-LENGTH  +8.0796E-03 +/- 9.5487E-05 : +7.7931E-03 < DKEFF < +8.3660E-03  ##
+##                               SOURCE-COLLISION     +8.0633E-03 +/- 9.6590E-05 : +7.7735E-03 < DKEFF < +8.3531E-03  ##
+##                               SOURCE-ABSORPTION    +7.8592E-03 +/- 1.0964E-04 : +7.5303E-03 < DKEFF < +8.1881E-03  ##
+##                                                                                                                    ##
+##                                               PERTURBED SYSTEM NO 2                                                ##
+##                                        FINAL ESTIMATE OF THE EFFECT ON KEFF                                        ##
+##                                   OF PERTURBATIONS APPLIED TO THE INITIAL SYSTEM                                   ##
+##                                                                                                                    ##
+##                                                     DELTA KEFF     STANDARD DEV.    INTERVAL TO +/- 3 SIGMA        ##
+##                 CYCLE    100  LOWEST SIGMA ESTI.   -7.9862E-03 +/- 4.5042E-05 : -8.1213E-03 < DKEFF < -7.8510E-03  ##
+##                                                                                                                    ##
+##                               COMBI. GENERAL       -7.9862E-03 +/- 4.5042E-05 : -8.1213E-03 < DKEFF < -7.8510E-03  ##
+##                               COMBI. 3 BALANCE     -7.9844E-03 +/- 4.7366E-05 : -8.1265E-03 < DKEFF < -7.8423E-03  ##
+##                               BALANCE-TRACK-LENGTH -7.9871E-03 +/- 4.7685E-05 : -8.1302E-03 < DKEFF < -7.8441E-03  ##
+##                               BALANCE-COLLISION    -7.9761E-03 +/- 5.4661E-05 : -8.1400E-03 < DKEFF < -7.8121E-03  ##
+##                               COMBI. 3 SOURCE      -8.0361E-03 +/- 7.2157E-05 : -8.2526E-03 < DKEFF < -7.8197E-03  ##
+##                               BALANCE-ABSORPTION   -7.8639E-03 +/- 8.8491E-05 : -8.1294E-03 < DKEFF < -7.5985E-03  ##
+##                               SOURCE-COLLISION     -8.1133E-03 +/- 9.5111E-05 : -8.3986E-03 < DKEFF < -7.8279E-03  ##
+##                               SOURCE-TRACK-LENGTH  -8.1284E-03 +/- 9.5147E-05 : -8.4138E-03 < DKEFF < -7.8429E-03  ##
+##                               SOURCE-ABSORPTION    -7.9117E-03 +/- 1.0849E-04 : -8.2372E-03 < DKEFF < -7.5862E-03  ##
+##                                                                                                                    ##
+########################################################################################################################
+########################################################################################################################
+
+
+                           Indicators concerning the validity of the perturbation calculation
+
+
+Estimate of the correlation between the perturbed systems and the initial system
+=======================================================================================
+| SYSTEME           | SOURCE   | SOURCE   | SOURCE   | BALANCE  | BALANCE  | BALANCE  |
+|                   | COLL.    | TRACK    | ABSORP.  | COLL.    | TRACK    | ABSORP.  |
+=======================================================================================
+| perturbed # 1     |  0.99975 |  0.99962 |  0.99970 |  0.99982 |  0.99980 |  0.99978 |
+| perturbed # 2     |  0.99975 |  0.99961 |  0.99969 |  0.99982 |  0.99980 |  0.99978 |
+=======================================================================================
+Ideally, the correlation coefficient must be as close to 1 as possible;
+otherwise the perturbation calculation (based on the correlated samples method)
+might not be valid.
+
+
+Mean of the sum of the weights of the neutrons simulated for each cycle in each system
+=============================================================================
+| System            |       Start of life       |        End of life        |
+=============================================================================
+| initial           |     999.99  +/-      0.01 |    1002.57  +/-      0.15 |
+| perturbed # 1     |    1016.30  +/-      0.11 |    1018.97  +/-      0.19 |
+| perturbed # 2     |     983.71  +/-      0.10 |     986.20  +/-      0.19 |
+=============================================================================
+
+
+Mean of the balance of neutrons simulated for each cycle in each system
+=============================================================================
+| System            |  Balance (coll. esti.)    |  Balance (track esti.)    |
+=============================================================================
+| initial           |    1001.45  +/-      2.31 |    1001.24  +/-      2.44 |
+| perturbed # 1     |    1017.91  +/-      2.38 |    1017.70  +/-      2.49 |
+| perturbed # 2     |     985.03  +/-      2.25 |     984.81  +/-      2.39 |
+=============================================================================
+
+
+Check on the bounded nature of delta keff variances of each perturbed system
+=======================================================================================
+This check is based on examining, for each perturbed system, the probability density function
+of the absolute value of the (delta keff) obtained for each cycle.
+A sufficient condition for the variance of the (delta keff) to be bounded is that the probability density
+tends to zero faster than 1 / (delta keff)^3 when (delta keff) tends to +/-infinity.
+That is why the asymptotic slope of the probability density function is estimated on a log-log scale.
+This slope must be greater than 3 (in absolute value).
+=================================================================================
+| System            |  Slope*  |  Bounded variance                              |
+=================================================================================
+| perturbed # 1     |    6.49  |  yes                                           |
+| perturbed # 2     |    6.84  |  yes                                           |
+=================================================================================
+   * for the estimator of lowest standard deviation
+
+
+========================================================================================================================
+|                                                OUTPUT CHARACTERISTICS                                                |
+========================================================================================================================
+| OPTION           | ASKED    | OUTPUT                                                       | PRESENTE | FILE         |
+========================================================================================================================
+| GRAP / PAIN      | NO       | DISPLAY VIEWS OF THE GEOMETRY                                | NO       |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| ESTI PRIN        | NO       | DETAILED PRINTING OF THE KEFF ESTIMATIONS FOR EACH CYCLE     | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP SKIP        | NO       | RECALCULATION OF THE KEFF, NORMALITY TESTS                   | NO       |              |
+|                  |          | AFTER REMOVAL OF A SPECIFIED NUMBER OF CYCLES                |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| SIMU MATI / MATR | NO       | PRINTING OF ESTIMATIONS OF THE (ADJOINT) FISSION MATRIX      | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| SIMU MATI / MATR | NO       | MATRIX CALCULATION OF THE KEFF                               | NO       |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| TERM CYCL ACTI 50| YES      | NORMALITY TESTS FOR THE CYCLE KEFF                           | YES      | .listing     |
+|                  |          |--------------------------------------------------------------|----------|--------------|
+| OUTP CURV 0      | NO       | GRAPHICAL DISPLAY FOR THE KHI2 TEST                          | YES      | .ps          |
+|                  |          | DISPLAY OF THE CYCLE KEFF HISTOGRAM                          |          |              |
+|                  |          | DISPLAY OF THE CONVERGENCE CURVES FOR THE AVERAGE KEFF       |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| ASSO PERT        | YES      | PERTURBATION CALCULATION                                     | YES      | .pertu       |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP SCOR        | YES      | PRINTING OF THE AVERAGE SCORES                               | YES      | .out.xml     |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST        | NO       | PRINTING OF THE KEFF ESTIMATIONS AND THE BALANCE FOR EACH CYC| NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST SCOR   | NO       | PRINTING OF THE SCORES FOR EACH CYCLE                        | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST STAR   | NO       | PRINTING OF THE BIRTH AND DEATH SITES                        | NO       |              |
+|                  |          | OF THE NEUTRONS FOR EACH CYCLE                               |          |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| WOOD LEAR SAVE   | NO       | PRINTING OF RESULTS OF THE GEOMETRY LEARNING                 | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                                                                                                      |
+|                                                 RECALCULATION OF KEFF                                                |
+|                                     AFTER REMOVAL OF THE INITIAL ACTIVE CYCLES                                       |
+|                                                                                                                      |
+========================================================================================================================
+|        |                   |                             |                   |                   |                   |
+|        |    ESTIMATOR      | KEFF ESTIMATOR WITH THE     |  COMBINATION OF   |  COMBINATION OF   |      GENERAL      |
+| NUMBER |    BALANCE-TRACK-L| LOWEST STANDARD DEVIATION   |   THE 3 SOURCE    |   THE 3 BALANCE   |    COMBINATION    |
+| SUPPR. |                   | FROM INDIVIDUAL ESTIMATORS  |  KEFF ESTIMATORS  |  KEFF ESTIMATORS  |                   |
+| INITIAL|                   |                             |                   |                   |                   |
+| ACTIVE |===================|=============================|===================|===================|===================|
+| CYCLES |   MEAN  STANDARD  |   NAME    MEAN    STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |
+|        |   KEFF  DEVIATION |           KEFF    DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |
+|========|===================|=============================|===================|===================|===================|
+|      0 |  0.99624  0.00225 | BALA-TRAC  0.99624  0.00225 |  0.99619  0.00223 |  0.99634  0.00218 |  0.99607  0.00215 |
+|      5 |  0.99736  0.00226 | BALA-TRAC  0.99736  0.00226 |  0.99721  0.00224 |  0.99751  0.00218 |  0.99721  0.00215 |
+|     10 |  0.99649  0.00229 | BALA-TRAC  0.99649  0.00229 |  0.99629  0.00223 |  0.99669  0.00219 |  0.99649  0.00217 |
+|     15 |  0.99689  0.00238 | BALA-TRAC  0.99689  0.00238 |  0.99645  0.00232 |  0.99702  0.00229 |  0.99682  0.00225 |
+|     20 |  0.99775  0.00246 | BALA-TRAC  0.99775  0.00246 |  0.99747  0.00239 |  0.99811  0.00235 |  0.99795  0.00232 |
+|     25 |  0.99846  0.00250 | BALA-TRAC  0.99846  0.00250 |  0.99772  0.00246 |  0.99848  0.00241 |  0.99824  0.00238 |
+|     30 |  0.99888  0.00265 | BALA-TRAC  0.99888  0.00265 |  0.99817  0.00258 |  0.99895  0.00253 |  0.99855  0.00250 |
+|     35 |  0.99954  0.00280 | BALA-TRAC  0.99954  0.00280 |  0.99930  0.00264 |  1.00023  0.00260 |  1.00029  0.00258 |
+|     40 |  1.00018  0.00296 | BALA-TRAC  1.00018  0.00296 |  0.99924  0.00273 |  1.00024  0.00272 |  1.00028  0.00266 |
+|     45 |  0.99986  0.00313 | BALA-TRAC  0.99986  0.00313 |  0.99915  0.00293 |  0.99972  0.00290 |  0.99991  0.00279 |
+|     50 |  0.99974  0.00344 | BALA-TRAC  0.99974  0.00344 |  0.99919  0.00321 |  0.99981  0.00318 |  1.00005  0.00307 |
+|     55 |  1.00044  0.00354 | BALA-TRAC  1.00044  0.00354 |  0.99941  0.00313 |  1.00017  0.00319 |  1.00007  0.00306 |
+|     60 |  1.00019  0.00387 | BALA-TRAC  1.00019  0.00387 |  0.99944  0.00338 |  1.00025  0.00349 |  1.00034  0.00328 |
+|     65 |  1.00121  0.00408 | BALA-TRAC  1.00121  0.00408 |  1.00025  0.00347 |  1.00086  0.00361 |  1.00130  0.00324 |
+|     70 |  1.00078  0.00461 | BALA-TRAC  1.00078  0.00461 |  0.99955  0.00382 |  1.00011  0.00399 |  1.00126  0.00361 |
+|     75 |  1.00042  0.00537 | SOUR-TRAC  0.99853  0.00487 |  0.99880  0.00423 |  1.00005  0.00452 |  0.99940  0.00404 |
+|     80 |  1.00161  0.00607 | SOUR-TRAC  1.00405  0.00521 |  1.00241  0.00490 |  1.00394  0.00504 |  1.00473  0.00436 |
+|     85 |  1.00313  0.00679 | SOUR-TRAC  1.00578  0.00584 |  1.00408  0.00547 |  1.00597  0.00567 |  1.00819  0.00404 |
+|     90 |  0.99178  0.00777 | SOUR-TRAC  0.99624  0.00636 |  0.99425  0.00550 |  0.99642  0.00565 |  0.99849  0.00438 |
+|     95 |  0.98854  0.01343 | SOUR-TRAC  0.99497  0.00495 |  not calculated   |  not calculated   |  not calculated   |
+========================================================================================================================
+
+             ==============================================================================================
+             |   NUMBER OF CYCLES TO BE SUPPRESSED USING THE STATIONARITY CRITERION OF THE KEFF SERIES    |
+             |                                                                                            |
+             | NO. CYCLES SUP.                            KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA  |
+             |              0  SOURCE-COLLISION         0.99748 +/-  0.00368  :  0.98643 < KEFF < 1.00853 |
+             |              0  SOURCE-TRACK-LENGTH      0.99745 +/-  0.00322  :  0.98778 < KEFF < 1.00712 |
+             |              0  SOURCE-ABSORPTION        0.99460 +/-  0.00404  :  0.98249 < KEFF < 1.00671 |
+             |              0  BALANCE-ABSORPTION       0.99456 +/-  0.00404  :  0.98243 < KEFF < 1.00670 |
+             |              1  BALANCE-COLLISION        0.99646 +/-  0.00277  :  0.98815 < KEFF < 1.00477 |
+             |              2  BALANCE-TRACK-LENGTH     0.99714 +/-  0.00221  :  0.99052 < KEFF < 1.00375 |
+             ==============================================================================================
+
+             ==============================================================================================
+             |                        SUPPRESSION OF THE GREATEST NUMBER OF CYCLES                        |
+             |                        TO OBTAIN THE STATIONARITY OF EACH ESTIMATOR                        |
+             |                                                                                            |
+             | NO. CYCLES SUP.                            KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA  |
+             |              2  COMBI. GENERAL           0.99701 +/-  0.00209  :  0.99074 < KEFF < 1.00329 |
+             |              2  COMBI. 3 BALANCE         0.99731 +/-  0.00212  :  0.99095 < KEFF < 1.00367 |
+             |              2  COMBI. 3 SOURCE          0.99706 +/-  0.00218  :  0.99052 < KEFF < 1.00360 |
+             |              2  BALANCE-TRACK-LENGTH     0.99714 +/-  0.00221  :  0.99052 < KEFF < 1.00375 |
+             |              2  BALANCE-COLLISION        0.99677 +/-  0.00278  :  0.98843 < KEFF < 1.00511 |
+             |              2  SOURCE-TRACK-LENGTH      0.99830 +/-  0.00323  :  0.98860 < KEFF < 1.00800 |
+             |              2  SOURCE-COLLISION         0.99814 +/-  0.00372  :  0.98697 < KEFF < 1.00931 |
+             |              2  SOURCE-ABSORPTION        0.99537 +/-  0.00408  :  0.98314 < KEFF < 1.00761 |
+             |              2  BALANCE-ABSORPTION       0.99533 +/-  0.00409  :  0.98307 < KEFF < 1.00760 |
+             ==============================================================================================
+
+
+     ==============================================================================================================
+     |                                               NORMALITY TEST                                               |
+     |                                 FOR THE DISTRIBUTION OF CYCLE KEFF VALUES                                  |
+     |                                           USING THE KHI2 METHOD                                            |
+     |                                       FOR EACH INDIVIDUAL ESTIMATOR                                        |
+     ==============================================================================================================
+
+     The Khi2 test, performed in MORET, tests the likelihood of the hypothesis according to which
+     the cycle keff values must be statistically distributed according to a normal distribution if
+     the sources are correctly placed in the fissile materials for each cycle start.
+
+     The Khi2, calculated in MORET, compares the frequencies of the cycle keff values divided into 12 expected
+     theoretical frequency classes (based on the assumption of an ideal gaussian distribution of
+     the sample of cycle keff values).
+
+     The Khi2 value:
+     - is zero when the frequencies observed are equal to the expected frequencies, i.e.
+       when there is absolute agreement between the observed distribution and the expected distribution;
+     - increases with increasing difference between the observed and expected frequencies.
+
+     For sufficiently large samples, on a normal distribution, the probability of the Khi2
+     statistic obtained being greater than a value x is known and tabulated as a function of x.
+     Although the probability of obtaining a high value of the Khi2 statistic is nonzero,
+     the lowest values are the most probable.
+     For example, there is only a 5% chance of this value exceeding 16.919 for a sample
+     from a normal distribution.
+     As we wait for the cycle keff distribution to be normal, we wait until the Khi2 statistic
+     of the cycle keff sample is not "abnormally" high.
+     We arbitrarily consider that values of the Khi2 statistic greater than 16.919 are
+     "abnormally" high because there is less than a 5% chance that a sample from a normal
+     distribution would lead to such values.
+
+     A statistical test is a decision-making criterion to choose between two hypotheses:
+     H0: the sample of cycle keff values comes from a gaussian distribution.
+     H1: the sample of cycle keff values does not come from a gaussian distribution.
+     It consists of setting an ARBITRARY threshold (5%), such that, when the probability associated with the
+     value of the statistic:
+     - is greater than the THRESHOLD, H0 is considered to be PLAUSIBLE (but not proven) and is therefore ACCEPTED;
+     - is less than the THRESHOLD, H0 is considered to be IMPLAUSIBLE and is therefore REJECTED in favour of H1.
+     There are two RISKS:
+     - The risk ALPHA of wrongly rejecting the normality hypothesis (equal to the arbitrary 5% THRESHOLD);
+     - the risk BETA of wrongly accepting the normality hypothesis.
+     The lower the THRESHOLD (ALPHA), the higher BETA: no test is 100% reliable...
+          ===================================================================================================
+          |SUPPRESS.|    TEST   | SOURCE   | SOURCE   | SOURCE   | BALANCE  | BALANCE  | BALANCE  |NORMAL   |
+          | CYCLES  |    KHI2   | COLL.    | TRACK    | ABSORP.  | COLL.    | TRACK    | ABSORP.  |ESTI.    |
+          ===================================================================================================
+          |       0 | Val. stat.|   8.766  |  10.857  |  18.672  |   5.276  |   8.657  |  19.013  |         |
+          |         | Proba.    |  46.1 %  |  28.6 %  |   2.9 %  |  80.9 %  |  47.1 %  |   2.5 %  |         |
+          |         | Normality | accepted | accepted | rejected | accepted | accepted | rejected |  4 / 6  |
+          ===================================================================================================
+          |      10 | Val. stat.|   5.648  |   7.468  |  19.150  |   5.773  |   5.100  |  20.446  |         |
+          |         | Proba.    |  77.4 %  |  58.9 %  |   2.4 %  |  76.2 %  |  82.3 %  |   1.7 %  |         |
+          |         | Normality | accepted | accepted | rejected | accepted | accepted | rejected |  4 / 6  |
+          ===================================================================================================
+          |      20 | Val. stat.|   2.949  |   8.666  |  15.818  |   6.105  |   3.422  |  16.215  |         |
+          |         | Proba.    |  96.5 %  |  47.0 %  |   7.5 %  |  72.9 %  |  94.4 %  |   6.6 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      30 | Val. stat.|   7.774  |   3.307  |   8.017  |   9.329  |   6.484  |   9.246  |         |
+          |         | Proba.    |  55.8 %  |  95.1 %  |  53.3 %  |  40.8 %  |  69.1 %  |  41.6 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      40 | Val. stat.|   5.404  |   8.712  |   7.717  |   5.079  |   9.669  |  12.047  |         |
+          |         | Proba.    |  79.8 %  |  46.6 %  |  56.3 %  |  82.5 %  |  37.9 %  |  21.2 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      50 | Val. stat.|  13.200  |   4.079  |  11.388  |  12.248  |   4.797  |  13.407  |         |
+          |         | Proba.    |  16.1 %  |  90.5 %  |  25.1 %  |  20.0 %  |  84.8 %  |  15.2 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+
+
+     ==============================================================================================================
+     |                                               NORMALITY TEST                                               |
+     |                                 FOR THE DISTRIBUTION OF CYCLE KEFF VALUES                                  |
+     |                                 USING THE LILLIEFORS METHOD (~ KOLMOGOROV)                                 |
+     |                                       FOR EACH INDIVIDUAL ESTIMATOR                                        |
+     ==============================================================================================================
+
+     The Lilliefors test, performed in MORET, tests the likelihood of the hypothesis according to which
+     the cycle keff values must be statistically distributed according to a normal distribution
+     if the sources are correctly placed in the fissile materials for each cycle start.
+
+     For sufficiently large samples, on a normal distribution, the probability of the Lilliefors
+     statistic obtained being greater than a value x is known and tabulated as a function of x.
+     Although the probability of obtaining a high value of the Lilliefors statistic is nonzero,
+     the lowest values are the most probable.
+     For example, there is only a 5% chance of this value exceeding .907 for a sample
+     from a normal distribution.
+     As we wait for the cycle keff distribution to be normal, we wait until the Lilliefors
+     statistic of the cycle keff sample is not "abnormally" high.
+     We arbitrarily consider that values of the Lilliefors statistic greater than .907 are
+     "abnormally" high because there is less than a 5% chance that a sample from a normal
+     distribution would lead to such values.
+
+     A statistical test is a decision-making criterion to choose between two hypotheses:
+     H0: the sample of cycle keff values comes from a gaussian distribution.
+     H1: the sample of cycle keff values does not come from a gaussian distribution.
+     It consists of setting an ARBITRARY threshold (5%), such that, when the probability associated with the
+     value of the statistic:
+     - is greater than the THRESHOLD, H0 is considered to be PLAUSIBLE (but not proven) and is therefore ACCEPTED;
+     - is less than the THRESHOLD, H0 is considered to be IMPLAUSIBLE and is therefore REJECTED in favour of H1.
+     There are two RISKS:
+     - The risk ALPHA of wrongly rejecting the normality hypothesis (equal to the arbitrary 5% THRESHOLD);
+     - the risk BETA of wrongly accepting the normality hypothesis.
+     The lower the THRESHOLD (ALPHA), the higher BETA: no test is 100% reliable...
+          ===================================================================================================
+          |SUPPRESS.|    TEST   | SOURCE   | SOURCE   | SOURCE   | BALANCE  | BALANCE  | BALANCE  |NORMAL   |
+          | CYCLES  | Lilliefors| COLL.    | TRACK    | ABSORP.  | COLL.    | TRACK    | ABSORP.  |ESTI.    |
+          ===================================================================================================
+          |       0 | Val. stat.|   0.557  |   0.617  |   0.707  |   0.470  |   0.527  |   0.720  |         |
+          |         | Proba.    |  65.7 %  |  49.2 %  |  27.8 %  |  87.8 %  |  74.2 %  |  25.3 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      10 | Val. stat.|   0.500  |   0.537  |   0.661  |   0.414  |   0.477  |   0.681  |         |
+          |         | Proba.    |  81.1 %  |  71.4 %  |  38.0 %  |  96.2 %  |  86.2 %  |  33.3 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      20 | Val. stat.|   0.500  |   0.553  |   0.640  |   0.470  |   0.520  |   0.664  |         |
+          |         | Proba.    |  81.1 %  |  67.0 %  |  43.2 %  |  87.7 %  |  76.2 %  |  37.2 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      30 | Val. stat.|   0.559  |   0.385  |   0.571  |   0.545  |   0.524  |   0.606  |         |
+          |         | Proba.    |  65.1 %  |  98.4 %  |  61.8 %  |  69.1 %  |  75.0 %  |  52.3 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      40 | Val. stat.|   0.584  |   0.419  |   0.434  |   0.496  |   0.636  |   0.469  |         |
+          |         | Proba.    |  58.0 %  |  95.7 %  |  93.9 %  |  82.2 %  |  44.3 %  |  88.0 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      50 | Val. stat.|   0.679  |   0.348  |   0.476  |   0.581  |   0.666  |   0.516  |         |
+          |         | Proba.    |  33.8 %  |  99.6 %  |  86.4 %  |  59.0 %  |  36.8 %  |  77.1 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+
+
+========================================================================================================================
+|                                              OUTPUT WITH 1 MACROGROUPS                                               |
+========================================================================================================================
+|                                  SCORE SOURCES_SUMMARY: BALANCE OF SOURCE NEUTRONS                                   |
+|                                                  in system initial                                                   |
+|                                             mean over the active cycles                                              |
+========================================================================================================================
+|           Limits of macrogroups:                                                                                     |
+|              1:   1.0000E-11 MeV  <  Energy  <  2.0000E+01 MeV                                                       |
+========================================================================================================================
+|                                                                                                                      |
+|                                       Number of sources in each fissile volume                                       |
+------------------------------------------------------------------------------------------------------------------------
+| VOLUME:MESH                   GR.   SOURCES   EC. TYPE   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                      |
+| module M_0                                                                                                           |
+| 1                                   999.9900 1.0000E-02   100.0000                                                   |
+========================================================================================================================
+|                                                                                                                      |
+|                                      Number of sources in each fissile material                                      |
+------------------------------------------------------------------------------------------------------------------------
+| MEDIUM                        GR.   SOURCES   EC. TYPE   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+------------------------------------------------------------------------------------------------------------------------
+| m1                                  999.9900 1.0000E-02   100.0000                                                   |
+========================================================================================================================
+|                                                                                                                      |
+|                                        Number of sources in the entire system                                        |
+------------------------------------------------------------------------------------------------------------------------
+|                               GR.   SOURCES   EC. TYPE   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+------------------------------------------------------------------------------------------------------------------------
+| ALL VOLUMES                         999.9900 1.0000E-02   100.0000                                                   |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                              OUTPUT WITH 1 MACROGROUPS                                               |
+========================================================================================================================
+|                              SCORE LEAK_REFL_SUMMARY: BALANCE FOR LEAKS AND REFLECTIONS                              |
+|                                                  in system initial                                                   |
+|                                                                                                                      |
+|                                               EXTERIOR VOLUME: SPHERE                                                |
+|                                                                                                                      |
+|                                 mean over the active cycles for 1 simulated neutron                                  |
+========================================================================================================================
+|           Limits of macrogroups:                                                                                     |
+|              1:   1.0000E-11 MeV  <  Energy  <  2.0000E+01 MeV                                                       |
+========================================================================================================================
+|                                                                                                                      |
+|                                                        LEAKS                                                         |
+|                                                  in system initial                                                   |
+------------------------------------------------------------------------------------------------------------------------
+|  FACE         GR.    LEAKS    STD DEV.   % LEAKS    MEAN LETH.  CORRES. ENERG. (MEV)                                 |
+------------------------------------------------------------------------------------------------------------------------
+|  GLOBAL             0.574376 1.7317E-03   100.0000      2.3121  9.9055E-01                                           |
+========================================================================================================================
+|                                                                                                                      |
+|                                                     REFLECTIONS                                                      |
+|                                                  in system initial                                                   |
+------------------------------------------------------------------------------------------------------------------------
+|  FACE         GR.   REFLEC.   STD DEV.   % REFLEC.  MEAN LETH.  CORRES. ENERG. (MEV)                                 |
+------------------------------------------------------------------------------------------------------------------------
+|                   No neutrons were reflected                                                                         |
+========================================================================================================================
+
+
+======================================================================================================================================
+|                                                     OUTPUT WITH 1 MACROGROUPS                                                      |
+======================================================================================================================================
+|                                   SCORE FLUX_RATES_SUMMARY: BALANCE FOR FLUX AND REACTION RATES                                    |
+|                          DISTANCES CROSSED (CM), NUMBER OF COLLISIONS, ABSORPTIONS, EXCESSES, PRODUCTIONS                          |
+|                                                         in system initial                                                          |
+|                                                       ESTIMATOR TRACK-LENGTH                                                       |
+|                                        mean over the active cycles for 1 simulated neutron                                         |
+======================================================================================================================================
+|           Limits of macrogroups:                                                                                                   |
+|              1:   1.0000E-11 MeV  <  Energy  <  2.0000E+01 MeV                                                                     |
+======================================================================================================================================
+|                                                                                                                                    |
+|                                              Fluxes and reaction rates in each volume                                              |
+--------------------------------------------------------------------------------------------------------------------------------------
+| VOLUME:MESH                 GR.  DISTANCES  STD DEV.    COLLIS.  STD DEV.  ABSORPT. STD DEV.    EXCESS STD DEV.  PRODUCT. STD DEV. |
+--------------------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                                    |
+| module M_0                                                                                                                         |
+| 1                                 6.783504  0.021793   2.658407 9.921E-03  0.429409 0.001546 2.537E-03 6.69E-05  0.997449 0.003225 |
+======================================================================================================================================
+|                                                                                                                                    |
+|                                              Fluxes and reaction rates in each medium                                              |
+--------------------------------------------------------------------------------------------------------------------------------------
+| MEDIUM                      GR.  DISTANCES  STD DEV.    COLLIS.  STD DEV.  ABSORPT. STD DEV.    EXCESS STD. DEV  PRODUCT. STD DEV. |
+--------------------------------------------------------------------------------------------------------------------------------------
+| m1                                6.783504  0.021793   2.658407 9.921E-03  0.429409 0.001546 2.537E-03 6.69E-05  0.997449 0.003225 |
+======================================================================================================================================
+|                                                                                                                                    |
+|                                           Fluxes and reaction rates in the entire system                                           |
+--------------------------------------------------------------------------------------------------------------------------------------
+|                             GR.  DISTANCES  STD DEV.    COLLIS.  STD DEV.  ABSORPT. STD DEV.    EXCESS STD. DEV  PRODUCT. STD DEV. |
+--------------------------------------------------------------------------------------------------------------------------------------
+| ALL VOLUMES                       6.783504  0.021793   2.658407 9.921E-03  0.429409 0.001546 2.537E-03 6.69E-05  0.997449 0.003225 |
+======================================================================================================================================
+
+
+========================================================================================================================
+|                                                BALANCE FOR COLLISIONS                                                |
+|                                                  in system initial                                                   |
+|                                                ESTIMATOR TRACK-LENGTH                                                |
+|                                             mean over the active cycles                                              |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each volume                                                |
+------------------------------------------------------------------------------------------------------------------------
+| VOLUME:MESH                   GR.   COLLIS.   STD DEV.   % COLLIS.  MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF COLL.               OF COLL.      BEFORE COLL.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                      |
+| module M_0                                                                                                           |
+| 1                                   2.658407 9.9214E-03   100.0000      2.6185  7.2909E-01   3.9189E-01      2.5517  |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each medium                                                |
+------------------------------------------------------------------------------------------------------------------------
+| MEDIUM                        GR.   COLLIS.   STD DEV.   % COLLIS.  MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF COLL.               OF COLL.      BEFORE COLL.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+| m1                                  2.658407 9.9214E-03   100.0000      2.6185  7.2909E-01   3.9189E-01      2.5517  |
+========================================================================================================================
+|                                                                                                                      |
+|                                             Balance in the entire system                                             |
+------------------------------------------------------------------------------------------------------------------------
+|                               GR.   COLLIS.   STD DEV.   % COLLIS.  MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF COLL.               OF COLL.      BEFORE COLL.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+| ALL VOLUMES                         2.658407 9.9214E-03   100.0000      2.6185  7.2909E-01   3.9189E-01      2.5517  |
+========================================================================================================================
+|                              MEAN NUMBER OF COLLISIONS PER NEUTRON IN THE ENTIRE SYSTEM                              |
+|                                   ESTIMATED BY COLLISION :    2.66067 +/-   0.01099                                  |
+|                                   ESTIMATED BY TRACK-LENG:    2.65841 +/-   0.00992                                  |
+|                                   ESTIMATED BY ABSORPTION:    2.65357 +/-   0.01095                                  |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                               BALANCE FOR ABSORPTIONS                                                |
+|                                                  in system initial                                                   |
+|                                                ESTIMATOR TRACK-LENGTH                                                |
+|                                             mean over the active cycles                                              |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each volume                                                |
+------------------------------------------------------------------------------------------------------------------------
+| VOLUME:MESH                   GR.   ABSORP.   STD DEV.  % ABSORP.   MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF ABSORP.             OF ABSORP.    BEFORE ABSO.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                      |
+| module M_0                                                                                                           |
+| 1                                   0.429409 1.5456E-03   100.0000      2.5973  7.4473E-01   6.3302E-02     15.7973  |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each medium                                                |
+------------------------------------------------------------------------------------------------------------------------
+| MEDIUM                        GR.   ABSORP.   STD DEV.   % ABSORP.  MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF ABSORP.             OF ABSORP.    BEFORE ABSO.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+| m1                                  0.429409 1.5456E-03   100.0000      2.5973  7.4473E-01   6.3302E-02     15.7973  |
+========================================================================================================================
+|                                                                                                                      |
+|                                             Balance in the entire system                                             |
+------------------------------------------------------------------------------------------------------------------------
+|                               GR.   ABSORP.   STD DEV.   % ABSORP.  MEAN LETH.  ENERGY     MEAN X-SECT.  MEAN DIST.  |
+|                                                                     OF ABSORP.             OF ABSORP.    BEFORE ABSO.|
+|                                                                                 (MEV)      (CM-1)        (CM)        |
+------------------------------------------------------------------------------------------------------------------------
+| ALL VOLUMES                         0.429409 1.5456E-03   100.0000      2.5973  7.4473E-01   6.3302E-02     15.7973  |
+========================================================================================================================
+|                             MEAN NUMBER OF ABSORPTIONS PER NEUTRON IN THE ENTIRE SYSTEM                              |
+|                                     ESTIMATED BY COLLISION : 0.42962 +/- 0.00172                                     |
+|                                     ESTIMATED BY TRACK-LENG: 0.42941 +/- 0.00155                                     |
+|                                     ESTIMATED BY ABSORPTION: 0.42819 +/- 0.00172                                     |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                               BALANCE FOR PRODUCTIONS                                                |
+|                                                  in system initial                                                   |
+|                                                ESTIMATOR TRACK-LENGTH                                                |
+|                                             mean over the active cycles                                              |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each volume                                                |
+------------------------------------------------------------------------------------------------------------------------
+| VOLUME:MESH                   GR.   PRODUC.   STD DEV.   % PRODUC.  MEAN LETH.  ENERGY     MEAN X-SECT.  "K-INFINITY"|
+|                                                                     OF PROD.               OF PROD.       = PROD. /  |
+|                                                                                 (MEV)      (CM-1)        (ABS. - EXC.|
+------------------------------------------------------------------------------------------------------------------------
+|                                                                                                                      |
+| module M_0                                                                                                           |
+| 1                                   0.997449 3.2246E-03   100.0000      2.4322  8.7848E-01   1.4704E-01     2.33665  |
+========================================================================================================================
+|                                                                                                                      |
+|                                                Balance in each medium                                                |
+------------------------------------------------------------------------------------------------------------------------
+| MEDIUM                        GR.   PRODUC.   STD DEV.   % PRODUC.  MEAN LETH.  ENERGY     MEAN X-SECT.  "K-INFINITY"|
+|                                                                     OF PROD.               OF PROD.      = PROD. /   |
+|                                                                                 (MEV)      (CM-1)       (ABS. - EXC.)|
+------------------------------------------------------------------------------------------------------------------------
+| m1                                  0.997449 3.2246E-03   100.0000      2.4322  8.7848E-01   1.4704E-01     2.33665  |
+========================================================================================================================
+|                                                                                                                      |
+|                                             Balance in the entire system                                             |
+------------------------------------------------------------------------------------------------------------------------
+|                               GR.   PRODUC.   STD DEV.   % PRODUC.  MEAN LETH.  ENERGY     MEAN X-SECT.  "K-INFINITY"|
+|                                                                     OF PROD.               OF PROD.      = PRODUC. / |
+|                                                                                 (MEV)      (CM-1)       (ABS. - EXC.)|
+------------------------------------------------------------------------------------------------------------------------
+| ALL VOLUMES                         0.997449 3.2246E-03   100.0000      2.4322  8.7848E-01   1.4704E-01     2.33665  |
+========================================================================================================================
+|                             MEAN NUMBER OF PRODUCTIONS PER NEUTRON IN THE ENTIRE SYSTEM                              |
+|                       ESTIMATED BY COLLISION : 0.99748 +/- 0.00368  <--  KEFF SOURCE-COLLISION                       |
+|                       ESTIMATED BY TRACK-LENG: 0.99745 +/- 0.00322  <--  KEFF SOURCE-TRACK-LENGTH                    |
+|                       ESTIMATED BY ABSORPTION: 0.99460 +/- 0.00404  <--  KEFF SOURCE-ABSORPTION                      |
+========================================================================================================================
+
+
+               ==========================================================================================
+               |    SCORE 2G_SUMMARY: Neutron balance and 2-group spectrum indices (Rapid, Thermal)     |
+               |                                 ESTIMATOR TRACK-LENGTH                                 |
+               |                                                                                        |
+               |                              Origin of lethargies: 10 MeV                              |
+               |                                                                                        |
+               | Thermal cutoff : 4.00 eV                                                               |
+               |                                                                                        |
+               ==========================================================================================
+               |                                                                                        |
+               | --> In each of the media                                                               |
+               |                                                                                        |
+               | Material composition m1                                                                |
+               |                                                                                        |
+               | Distance covered (cm) / neutron = 6.78350E+00 -- % of thermal flux =   0.000           |
+               | Number of Collisions / neutron  =     2.65841 -- % of thermal collision =   0.000      |
+               | Number of absorptions / neutron =     0.42941 -- % of thermal absorption =   0.000     |
+               | Number of productions / neutron =     0.99745 -- % of thermal production =   0.000     |
+               | Number of excesses / neutron      =     0.00254                                        |
+               |                                                                                        |
+               |                                        Mean lethargy      Corresponding energy (eV)    |
+               |   of neutrons emitted by fission     :      1.93080             1.45032E+06            |
+               |   of absorbed neutrons               :      2.59732             7.44729E+05            |
+               |   of neutrons inducing a fission     :      2.43215             8.78476E+05            |
+               |                                                                                        |
+               ==========================================================================================
+               |                                                                                        |
+               | --> In the entire system                                                               |
+               |                                                                                        |
+               | Distance covered (cm) / neutron = 6.78350E+00 -- % of thermal flux =   0.000           |
+               | Number of Collisions / neutron  =     2.65841 -- % of thermal collision =   0.000      |
+               | Number of absorptions / neutron =     0.42941 -- % of thermal absorption =   0.000     |
+               | Number of productions / neutron =     0.99745 -- % of thermal production =   0.000     |
+               | Number of excesses / neutron      =     0.00254                                        |
+               | Number of leaks / neutron         =     0.57438 -- % of thermal leakage =   0.000      |
+               |                                                                                        |
+               |                                        Mean lethargy      Corresponding energy (eV)    |
+               |   of neutrons emitted by fission     :      1.93080             1.45032E+06            |
+               |   of absorbed neutrons               :      2.59732             7.44729E+05            |
+               |   of neutrons inducing a fission     :      2.43215             8.78476E+05            |
+               |   of neutrons that have leaked       :      2.31208             9.90551E+05            |
+               |   of neutron disappearance           :      2.43410             8.76764E+05            |
+               |                                                                                        |
+               | Mean lethargy gain between two collisions        =     0.18932                         |
+               |                                                                                        |
+               | Slowing density on thermal cutoff                =     0.00000                         |
+               ==========================================================================================
+
+
+               ==========================================================================================
+               |                             NORMAL END OF THE CALCULATION                              |
+               ==========================================================================================
+
+
+CPU time (s)  :
+
+reading        :             1.6
+verification   :             0.0
+passive simu.  :             0.5
+active simu.   :             2.9
+outputs        :             0.0
+global         :             5.0

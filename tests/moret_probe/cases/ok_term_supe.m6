@@ -1,0 +1,35 @@
+MORET_BEGIN
+GODIVA arret SUPE
+* Hypothese : H26 TERM KEFF SIGM 0.0001 SUPE 0.98 sur systeme surcritique (r = 9 cm) : arret des que keff - 3 sigma > 0.98 ; message specifique ?
+* Attendu    : NORMAL END, arret anticipe, message d arret a determiner
+
+GEOM
+  MODU 0
+    TYPE 1 SPHE 9.0
+    VOLU 1 0 1 UMET 0. 0. 0.
+  ENDM
+ENDG
+
+MATE
+  CONT
+    LIBR jeff311.xml
+    TEMP 300
+    COMP UMET
+      CONC
+        U234 4.91895E-04
+        U235 4.49988E-02
+        U238 2.49865E-03
+    ENDC
+  ENDM
+
+SOUR
+  UNIF 1000
+ENDS
+
+TERM
+  CYCL PASS 30 ACTI 20
+  KEFF SIGM 0.0001 SUPE 0.98
+ENDT
+
+ENDD
+MORET_END

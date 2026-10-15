@@ -1,0 +1,995 @@
+
+
+                MM        MM   OOOOOOOO   RRRRRRRRRR   EEEEEEEEEEEE TTTTTTTTTTTT                  6666
+                MMM      MMM  OOOOOOOOOO  RRRRRRRRRRR  EEEEEEEEEEEE TTTTTTTTTTTT                 666666
+                MMMM    MMMM OO        OO RR        RR EE                TT                     66    66
+                MM MM  MM MM OO        OO RR        RR EE                TT                     66
+                MM  MMMM  MM OO        OO RR        RR EE                TT                     66
+                MM   MM   MM OO        OO RRRRRRRRRRR  EEEEEEE           TT                     6666666
+                MM        MM OO        OO RRRRRRRRRR   EEEEEEE           TT                     66666666
+                MM        MM OO        OO RR    RR     EE                TT                     66    66
+                MM        MM OO        OO RR     RR    EE                TT                     66    66
+                MM        MM OO        OO RR      RR   EE                TT                     66    66
+                MM        MM  OOOOOOOOOO  RR       RR  EEEEEEEEEEEE      TT                      666666
+                MM        MM   OOOOOOOO   RR        RR EEEEEEEEEEEE      TT                       6666
+
+
+                                <<<<<<< MORET 6.0.0 (commit short hash: 052de83) >>>>>>>
+
+Compiled on processor: Unknown P6 family
+Compiled on OS: Ubuntu 22.04.5 LTS
+Compiled with: Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+Runned on computer: calc-host.example
+Runned by user: user
+Run date: Thursday, October 15 2026 - 12h00m51s
+
+Input file MD5: db39d0bb33ec65436c6a6fe230240efd
+
+:MORET_BEGIN:
+
+:RESEAU 3x3 decale:
+
+
+               ==========================================================================================
+               |                              READING AND ANALYSIS OF DATA                              |
+               ==========================================================================================
+
+:* Hypothese : H35b skills v0.2 : reseau place au centre du conteneur (0 0 0) : tronque sans erreur, avertissement exceed the lattice volume, keff faux:
+
+:* Attendu    : NORMAL END, keff < ok_lattice, avertissement dans le listing (compte WARN_ ?):
+
+::
+
+:GEOM:
+
+:  MODU 0:
+
+:    TYPE 1 BOX 22.5 22.5 7.5:
+
+:    VOLU box 0 1 VIDE 0. 0. 0.:
+
+:    TYPE 2 BOX 7.5 7.5 7.5:
+
+:    VOLU cell box 2 VIDE 0. 0. 0.:
+
+:    TYPE 3 SPHE 7.4:
+
+:    HOLE h cell 3 sph 0. 0. 0.:
+
+:    LATS:
+
+:      MPRI cell:
+
+:      DIML 3 3 1:
+
+:    ENDL:
+
+:  ENDM:
+
+Information message number 14 from WARN_GEOM occurred when reading the geometry.
+In the module 0, the minimum the x-coordinate of the volume box (lattice volume) does not coincide with
+the minimum the x-coordinate of the volume cell (mesh volume).
+
+Information message number 14 from WARN_GEOM occurred when reading the geometry.
+In the module 0, the minimum the y-coordinate of the volume box (lattice volume) does not coincide with
+the minimum the y-coordinate of the volume cell (mesh volume).
+
+Information message number 16 from WARN_GEOM occurred when reading the geometry.
+In the module 0, the lattice exceed the lattice volume in the following directions:
+- X
+- Y
+
+:  MODU sph:
+
+:    TYPE 1 SPHE 7.4:
+
+:    VOLU 1 0 1 UMET 0. 0. 0.:
+
+:  ENDM:
+
+:ENDG:
+
+::
+
+:MATE:
+
+:  CONT:
+
+:    LIBR jeff311.xml:
+
+:    TEMP 300:
+
+:    COMP UMET:
+
+:      CONC:
+
+:        U234 4.91895E-04:
+
+:        U235 4.49988E-02:
+
+:        U238 2.49865E-03:
+
+:    ENDC:
+
+:    COMP VIDE:
+
+:      CONC:
+
+:        O16 1.0E-08:
+
+:    ENDC:
+
+:  ENDM:
+
+::
+
+:SOUR:
+
+               ==========================================================================================
+               |                             LOADING MATERIAL COMPOSITIONS                              |
+               ==========================================================================================
+
+Information message number 2 from WARN_ACE_DATA occurred when loading the ACE data.
+Slight difference between the temperature defined in the library and the one defined in the cross-section file
+for some nuclides.
+The temperature defined in the cross-section file is used.
+The nuclides are listed below.
+  Nuclide     Library                                             Temp. libr. (MeV)     Cross-section file                                  Temp. cross-section file (MeV)
+- O16         /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/80160_311.03c             2.5852000E-08
+- U234        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922340_311.03c            2.5852000E-08
+- U235        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922350_311.03c            2.5852000E-08
+- U238        /opt/moret/lib/xml/jeff311.xml                       2.5850000E-08         /opt/moret/lib/ace/311/300/922380_311.03c            2.5852000E-08
+
+Information message number 13 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Some neutron-induced reaction multiplicity is zero over the entire energy domain.
+The reactions are listed below.
+  Nuclide     Library                                             Reaction MT  Reaction name
+- O16         /opt/moret/lib/xml/jeff311.xml                       5            MT5
+
+Information message number 10 from WARN_CONT_ENERGY_CROSS_SECTIONS occurred when loading the continuous energy cross-sections.
+Some neutron-induced reaction cross-section values are zero throughout the energy domain.
+The reactions are listed below.
+  Nuclide     Library                                             Reaction MT  Reaction name
+- O16         /opt/moret/lib/xml/jeff311.xml                       5            MT5
+- O16         /opt/moret/lib/xml/jeff311.xml                       32           N_ND
+- O16         /opt/moret/lib/xml/jeff311.xml                       41           N_2NP
+- O16         /opt/moret/lib/xml/jeff311.xml                       44           N_N2P
+- O16         /opt/moret/lib/xml/jeff311.xml                       45           N_NPA
+
+                                         TABLE OF LOADED MATERIAL COMPOSITIONS
+========================================================================================================================
+| Number   Name                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      UMET                                                                                                        |
+|          Density  18.7419                                                                                            |
+|          Nuclide      Name in                   Atom.       Mass.       Conc.       Temp.      Temp.                 |
+|          name         neutr. libr.              prop.       prop.       (in 10+24)  neut. (K)  Sab (K)               |
+|          U234         U234                      1.0250E-02  1.0200E-02  4.9190E-04     300.000                       |
+|          U235         U235                      9.3768E-01  9.3710E-01  4.4999E-02     300.000                       |
+|          U238         U238                      5.2067E-02  5.2700E-02  2.4986E-03     300.000                       |
+|----------------------------------------------------------------------------------------------------------------------|
+|   2      VIDE                                                                                                        |
+|          Density   0.0000                                                                                            |
+|          Nuclide      Name in                   Atom.       Mass.       Conc.       Temp.      Temp.                 |
+|          name         neutr. libr.              prop.       prop.       (in 10+24)  neut. (K)  Sab (K)               |
+|          O16          O16                       1.0000E+00  1.0000E+00  1.0000E-08     300.000                       |
+========================================================================================================================
+
+                                  TABLE OF LOADED NUCLIDES DATA FOR NEUTRON TRANSPORT
+========================================================================================================================
+| Number   Name in    Format     Temp.        Temp.        Mass / neut.      Molar mass                                |
+|          libr.                 (K)          (MeV)                                                                    |
+|----------------------------------------------------------------------------------------------------------------------|
+|   1      U234       ACE           300.000   2.5852E-08   232.0300          234.0391                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922340_311.03c                                                              |
+|          Comment: U234 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9225  04/06/15         |
+|          Use in material UMET                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   2      U235       ACE           300.000   2.5852E-08   233.0250          235.0427                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922350_311.03c                                                              |
+|          Comment: U235 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9228  04/06/15         |
+|          Use in material UMET                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   3      U238       ACE           300.000   2.5852E-08   236.0058          238.0493                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/922380_311.03c                                                              |
+|          Comment: U238 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                  mat9237  04/06/15         |
+|          Use in material UMET                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------|
+|   4      O16        ACE           300.000   2.5852E-08    15.8575           15.9948                                  |
+|          Library: /opt/moret/lib/xml/jeff311.xml                                                                      |
+|          File: /opt/moret/lib/ace/311/300/80160_311.03c                                                               |
+|          Comment: O16 - 300 K - JEFF 3.1.1 (NJOY 99.259)                                   mat 825  04/02/15         |
+|          Use in material VIDE                                                                                        |
+========================================================================================================================
+
+:  UNIF 1000:
+
+:ENDS:
+
+::
+
+:TERM:
+
+:  CYCL PASS 30 ACTI 100:
+
+:ENDT:
+
+::
+
+:ENDD:
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_GEOM                      : 3
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 2
+                             Number of messages from WARN_ACE_DATA                  : 1
+
+
+               ==========================================================================================
+               |                   NORMAL END FOR DATA READING - START OF CALCULATION                   |
+               ==========================================================================================
+
+
+========================================================================================================================
+|                                   SUMMARY OF MEDIA-MATERIALS-VOLUMES ASSOCIATIONS                                    |
+========================================================================================================================
+| NAME            NAME                LEGENDRE ORDER      NAME            NAME            NAME            SHAPE        |
+| MEDIUM          MATERIAL            PROC. ANISOTROPY    VOLUME          MODULE          TYPE                         |
+|----------------------------------------------------------------------------------------------------------------------|
+| UMET            UMET                nucl. reac. depend. 1               sph             1               SPHERE       |
+|----------------------------------------------------------------------------------------------------------------------|
+| VIDE            VIDE                nucl. reac. depend. box             0               1               BOX          |
+|                                                         cell            0               2               BOX          |
+========================================================================================================================
+
+
+
+
+
+          ====================================================================================================
+          |                                CHARACTERISTICS OF THE SIMULATION                                 |
+          ====================================================================================================
+          |                                                                                                  |
+          |                                     Type of simulation: NATU                                     |
+          |                                                                                                  |
+          | Stratification of the source sampling                                                            |
+          | Not necessarily sources placed for each cycle in each fissile volume or zone                     |
+          | Not necessarily sources placed in a fissile volume or zone when it is visited                    |
+          | Not necessarily sources placed for each cycle in each fissile volume or zone                     |
+          | No calculation of the fission matrix during the active cycles                                    |
+          | No calculation of the fission matrix during the inactive cycles                                  |
+          | No use of the right eigenvector of the fission matrix                                            |
+          | No use of the left eigenvector of the fission matrix                                             |
+          | Production in each fissile assembly estimated at the collisions                                  |
+          | to calculate the new source distribution                                                         |
+          | Potential fission sites created at the collisions                                                |
+          | Initial keff estimate used to normalize the neutrons produced: 1.00000                           |
+          | No simulation of neutron progeny                                                                 |
+          | No use of the Woodcock method                                                                    |
+          | No use of splitting during volume changes                                                        |
+          | Absorption simulation: death of neutron during absorption                                        |
+          | No use of Russian roulette                                                                       |
+          |                                                                                                  |
+          | The simulation of neutrons is performed between the following energies:                          |
+          | - Emin: 1.0000E-11 MeV                                                                           |
+          | - Emax: 2.0000E+01 MeV                                                                           |
+          | Continuous energy calculation, unified energy grid for cross-sections                            |
+          | Unified energy grid of 259194 energies for neutrons                                              |
+          | Probability Tables are used for unresolved resonance range                                       |
+          |                                                                                                  |
+          |                                       Calculation of keff                                        |
+          | Standard estimator: BALANCE-TRACK-LENGTH                                                         |
+          | Calculation of 5 other individual estimators:                                                    |
+          | - 3 SOURCE estimators: COLLISION, TRACK-LENGTH, ABSORPTION                                       |
+          | - 2 BALANCE estimators: COLLISION, ABSORPTION                                                    |
+          | Calculations performed from cycle 10:                                                            |
+          | - combination of three SOURCE estimators                                                         |
+          | - combination of three BALANCE estimators                                                        |
+          | - general combination                                                                            |
+          |                                                                                                  |
+          |                           Random number generator used for the sources                           |
+          | Seed of the random number generator     : 0                                                      |
+          |                                                                                                  |
+          |                         Random number generator used for the simulation                          |
+          | Seed of the random number generator     : 0                                                      |
+          |                                                                                                  |
+          | Number of neutrons per cycle            : 4000                                                   |
+          |                                                                                                  |
+          |                                      Termination criteria:                                       |
+          | - Minimum number of passive cycles            : 30                                               |
+          | - Minimum number of passive neutrons simulated: 0                                                |
+          | - Minimum number of active cycle              : 100                                              |
+          | - Minimum number of active neutrons simulated : 0                                                |
+          | - Lowest standard deviation less than         : 3.0000000E+02 pcm                                |
+          |                                                                                                  |
+          ====================================================================================================
+
+
+                                                   Alea jacta est...
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_GEOM                      : 3
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 2
+                             Number of messages from WARN_ACE_DATA                  : 1
+
+
+
+
+
+Inactive cycles carried out: 30
+
+
+
+
+
+==================================================================================================================================
+|                                                      CALCULATION OF KEFF                                                       |
+==================================================================================================================================
+|        |                   |                             |                   |                   |                   | ESTIM.  |
+| ACTIVE | ESTIMATOR         |  KEFF ESTIMATOR WITH THE    |  COMBINATION OF   |  COMBINATION OF   |      GENERAL      |OF THE   |
+| CYCLE  | BALANCE-TRACK-LENG| LOWEST STANDARD DEVIATION   |   THE 3 SOURCE    |   THE 3 BALANCE   |    COMBINATION    |NUMBER OF|
+| NUMBER |                   | FROM INDIVIDUAL ESTIMATORS  |  KEFF ESTIMATORS  |  KEFF ESTIMATORS  |                   |CYCLES TO|
+|        |                   |                             |                   |                   |                   | ACHIEVE |
+|        |===================|=============================|===================|===================|===================|   THE   |
+|        |   MEAN STANDARD   |   NAME    MEAN    STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |PRECISION|
+|        |   KEFF DEVIATION  |           KEFF    DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |REQUESTED|
+|========|===================|=============================|===================|===================|===================|=========|
+|      1 |  0.97880  0.00000 | unavailable                 |  not calculated   |  not calculated   |  not calculated   |         |
+|      2 |  0.97235  0.00646 | SOUR-COLL  0.96967  0.00224 |  not calculated   |  not calculated   |  not calculated   |         |
+|      3 |  0.98424  0.01246 | BALA-ABSO  0.98971  0.01028 |  not calculated   |  not calculated   |  not calculated   |      36 |
+|      4 |  0.98246  0.00899 | BALA-COLL  0.98085  0.00851 |  not calculated   |  not calculated   |  not calculated   |      33 |
+|      5 |  0.97885  0.00784 | SOUR-TRAC  0.97863  0.00784 |  not calculated   |  not calculated   |  not calculated   |      35 |
+|      6 |  0.98173  0.00702 | SOUR-TRAC  0.97851  0.00640 |  not calculated   |  not calculated   |  not calculated   |      28 |
+|      7 |  0.98336  0.00615 | BALA-TRAC  0.98336  0.00615 |  not calculated   |  not calculated   |  not calculated   |      30 |
+|      8 |  0.98344  0.00533 | BALA-TRAC  0.98344  0.00533 |  not calculated   |  not calculated   |  not calculated   |      26 |
+|      9 |  0.98474  0.00488 | BALA-TRAC  0.98474  0.00488 |  not calculated   |  not calculated   |  not calculated   |      24 |
+|     10 |  0.98475  0.00436 | BALA-TRAC  0.98475  0.00436 |  0.98474  0.00424 |  0.98455  0.00426 |  0.98444  0.00216 |         |
+|     11 |  0.98471  0.00395 | BALA-TRAC  0.98471  0.00395 |  0.98538  0.00389 |  0.98474  0.00385 |  0.98457  0.00196 |         |
+|     12 |  0.98398  0.00368 | BALA-TRAC  0.98398  0.00368 |  0.98477  0.00360 |  0.98397  0.00362 |  0.98468  0.00181 |         |
+|     13 |  0.98329  0.00345 | BALA-TRAC  0.98329  0.00345 |  0.98402  0.00339 |  0.98336  0.00338 |  0.98235  0.00215 |         |
+|     14 |  0.98401  0.00327 | BALA-TRAC  0.98401  0.00327 |  0.98458  0.00321 |  0.98394  0.00320 |  0.98337  0.00226 |         |
+|     15 |  0.98451  0.00309 | BALA-TRAC  0.98451  0.00309 |  0.98486  0.00300 |  0.98455  0.00304 |  0.98491  0.00228 |         |
+|     16 |  0.98510  0.00295 | BALA-TRAC  0.98510  0.00295 |  0.98534  0.00285 |  0.98506  0.00289 |  0.98574  0.00231 |         |
+|     17 |  0.98393  0.00300 | BALA-TRAC  0.98393  0.00300 |  0.98488  0.00281 |  0.98462  0.00283 |  0.98533  0.00231 |         |
+|     18 |  0.98459  0.00291 | BALA-TRAC  0.98459  0.00291 |  0.98530  0.00267 |  0.98507  0.00270 |  0.98595  0.00226 |         |
+|     19 |  0.98303  0.00316 | BALA-TRAC  0.98303  0.00316 |  0.98306  0.00305 |  0.98292  0.00301 |  0.98512  0.00240 |         |
+|     20 |  0.98297  0.00300 | BALA-TRAC  0.98297  0.00300 |  0.98278  0.00291 |  0.98297  0.00285 |  0.98532  0.00228 |         |
+|     21 |  0.98269  0.00287 | BALA-TRAC  0.98269  0.00287 |  0.98280  0.00276 |  0.98280  0.00272 |  0.98498  0.00220 |         |
+|     22 |  0.98276  0.00273 | BALA-TRAC  0.98276  0.00273 |  0.98312  0.00266 |  0.98300  0.00260 |  0.98492  0.00210 |         |
+|     23 |  0.98245  0.00263 | BALA-TRAC  0.98245  0.00263 |  0.98260  0.00258 |  0.98245  0.00254 |  0.98440  0.00205 |         |
+|     24 |  0.98216  0.00254 | BALA-TRAC  0.98216  0.00254 |  0.98219  0.00250 |  0.98210  0.00245 |  0.98380  0.00201 |         |
+|     25 |  0.98215  0.00243 | BALA-TRAC  0.98215  0.00243 |  0.98194  0.00241 |  0.98193  0.00236 |  0.98345  0.00195 |         |
+|     26 |  0.98174  0.00237 | BALA-TRAC  0.98174  0.00237 |  0.98153  0.00235 |  0.98156  0.00229 |  0.98300  0.00191 |         |
+|     27 |  0.98155  0.00229 | BALA-TRAC  0.98155  0.00229 |  0.98127  0.00228 |  0.98123  0.00224 |  0.98263  0.00188 |         |
+|     28 |  0.98130  0.00222 | BALA-TRAC  0.98130  0.00222 |  0.98108  0.00220 |  0.98101  0.00217 |  0.98235  0.00183 |         |
+|     29 |  0.98161  0.00217 | BALA-TRAC  0.98161  0.00217 |  0.98153  0.00217 |  0.98147  0.00213 |  0.98315  0.00190 |         |
+|     30 |  0.98156  0.00209 | BALA-TRAC  0.98156  0.00209 |  0.98155  0.00210 |  0.98150  0.00206 |  0.98324  0.00184 |         |
+|     31 |  0.98146  0.00203 | BALA-TRAC  0.98146  0.00203 |  0.98146  0.00203 |  0.98140  0.00200 |  0.98309  0.00178 |         |
+|     32 |  0.98172  0.00198 | BALA-TRAC  0.98172  0.00198 |  0.98159  0.00197 |  0.98152  0.00194 |  0.98311  0.00172 |         |
+|     33 |  0.98225  0.00199 | BALA-TRAC  0.98225  0.00199 |  0.98188  0.00193 |  0.98185  0.00192 |  0.98319  0.00173 |         |
+|     34 |  0.98242  0.00194 | BALA-TRAC  0.98242  0.00194 |  0.98217  0.00190 |  0.98212  0.00188 |  0.98353  0.00170 |         |
+|     35 |  0.98279  0.00192 | BALA-TRAC  0.98279  0.00192 |  0.98275  0.00190 |  0.98274  0.00189 |  0.98427  0.00170 |         |
+|     36 |  0.98282  0.00187 | BALA-TRAC  0.98282  0.00187 |  0.98272  0.00185 |  0.98271  0.00183 |  0.98436  0.00165 |         |
+|     37 |  0.98318  0.00185 | BALA-TRAC  0.98318  0.00185 |  0.98297  0.00184 |  0.98299  0.00183 |  0.98446  0.00168 |         |
+|     38 |  0.98368  0.00187 | BALA-TRAC  0.98368  0.00187 |  0.98353  0.00186 |  0.98355  0.00185 |  0.98487  0.00176 |         |
+|     39 |  0.98368  0.00182 | BALA-TRAC  0.98368  0.00182 |  0.98357  0.00181 |  0.98364  0.00180 |  0.98490  0.00172 |         |
+|     40 |  0.98367  0.00177 | BALA-TRAC  0.98367  0.00177 |  0.98355  0.00177 |  0.98360  0.00176 |  0.98482  0.00168 |         |
+|     41 |  0.98361  0.00173 | BALA-TRAC  0.98361  0.00173 |  0.98351  0.00172 |  0.98359  0.00171 |  0.98478  0.00164 |         |
+|     42 |  0.98353  0.00169 | BALA-TRAC  0.98353  0.00169 |  0.98339  0.00169 |  0.98348  0.00167 |  0.98455  0.00160 |         |
+|     43 |  0.98418  0.00177 | BALA-TRAC  0.98418  0.00177 |  0.98411  0.00177 |  0.98419  0.00176 |  0.98526  0.00170 |         |
+|     44 |  0.98414  0.00173 | BALA-TRAC  0.98414  0.00173 |  0.98410  0.00173 |  0.98418  0.00172 |  0.98515  0.00166 |         |
+|     45 |  0.98394  0.00171 | BALA-TRAC  0.98394  0.00171 |  0.98396  0.00170 |  0.98396  0.00169 |  0.98500  0.00163 |         |
+|     46 |  0.98384  0.00167 | BALA-TRAC  0.98384  0.00167 |  0.98387  0.00166 |  0.98384  0.00166 |  0.98478  0.00161 |         |
+|     47 |  0.98351  0.00167 | BALA-TRAC  0.98351  0.00167 |  0.98343  0.00167 |  0.98344  0.00166 |  0.98415  0.00162 |         |
+|     48 |  0.98332  0.00164 | BALA-TRAC  0.98332  0.00164 |  0.98321  0.00164 |  0.98323  0.00163 |  0.98390  0.00160 |         |
+|     49 |  0.98295  0.00165 | BALA-TRAC  0.98295  0.00165 |  0.98286  0.00165 |  0.98286  0.00165 |  0.98344  0.00162 |         |
+|     50 |  0.98294  0.00162 | BALA-TRAC  0.98294  0.00162 |  0.98283  0.00162 |  0.98283  0.00161 |  0.98344  0.00159 |         |
+|     51 |  0.98289  0.00159 | BALA-TRAC  0.98289  0.00159 |  0.98274  0.00159 |  0.98278  0.00158 |  0.98328  0.00156 |         |
+|     52 |  0.98313  0.00158 | BALA-TRAC  0.98313  0.00158 |  0.98309  0.00159 |  0.98303  0.00157 |  0.98357  0.00155 |         |
+|     53 |  0.98323  0.00155 | BALA-TRAC  0.98323  0.00155 |  0.98311  0.00156 |  0.98312  0.00154 |  0.98366  0.00152 |         |
+|     54 |  0.98323  0.00152 | BALA-TRAC  0.98323  0.00152 |  0.98306  0.00154 |  0.98311  0.00151 |  0.98359  0.00149 |         |
+|     55 |  0.98347  0.00151 | BALA-TRAC  0.98347  0.00151 |  0.98320  0.00151 |  0.98337  0.00151 |  0.98375  0.00149 |         |
+|     56 |  0.98339  0.00148 | BALA-TRAC  0.98339  0.00148 |  0.98320  0.00149 |  0.98331  0.00148 |  0.98374  0.00146 |         |
+|     57 |  0.98359  0.00147 | BALA-TRAC  0.98359  0.00147 |  0.98332  0.00147 |  0.98346  0.00146 |  0.98387  0.00144 |         |
+|     58 |  0.98378  0.00146 | BALA-TRAC  0.98378  0.00146 |  0.98351  0.00145 |  0.98364  0.00145 |  0.98407  0.00143 |         |
+|     59 |  0.98395  0.00144 | BALA-TRAC  0.98395  0.00144 |  0.98375  0.00144 |  0.98389  0.00144 |  0.98431  0.00141 |         |
+|     60 |  0.98420  0.00144 | BALA-TRAC  0.98420  0.00144 |  0.98408  0.00145 |  0.98419  0.00144 |  0.98458  0.00140 |         |
+|     61 |  0.98416  0.00142 | BALA-TRAC  0.98416  0.00142 |  0.98409  0.00142 |  0.98417  0.00142 |  0.98455  0.00138 |         |
+|     62 |  0.98413  0.00140 | BALA-TRAC  0.98413  0.00140 |  0.98405  0.00140 |  0.98415  0.00139 |  0.98454  0.00136 |         |
+|     63 |  0.98425  0.00138 | BALA-TRAC  0.98425  0.00138 |  0.98415  0.00138 |  0.98426  0.00138 |  0.98466  0.00134 |         |
+|     64 |  0.98421  0.00136 | BALA-TRAC  0.98421  0.00136 |  0.98414  0.00136 |  0.98421  0.00135 |  0.98463  0.00132 |         |
+|     65 |  0.98403  0.00135 | BALA-TRAC  0.98403  0.00135 |  0.98396  0.00135 |  0.98401  0.00135 |  0.98451  0.00131 |         |
+|     66 |  0.98414  0.00133 | BALA-TRAC  0.98414  0.00133 |  0.98406  0.00133 |  0.98411  0.00133 |  0.98461  0.00129 |         |
+|     67 |  0.98399  0.00132 | BALA-TRAC  0.98399  0.00132 |  0.98393  0.00132 |  0.98399  0.00132 |  0.98454  0.00128 |         |
+|     68 |  0.98403  0.00130 | BALA-TRAC  0.98403  0.00130 |  0.98394  0.00130 |  0.98401  0.00130 |  0.98458  0.00126 |         |
+|     69 |  0.98396  0.00129 | BALA-TRAC  0.98396  0.00129 |  0.98384  0.00129 |  0.98391  0.00128 |  0.98429  0.00125 |         |
+|     70 |  0.98398  0.00127 | BALA-TRAC  0.98398  0.00127 |  0.98391  0.00127 |  0.98392  0.00126 |  0.98432  0.00124 |         |
+|     71 |  0.98393  0.00125 | BALA-TRAC  0.98393  0.00125 |  0.98385  0.00125 |  0.98387  0.00125 |  0.98426  0.00122 |         |
+|     72 |  0.98376  0.00125 | BALA-TRAC  0.98376  0.00125 |  0.98368  0.00125 |  0.98369  0.00124 |  0.98402  0.00122 |         |
+|     73 |  0.98404  0.00126 | BALA-TRAC  0.98404  0.00126 |  0.98391  0.00126 |  0.98393  0.00126 |  0.98419  0.00124 |         |
+|     74 |  0.98384  0.00126 | BALA-TRAC  0.98384  0.00126 |  0.98369  0.00126 |  0.98373  0.00125 |  0.98407  0.00123 |         |
+|     75 |  0.98399  0.00125 | BALA-TRAC  0.98399  0.00125 |  0.98382  0.00125 |  0.98386  0.00124 |  0.98418  0.00122 |         |
+|     76 |  0.98391  0.00124 | BALA-TRAC  0.98391  0.00124 |  0.98373  0.00124 |  0.98378  0.00123 |  0.98408  0.00121 |         |
+|     77 |  0.98376  0.00123 | BALA-TRAC  0.98376  0.00123 |  0.98358  0.00123 |  0.98363  0.00122 |  0.98389  0.00120 |         |
+|     78 |  0.98385  0.00122 | BALA-TRAC  0.98385  0.00122 |  0.98371  0.00122 |  0.98376  0.00121 |  0.98402  0.00119 |         |
+|     79 |  0.98393  0.00120 | BALA-TRAC  0.98393  0.00120 |  0.98380  0.00121 |  0.98384  0.00120 |  0.98411  0.00118 |         |
+|     80 |  0.98382  0.00119 | BALA-TRAC  0.98382  0.00119 |  0.98369  0.00120 |  0.98374  0.00119 |  0.98401  0.00117 |         |
+|     81 |  0.98391  0.00118 | BALA-TRAC  0.98391  0.00118 |  0.98381  0.00119 |  0.98384  0.00118 |  0.98412  0.00116 |         |
+|     82 |  0.98404  0.00118 | BALA-TRAC  0.98404  0.00118 |  0.98392  0.00118 |  0.98394  0.00117 |  0.98419  0.00115 |         |
+|     83 |  0.98408  0.00116 | BALA-TRAC  0.98408  0.00116 |  0.98396  0.00117 |  0.98396  0.00115 |  0.98419  0.00114 |         |
+|     84 |  0.98403  0.00115 | BALA-TRAC  0.98403  0.00115 |  0.98389  0.00115 |  0.98391  0.00114 |  0.98417  0.00112 |         |
+|     85 |  0.98404  0.00114 | BALA-TRAC  0.98404  0.00114 |  0.98389  0.00114 |  0.98391  0.00113 |  0.98413  0.00111 |         |
+|     86 |  0.98398  0.00112 | BALA-TRAC  0.98398  0.00112 |  0.98382  0.00113 |  0.98385  0.00112 |  0.98408  0.00110 |         |
+|     87 |  0.98392  0.00111 | BALA-TRAC  0.98392  0.00111 |  0.98378  0.00112 |  0.98380  0.00110 |  0.98406  0.00109 |         |
+|     88 |  0.98410  0.00111 | BALA-TRAC  0.98410  0.00111 |  0.98388  0.00111 |  0.98392  0.00110 |  0.98415  0.00108 |         |
+|     89 |  0.98393  0.00111 | BALA-TRAC  0.98393  0.00111 |  0.98373  0.00111 |  0.98376  0.00110 |  0.98397  0.00109 |         |
+|     90 |  0.98383  0.00111 | BALA-TRAC  0.98383  0.00111 |  0.98363  0.00110 |  0.98366  0.00109 |  0.98384  0.00108 |         |
+|     91 |  0.98376  0.00110 | BALA-TRAC  0.98376  0.00110 |  0.98352  0.00109 |  0.98359  0.00108 |  0.98376  0.00107 |         |
+|     92 |  0.98365  0.00109 | BALA-TRAC  0.98365  0.00109 |  0.98341  0.00109 |  0.98347  0.00108 |  0.98365  0.00107 |         |
+|     93 |  0.98361  0.00108 | BALA-TRAC  0.98361  0.00108 |  0.98336  0.00108 |  0.98343  0.00107 |  0.98363  0.00105 |         |
+|     94 |  0.98363  0.00107 | BALA-TRAC  0.98363  0.00107 |  0.98337  0.00107 |  0.98344  0.00105 |  0.98361  0.00104 |         |
+|     95 |  0.98352  0.00106 | BALA-TRAC  0.98352  0.00106 |  0.98327  0.00106 |  0.98333  0.00105 |  0.98351  0.00104 |         |
+|     96 |  0.98351  0.00105 | BALA-TRAC  0.98351  0.00105 |  0.98321  0.00105 |  0.98331  0.00104 |  0.98350  0.00103 |         |
+|     97 |  0.98344  0.00104 | BALA-TRAC  0.98344  0.00104 |  0.98317  0.00104 |  0.98326  0.00103 |  0.98344  0.00102 |         |
+|     98 |  0.98339  0.00103 | BALA-TRAC  0.98339  0.00103 |  0.98315  0.00103 |  0.98322  0.00102 |  0.98343  0.00101 |         |
+|     99 |  0.98339  0.00102 | BALA-TRAC  0.98339  0.00102 |  0.98314  0.00102 |  0.98322  0.00101 |  0.98344  0.00100 |         |
+|    100 |  0.98341  0.00101 | BALA-TRAC  0.98341  0.00101 |  0.98317  0.00101 |  0.98325  0.00100 |  0.98348  0.00099 |         |
+|    101 |  0.98359  0.00102 | BALA-TRAC  0.98359  0.00102 |  0.98329  0.00101 |  0.98338  0.00100 |  0.98351  0.00099 |         |
+==================================================================================================================================
+
+
+              IMPORTANT: Presence of information messages during reading of data set or during simulation
+
+                             Number of messages from WARN_GEOM                      : 3
+                             Number of messages from WARN_CONT_ENERGY_CROSS_SECTIONS: 2
+                             Number of messages from WARN_ACE_DATA                  : 1
+
+########################################################################################################################
+########################################################################################################################
+##                                                                                                                    ##
+##                                                FINAL KEFF ESTIMATE                                                 ##
+##                                                                                                                    ##
+##                                                          KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA            ##
+##                 CYCLE    101 LOWEST SIGMA ESTI.        0.98351 +/-  0.00099  :  0.98055 < KEFF < 0.98648           ##
+##                                                                                                                    ##
+##                              COMBI. GENERAL            0.98351 +/-  0.00099  :  0.98055 < KEFF < 0.98648           ##
+##                              COMBI. 3 BALANCE          0.98338 +/-  0.00100  :  0.98037 < KEFF < 0.98638           ##
+##                              COMBI. 3 SOURCE           0.98329 +/-  0.00101  :  0.98026 < KEFF < 0.98632           ##
+##                              BALANCE-TRACK-LENGTH      0.98359 +/-  0.00102  :  0.98054 < KEFF < 0.98665           ##
+##                              BALANCE-COLLISION         0.98432 +/-  0.00127  :  0.98052 < KEFF < 0.98812           ##
+##                              SOURCE-TRACK-LENGTH       0.98294 +/-  0.00137  :  0.97884 < KEFF < 0.98704           ##
+##                              SOURCE-COLLISION          0.98400 +/-  0.00161  :  0.97917 < KEFF < 0.98883           ##
+##                              BALANCE-ABSORPTION        0.98459 +/-  0.00175  :  0.97935 < KEFF < 0.98982           ##
+##                              SOURCE-ABSORPTION         0.98433 +/-  0.00175  :  0.97908 < KEFF < 0.98958           ##
+##                                                                                                                    ##
+########################################################################################################################
+########################################################################################################################
+
+
+========================================================================================================================
+|                                                OUTPUT CHARACTERISTICS                                                |
+========================================================================================================================
+| OPTION           | ASKED    | OUTPUT                                                       | PRESENT  | FILE         |
+========================================================================================================================
+| GRAP / PAIN      | NO       | DISPLAY VIEWS OF THE GEOMETRY                                | NO       |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| ESTI PRIN        | NO       | DETAILED PRINTING OF THE KEFF ESTIMATIONS FOR EACH CYCLE     | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP SKIP        | NO       | RECALCULATION OF THE KEFF, NORMALITY TESTS                   | NO       |              |
+|                  |          | AFTER REMOVAL OF A SPECIFIED NUMBER OF CYCLES                |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| SIMU MATI / MATR | NO       | PRINTING OF ESTIMATIONS OF THE FISSION MATRIX                | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| SIMU MATI / MATR | NO       | MATRIX CALCULATION OF THE KEFF                               | NO       |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| TERM STEP ACTI 50| YES      | NORMALITY TESTS FOR THE CYCLE KEFF                           | YES      | .listing     |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| TERM STEP ACTI 50| YES      | GRAPHICAL DISPLAY FOR THE KHI2 TEST                          | YES      | .ps          |
+|                  |          | DISPLAY OF THE CYCLE KEFF HISTOGRAM                          |          |              |
+|                  |          | DISPLAY OF THE CONVERGENCE CURVES FOR THE AVERAGE KEFF       |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| ASSO PERT        | NO       | PERTURBATION CALCULATION                                     | NO       |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP SCOR        | YES      | PRINTING OF THE AVERAGE SCORES                               | YES      | .out.xml     |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST        | NO       | PRINTING OF THE KEFF ESTIMATIONS AND THE BALANCE FOR EACH CYC| NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST SCOR   | NO       | PRINTING OF THE SCORES FOR EACH CYCLE                        | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST STAR   | NO       | PRINTING OF THE BIRTH AND DEATH SITES                        | NO       |              |
+|                  |          | OF THE NEUTRONS FOR EACH CYCLE                               |          |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| OUTP POST SOUR   | NO       | PRINTING OF THE BIRTH SITES                                  | NO       |              |
+|                  |          | OF THE NEUTRONS FOR EACH CYCLE                               |          |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+|------------------|----------|--------------------------------------------------------------|----------|--------------|
+| WOOD LEAR SAVE   | NO       | PRINTING OF RESULTS OF THE GEOMETRY LEARNING                 | NO       |              |
+|                  |          | IN A PARTICULAR FILE                                         |          |              |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                                RECALCULATION OF KEFF                                                 |
+|                                      AFTER REMOVAL OF THE INITIAL ACTIVE CYCLES                                      |
+========================================================================================================================
+|        |                   |                             |                   |                   |                   |
+|        | ESTIMATOR         | KEFF ESTIMATOR WITH THE     |  COMBINATION OF   |  COMBINATION OF   |      GENERAL      |
+| NUMBER | BALANCE-TRACK-LENG| LOWEST STANDARD DEVIATION   |   THE 3 SOURCE    |   THE 3 BALANCE   |    COMBINATION    |
+| SUPPR. |                   | FROM INDIVIDUAL ESTIMATORS  |  KEFF ESTIMATORS  |  KEFF ESTIMATORS  |                   |
+| INITIAL|                   |                             |                   |                   |                   |
+| ACTIVE |===================|=============================|===================|===================|===================|
+| CYCLES |   MEAN  STANDARD  |   NAME    MEAN    STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |   MEAN  STANDARD  |
+|        |   KEFF  DEVIATION |           KEFF    DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |   KEFF  DEVIATION |
+|========|===================|=============================|===================|===================|===================|
+|      0 |  0.98359  0.00102 | BALA-TRAC  0.98359  0.00102 |  0.98329  0.00101 |  0.98338  0.00100 |  0.98351  0.00099 |
+|      5 |  0.98384  0.00100 | BALA-TRAC  0.98384  0.00100 |  0.98353  0.00099 |  0.98357  0.00098 |  0.98352  0.00098 |
+|     10 |  0.98347  0.00103 | BALA-TRAC  0.98347  0.00103 |  0.98314  0.00103 |  0.98326  0.00102 |  0.98315  0.00101 |
+|     15 |  0.98343  0.00108 | BALA-TRAC  0.98343  0.00108 |  0.98304  0.00107 |  0.98318  0.00106 |  0.98306  0.00104 |
+|     20 |  0.98375  0.00104 | BALA-TRAC  0.98375  0.00104 |  0.98350  0.00103 |  0.98353  0.00103 |  0.98309  0.00099 |
+|     25 |  0.98407  0.00110 | BALA-TRAC  0.98407  0.00110 |  0.98373  0.00108 |  0.98382  0.00108 |  0.98335  0.00104 |
+|     30 |  0.98445  0.00114 | BALA-TRAC  0.98445  0.00114 |  0.98402  0.00113 |  0.98413  0.00112 |  0.98370  0.00109 |
+|     35 |  0.98402  0.00119 | BALA-TRAC  0.98402  0.00119 |  0.98356  0.00117 |  0.98366  0.00116 |  0.98307  0.00112 |
+|     40 |  0.98354  0.00123 | BALA-TRAC  0.98354  0.00123 |  0.98285  0.00120 |  0.98292  0.00119 |  0.98240  0.00114 |
+|     45 |  0.98332  0.00124 | BALA-TRAC  0.98332  0.00124 |  0.98252  0.00120 |  0.98259  0.00118 |  0.98219  0.00114 |
+|     50 |  0.98423  0.00125 | BALA-TRAC  0.98423  0.00125 |  0.98334  0.00118 |  0.98349  0.00115 |  0.98315  0.00112 |
+|     55 |  0.98374  0.00134 | BALA-TRAC  0.98374  0.00134 |  0.98309  0.00125 |  0.98311  0.00123 |  0.98282  0.00120 |
+|     60 |  0.98270  0.00136 | BALA-TRAC  0.98270  0.00136 |  0.98160  0.00122 |  0.98159  0.00119 |  0.98055  0.00106 |
+|     65 |  0.98280  0.00151 | BALA-TRAC  0.98280  0.00151 |  0.98141  0.00136 |  0.98153  0.00132 |  0.98083  0.00116 |
+|     70 |  0.98272  0.00170 | BALA-TRAC  0.98272  0.00170 |  0.98149  0.00151 |  0.98169  0.00148 |  0.98075  0.00132 |
+|     75 |  0.98245  0.00164 | BALA-TRAC  0.98245  0.00164 |  0.98178  0.00149 |  0.98184  0.00146 |  0.98136  0.00123 |
+|     80 |  0.98271  0.00185 | BALA-TRAC  0.98271  0.00185 |  0.98127  0.00151 |  0.98124  0.00148 |  0.97955  0.00101 |
+|     85 |  0.98119  0.00219 | BALA-TRAC  0.98119  0.00219 |  0.97995  0.00162 |  0.98008  0.00165 |  0.97817  0.00097 |
+|     90 |  0.98163  0.00239 | BALA-TRAC  0.98163  0.00239 |  0.98054  0.00202 |  0.98079  0.00195 |  0.97877  0.00133 |
+|     95 |  0.98468  0.00369 | BALA-TRAC  0.98468  0.00369 |  not calculated   |  not calculated   |  not calculated   |
+|    100 |  1.00205  0.00000 | unavailable                 |  not calculated   |  not calculated   |  not calculated   |
+========================================================================================================================
+
+             ==============================================================================================
+             |   NUMBER OF CYCLES TO BE SUPPRESSED USING THE STATIONARITY CRITERION OF THE KEFF SERIES    |
+             |                                                                                            |
+             | NO. CYCLES SUP.                            KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA  |
+             |              0 SOURCE-COLLISION          0.98400 +/-  0.00161  :  0.97917 < KEFF < 0.98883 |
+             |              0 SOURCE-TRACK-LENGTH       0.98294 +/-  0.00137  :  0.97884 < KEFF < 0.98704 |
+             |              0 SOURCE-ABSORPTION         0.98433 +/-  0.00175  :  0.97908 < KEFF < 0.98958 |
+             |              0 BALANCE-COLLISION         0.98432 +/-  0.00127  :  0.98052 < KEFF < 0.98812 |
+             |              0 BALANCE-TRACK-LENGTH      0.98359 +/-  0.00102  :  0.98054 < KEFF < 0.98665 |
+             |              0 BALANCE-ABSORPTION        0.98459 +/-  0.00175  :  0.97935 < KEFF < 0.98982 |
+             ==============================================================================================
+
+             ==============================================================================================
+             |                        SUPPRESSION OF THE GREATEST NUMBER OF CYCLES                        |
+             |                        TO OBTAIN THE STATIONARITY OF EACH ESTIMATOR                        |
+             |                                                                                            |
+             | NO. CYCLES SUP.                            KEFF     STD DEV.      INTERVAL TO +/- 3 SIGMA  |
+             |              0 COMBI. GENERAL            0.98351 +/-  0.00099  :  0.98055 < KEFF < 0.98648 |
+             |              0 COMBI. 3 BALANCE          0.98338 +/-  0.00100  :  0.98037 < KEFF < 0.98638 |
+             |              0 COMBI. 3 SOURCE           0.98329 +/-  0.00101  :  0.98026 < KEFF < 0.98632 |
+             |              0 BALANCE-TRACK-LENGTH      0.98359 +/-  0.00102  :  0.98054 < KEFF < 0.98665 |
+             |              0 BALANCE-COLLISION         0.98432 +/-  0.00127  :  0.98052 < KEFF < 0.98812 |
+             |              0 SOURCE-TRACK-LENGTH       0.98294 +/-  0.00137  :  0.97884 < KEFF < 0.98704 |
+             |              0 SOURCE-COLLISION          0.98400 +/-  0.00161  :  0.97917 < KEFF < 0.98883 |
+             |              0 BALANCE-ABSORPTION        0.98459 +/-  0.00175  :  0.97935 < KEFF < 0.98982 |
+             |              0 SOURCE-ABSORPTION         0.98433 +/-  0.00175  :  0.97908 < KEFF < 0.98958 |
+             ==============================================================================================
+
+
+     ==============================================================================================================
+     |                                               NORMALITY TEST                                               |
+     |                                 FOR THE DISTRIBUTION OF CYCLE KEFF VALUES                                  |
+     |                                           USING THE KHI2 METHOD                                            |
+     |                                       FOR EACH INDIVIDUAL ESTIMATOR                                        |
+     ==============================================================================================================
+
+     The Khi2 test, performed in MORET, tests the likelihood of the hypothesis according to which
+     the cycle keff values must be statistically distributed according to a normal distribution if
+     the sources are correctly placed in the fissile materials for each cycle start.
+
+     The Khi2, calculated in MORET, compares the frequencies of the cycle keff values divided into 12 expected
+     theoretical frequency classes (based on the assumption of an ideal gaussian distribution of
+     the sample of cycle keff values).
+
+     The Khi2 value:
+     - is zero when the frequencies observed are equal to the expected frequencies, i.e.
+       when there is absolute agreement between the observed distribution and the expected distribution;
+     - increases with increasing difference between the observed and expected frequencies.
+
+     For sufficiently large samples, on a normal distribution, the probability of the Khi2
+     statistic obtained being greater than a value x is known and tabulated as a function of x.
+     Although the probability of obtaining a high value of the Khi2 statistic is nonzero,
+     the lowest values are the most probable.
+     For example, there is only a 5% chance of this value exceeding 16.919 for a sample
+     from a normal distribution.
+     As we wait for the cycle keff distribution to be normal, we wait until the Khi2 statistic
+     of the cycle keff sample is not "abnormally" high.
+     We arbitrarily consider that values of the Khi2 statistic greater than 16.919 are
+     "abnormally" high because there is less than a 5% chance that a sample from a normal
+     distribution would lead to such values.
+
+     A statistical test is a decision-making criterion to choose between two hypotheses:
+     H0: the sample of cycle keff values comes from a gaussian distribution.
+     H1: the sample of cycle keff values does not come from a gaussian distribution.
+     It consists of setting an ARBITRARY threshold (5%), such that, when the probability associated with the
+     value of the statistic:
+     - is greater than the THRESHOLD, H0 is considered to be PLAUSIBLE (but not proven) and is therefore ACCEPTED;
+     - is less than the THRESHOLD, H0 is considered to be IMPLAUSIBLE and is therefore REJECTED in favour of H1.
+     There are two RISKS:
+     - The risk ALPHA of wrongly rejecting the normality hypothesis (equal to the arbitrary 5% THRESHOLD);
+     - the risk BETA of wrongly accepting the normality hypothesis.
+     The lower the THRESHOLD (ALPHA), the higher BETA: no test is 100% reliable...
+          ===================================================================================================
+          |SUPPRESS.|    TEST   | SOURCE   | SOURCE   | SOURCE   | BALANCE  | BALANCE  | BALANCE  |NORMAL   |
+          | CYCLES  |    KHI2   | COLL.    | TRACK    | ABSORP.  | COLL.    | TRACK    | ABSORP.  |ESTI.    |
+          ===================================================================================================
+          |       0 | Val. stat.|   9.888  |   6.222  |  15.160  |   7.970  |  16.432  |   9.323  |         |
+          |         | Proba.    |  36.2 %  |  71.7 %  |   8.9 %  |  53.8 %  |   6.1 %  |  40.8 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      10 | Val. stat.|  13.996  |   5.312  |  14.046  |   7.432  |  15.075  |   9.506  |         |
+          |         | Proba.    |  12.8 %  |  80.6 %  |  12.6 %  |  59.2 %  |   9.1 %  |  39.3 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      20 | Val. stat.|   8.996  |   7.281  |   7.944  |  12.873  |   9.600  |   8.827  |         |
+          |         | Proba.    |  43.9 %  |  60.8 %  |  54.0 %  |  17.4 %  |  38.5 %  |  45.5 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      30 | Val. stat.|  13.344  |   8.898  |   9.589  |  11.527  |  13.147  |  11.558  |         |
+          |         | Proba.    |  15.5 %  |  44.8 %  |  38.6 %  |  24.2 %  |  16.3 %  |  24.1 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      40 | Val. stat.|   6.621  |   7.563  |  15.694  |  10.547  |  11.531  |   6.736  |         |
+          |         | Proba.    |  67.6 %  |  57.9 %  |   7.7 %  |  30.9 %  |  24.2 %  |  66.4 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      50 | Val. stat.|   2.684  |   7.223  |  14.058  |  11.709  |   7.828  |  10.533  |         |
+          |         | Proba.    |  97.5 %  |  61.4 %  |  12.6 %  |  23.2 %  |  55.2 %  |  31.0 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+
+
+     ==============================================================================================================
+     |                                               NORMALITY TEST                                               |
+     |                                 FOR THE DISTRIBUTION OF CYCLE KEFF VALUES                                  |
+     |                                 USING THE LILLIEFORS METHOD (~ KOLMOGOROV)                                 |
+     |                                       FOR EACH INDIVIDUAL ESTIMATOR                                        |
+     ==============================================================================================================
+
+     The Lilliefors test, performed in MORET, tests the likelihood of the hypothesis according to which
+     the cycle keff values must be statistically distributed according to a normal distribution
+     if the sources are correctly placed in the fissile materials for each cycle start.
+
+     For sufficiently large samples, on a normal distribution, the probability of the Lilliefors
+     statistic obtained being greater than a value x is known and tabulated as a function of x.
+     Although the probability of obtaining a high value of the Lilliefors statistic is nonzero,
+     the lowest values are the most probable.
+     For example, there is only a 5% chance of this value exceeding .907 for a sample
+     from a normal distribution.
+     As we wait for the cycle keff distribution to be normal, we wait until the Lilliefors
+     statistic of the cycle keff sample is not "abnormally" high.
+     We arbitrarily consider that values of the Lilliefors statistic greater than .907 are
+     "abnormally" high because there is less than a 5% chance that a sample from a normal
+     distribution would lead to such values.
+
+     A statistical test is a decision-making criterion to choose between two hypotheses:
+     H0: the sample of cycle keff values comes from a gaussian distribution.
+     H1: the sample of cycle keff values does not come from a gaussian distribution.
+     It consists of setting an ARBITRARY threshold (5%), such that, when the probability associated with the
+     value of the statistic:
+     - is greater than the THRESHOLD, H0 is considered to be PLAUSIBLE (but not proven) and is therefore ACCEPTED;
+     - is less than the THRESHOLD, H0 is considered to be IMPLAUSIBLE and is therefore REJECTED in favour of H1.
+     There are two RISKS:
+     - The risk ALPHA of wrongly rejecting the normality hypothesis (equal to the arbitrary 5% THRESHOLD);
+     - the risk BETA of wrongly accepting the normality hypothesis.
+     The lower the THRESHOLD (ALPHA), the higher BETA: no test is 100% reliable...
+          ===================================================================================================
+          |SUPPRESS.|    TEST   | SOURCE   | SOURCE   | SOURCE   | BALANCE  | BALANCE  | BALANCE  |NORMAL   |
+          | CYCLES  | Lilliefors| COLL.    | TRACK    | ABSORP.  | COLL.    | TRACK    | ABSORP.  |ESTI.    |
+          ===================================================================================================
+          |       0 | Val. stat.|   0.859  |   0.858  |   0.808  |   0.745  |   0.807  |   0.756  |         |
+          |         | Proba.    |   8.3 %  |   8.3 %  |  13.1 %  |  20.9 %  |  13.3 %  |  19.4 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      10 | Val. stat.|   0.786  |   0.759  |   0.845  |   0.830  |   0.783  |   0.746  |         |
+          |         | Proba.    |  15.8 %  |  19.1 %  |   9.3 %  |  10.5 %  |  16.2 %  |  20.9 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      20 | Val. stat.|   0.850  |   0.811  |   0.768  |   0.889  |   0.946  |   0.663  |         |
+          |         | Proba.    |   8.9 %  |  12.8 %  |  17.9 %  |   6.2 %  |   3.5 %  |  37.4 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | rejected | accepted |  5 / 6  |
+          ===================================================================================================
+          |      30 | Val. stat.|   0.744  |   0.706  |   0.853  |   0.868  |   0.903  |   0.773  |         |
+          |         | Proba.    |  21.1 %  |  27.9 %  |   8.7 %  |   7.6 %  |   5.3 %  |  17.3 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+          |      40 | Val. stat.|   0.494  |   0.679  |   0.861  |   0.937  |   0.871  |   0.772  |         |
+          |         | Proba.    |  82.6 %  |  33.8 %  |   8.1 %  |   3.9 %  |   7.4 %  |  17.5 %  |         |
+          |         | Normality | accepted | accepted | accepted | rejected | accepted | accepted |  5 / 6  |
+          ===================================================================================================
+          |      50 | Val. stat.|   0.495  |   0.509  |   0.797  |   0.900  |   0.724  |   0.756  |         |
+          |         | Proba.    |  82.3 %  |  79.0 %  |  14.4 %  |   5.5 %  |  24.8 %  |  19.4 %  |         |
+          |         | Normality | accepted | accepted | accepted | accepted | accepted | accepted |  6 / 6  |
+          ===================================================================================================
+
+
+       =========================================================================================================
+       |                          EVOLUTION OF THE FRACTION OF SOURCE NEUTRONS (IN %)                          |
+       |                                      IN EACH STRATIFICATION ZONE                                      |
+       =========================================================================================================
+       | VOLUME                  INITIAL   1ST ACT.  LAST ACT.   MEAN     STD     %      %      %      %       |
+       |                           DATA     CYCLE     CYCLE    OVER ACT. CYCLES   ZERO   NONZE. INCR.  DECR.   |
+       |                                                                          VALUES VALUES VALUES VALUES  |
+       ---------------------------------------------------------------------------------------------------------
+       | V_1:M_sph:H_h:0,0,0:M_0   25.0000   26.9000   27.4569   25.4879 1.18E-01     0.  100.0   48.5   50.5  |
+       | V_1:M_sph:H_h:0,1,0:M_0   25.0000   24.3500   22.7807   24.5140 1.01E-01     0.  100.0   48.5   49.5  |
+       | V_1:M_sph:H_h:1,0,0:M_0   25.0000   24.9500   26.9817   24.8831 1.04E-01     0.  100.0   46.5   51.5  |
+       | V_1:M_sph:H_h:1,1,0:M_0   25.0000   23.8000   22.7807   25.1150 1.10E-01     0.  100.0   48.5   47.5  |
+       =========================================================================================================
+
+
+ ======================================================================================================================
+ |                                             OUTPUT WITH 1 MACROGROUPS                                              |
+ ======================================================================================================================
+ |                                 SCORE SOURCES_SUMMARY: BALANCE OF SOURCE NEUTRONS                                  |
+ |                                            mean over the active cycles                                             |
+ ======================================================================================================================
+ |           Limits of macrogroups:                                                                                   |
+ |              1:   1.0000E-11 MeV  <  Energy  <  2.0000E+01 MeV                                                     |
+ ======================================================================================================================
+ |                                                                                                                    |
+ |                                        Number of sources per fissile volume                                        |
+ ----------------------------------------------------------------------------------------------------------------------
+ | NAME                        GR.   SOURCES   STD DEV.   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+ ----------------------------------------------------------------------------------------------------------------------
+ | V_1:M_sph:H_h:0,0,0:M_0          1019.5143     4.7228    25.4879                                                   |
+ | V_1:M_sph:H_h:0,1,0:M_0           980.5613     4.0490    24.5140                                                   |
+ | V_1:M_sph:H_h:1,0,0:M_0           995.3241     4.1786    24.8831                                                   |
+ | V_1:M_sph:H_h:1,1,0:M_0          1004.6003     4.4066    25.1150                                                   |
+ ======================================================================================================================
+ |                                                                                                                    |
+ |                                        Number of sources per fissile medium                                        |
+ ----------------------------------------------------------------------------------------------------------------------
+ | NAME                        GR.   SOURCES   STD DEV.   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+ ----------------------------------------------------------------------------------------------------------------------
+ | UMET                             4000.0000 1.4833E-11   100.0000                                                   |
+ ======================================================================================================================
+ |                                                                                                                    |
+ |                                      Number of sources in the global geometry                                      |
+ ----------------------------------------------------------------------------------------------------------------------
+ | NAME                        GR.   SOURCES   STD DEV.   % SOURCES  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+ ----------------------------------------------------------------------------------------------------------------------
+ | GLOBAL                           4000.0000 1.4833E-11   100.0000                                                   |
+ ======================================================================================================================
+
+
+      ============================================================================================================
+      |                                        OUTPUT WITH 1 MACROGROUPS                                         |
+      ============================================================================================================
+      |                        SCORE LEAK_REFL_SUMMARY: BALANCE FOR LEAKS AND REFLECTIONS                        |
+      |                           mean over the active cycles for 1 simulated neutron                            |
+      ============================================================================================================
+      |           Limits of macrogroups:                                                                         |
+      |              1:   1.0000E-11 MeV  <  Energy  <  2.0000E+01 MeV                                           |
+      ============================================================================================================
+      |                                                                                                          |
+      |                                                  LEAKS                                                   |
+      ------------------------------------------------------------------------------------------------------------
+      | FACE              GR.    LEAKS    STD DEV.   % LEAKS    MEAN LETH.  CORRES. ENERG. (MEV)                 |
+      ------------------------------------------------------------------------------------------------------------
+      | F_1:V_box:M_0           0.021584 2.4017E-04     3.7210      2.3026  1.0000E+00                           |
+      | F_2:V_box:M_0           0.068565 4.3271E-04    11.8205      2.2971  1.0055E+00                           |
+      | F_3:V_box:M_0           0.021445 2.5513E-04     3.6971      2.2952  1.0074E+00                           |
+      | F_4:V_box:M_0           0.067998 5.0787E-04    11.7228      2.3011  1.0015E+00                           |
+      | F_5:V_box:M_0           0.199572 6.5763E-04    34.4058      2.3269  9.7600E-01                           |
+      | F_6:V_box:M_0           0.200889 5.7798E-04    34.6328      2.3299  9.7308E-01                           |
+      | GLOBAL                  0.580054 7.4251E-04   100.0000      2.3193  9.8342E-01                           |
+      ============================================================================================================
+      |                                                                                                          |
+      |                                               REFLECTIONS                                                |
+      ------------------------------------------------------------------------------------------------------------
+      | FACE              GR.   REFLEC.   STD DEV.   % REFLEC.  MEAN LETH.  CORRES. ENERG. (MEV)                 |
+      ------------------------------------------------------------------------------------------------------------
+      |                  No neutrons were reflected                                                              |
+      ============================================================================================================
+
+
+               ==========================================================================================
+               |    SCORE 2G_SUMMARY: Neutron balance and 2-group spectrum indices (Rapid, Thermal)     |
+               |                                 ESTIMATOR TRACK-LENGTH                                 |
+               |                                                                                        |
+               |                              Origin of lethargies: 10 MeV                              |
+               |                                                                                        |
+               | Thermal cutoff : 4.00 eV                                                               |
+               |                                                                                        |
+               ==========================================================================================
+               |                                                                                        |
+               | --> In each of the media                                                               |
+               |                                                                                        |
+               | Material composition UMET                                                              |
+               |                                                                                        |
+               | Distance covered per simulated neutron (cm) :  6.68565E+00 (% thermal =   0.000)       |
+               |                                                                                        |
+               |                | Number per |% thermal|                     |    Mean    | Energy (eV) |
+               |                | simulated  |         |                     |  lethargy  | corresp. to |
+               |                | neutron    |         |                     |of neutrons |mean lethargy|
+               |========================================================================================|
+               | Births         |    1.00000 |   0.000 | emitted by fission  |    1.92924 | 1.45258E+06 |
+               | Collisions     |    2.61290 |   0.000 | entering collisions |    2.59449 | 7.46837E+05 |
+               | Absorptions    |    0.42196 |   0.000 | absorbed            |    2.57061 | 7.64886E+05 |
+               | Productions    |    0.98294 |   0.000 | inducing productions|    2.40599 | 9.01758E+05 |
+               | Excesses       |    0.00267 |   0.000 | inducing excesses   |    0.26029 | 7.70826E+06 |
+               |                                                                                        |
+               | Material composition VIDE                                                              |
+               |                                                                                        |
+               | Distance covered per simulated neutron (cm) :  4.07700E+00 (% thermal =   0.000)       |
+               |                                                                                        |
+               |                | Number per |% thermal|                     |    Mean    | Energy (eV) |
+               |                | simulated  |         |                     |  lethargy  | corresp. to |
+               |                | neutron    |         |                     |of neutrons |mean lethargy|
+               |========================================================================================|
+               | Births         |    0.00000 |   0.000 | emitted by fission  | not avail. | not avail.  |
+               | Collisions     |    0.00000 |   0.000 | entering collisions |    2.66966 | 6.92760E+05 |
+               | Absorptions    |    0.00000 |   0.000 | absorbed            |    0.56165 | 5.70267E+06 |
+               | Productions    |    0.00000 |   0.000 | inducing productions| not avail. | not avail.  |
+               | Excesses       |    0.00000 |   0.000 | inducing excesses   |   -0.62622 | 1.87053E+07 |
+               |                                                                                        |
+               ==========================================================================================
+               |                                                                                        |
+               | --> In the entire system                                                               |
+               |                                                                                        |
+               | Distance covered per simulated neutron (cm) :  1.07626E+01 (% thermal =   0.000)       |
+               |                                                                                        |
+               |                | Number per |% thermal|                     |    Mean    | Energy (eV) |
+               |                | simulated  |         |                     |  lethargy  | corresp. to |
+               |                | neutron    |         |                     |of neutrons |mean lethargy|
+               |========================================================================================|
+               | Births         |    1.00000 |   0.000 | emitted by fission  |    1.92924 | 1.45258E+06 |
+               | Collisions     |    2.61290 |   0.000 | entering collisions |    2.59449 | 7.46837E+05 |
+               | Absorptions    |    0.42196 |   0.000 | absorbed            |    2.57061 | 7.64886E+05 |
+               | Productions    |    0.98294 |   0.000 | inducing productions|    2.40599 | 9.01758E+05 |
+               | Excesses       |    0.00267 |   0.000 | inducing excesses   |    0.26029 | 7.70826E+06 |
+               | Leaks          |    0.58005 |   0.000 | leaking             |    2.31931 | 9.83419E+05 |
+               | Disappearances |    1.00201 |   0.000 | absorbed or leaking |    2.42513 | 8.84663E+05 |
+               |                                                                                        |
+               | Mean lethargy gain per collision                 =     0.18979                         |
+               |                                                                                        |
+               | Slowing-down density at thermal cutoff           =     0.00000                         |
+               ==========================================================================================
+
+
+========================================================================================================================
+|                          EFFECTIVE MEAN PROMPT LIFE TIME OF NEUTRONS (MICROSECONDS) : T_EFF                          |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     :  6.1211E-03 +/- 2.4473E-05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  :  6.1230E-03 +/- 2.5747E-05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    :  6.1359E-03 +/- 2.1758E-05      |
+========================================================================================================================
+
+
+========================================================================================================================
+|             EFFECTIVE MEAN PROMPT GENERATION TIME OF NEUTRONS (MICROSECONDS) : LAMBDA_EFF = T_EFF / KEFF             |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     :  6.2189E-03 +/- 2.2393E-05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  :  6.2273E-03 +/- 2.2668E-05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    :  6.2335E-03 +/- 2.4686E-05      |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                                         KEFF                                                         |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     :  9.8400E-01 +/- 1.6112E-03      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  :  9.8294E-01 +/- 1.3664E-03      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    :  9.8433E-01 +/- 1.7491E-03      |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                          EFFECTIVE BETA IN 1.E-5 : BETA_EFF                                          |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     :  6.3295E+02 +/- 2.1110E+01      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  :  6.3477E+02 +/- 2.0172E+01      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    :  6.2188E+02 +/- 1.7645E+01      |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                ALPHA (SECONDS-1) : (KEFF (1 - BETA_EFF) - 1) / T_EFF                                 |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     : -3.5884E+06 +/- 2.6680E+05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  : -3.7741E+06 +/- 2.3308E+05      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    : -3.5011E+06 +/- 2.8120E+05      |
+========================================================================================================================
+
+
+========================================================================================================================
+|                                     ALPHA ROSSI (SECONDS-1) : -BETA_EFF / T_EFF                                      |
+========================================================================================================================
+|                                   ESTIMATED BY NEXT FISSION PROBA AT COLLISION     : -1.0340E+06 +/- 3.4501E+04      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT TRACK-LENGTH  : -1.0367E+06 +/- 3.2962E+04      |
+|                                   ESTIMATED BY NEXT FISSION PROBA AT ABSORPTION    : -1.0135E+06 +/- 2.8943E+04      |
+========================================================================================================================
+
+
+CUMULATIVE COUNTERS RELATIVE TO NEUTRONS DURING ACTIVE CYCLES
+==============================================================================================================================
+Simulated     | Terminated    | Neutron       | Excess neut.  | Neutron       | Neutron       | Neutron       | Number of
+neutrons      | simulated     | scatterings   | scattered     | leakages      | leakages      | sterile       | induced fis.
+              | neutrons      |               |               | out off       | out off       | captures      |
+              |               |               |               | energy range  | extern. volume|               |
+==============================================================================================================================
+        404009|         404009|         883386|           1005|              0|         233828|          17701|         152962
+
+
+Prompt neut.  | Delayed neut. | Neutrons      | Delayed neut.
+induced fis.  | induced fis.  | induced fis.  | induced fis.
+produced      | produced      | produced from | simulated
+              |               | delayed neut. |
+==============================================================
+        395125|           2513|           2474|           2531
+
+
+Precursor gr. | Precursor gr. | Produced      | Simulated     | Mean decay    | Delayed part
+delayed neut. | delayed neut. | delayed frac. | delayed frac. | time produced | mean generat.
+              |  system index | induced fis. =| induced fis. =| delayed frac. | time =
+              |       -       | pr. del. neut.| si. del. neut.|               | sim. del. fr.*
+global index  | index in the  | / prod. neut. | / prod. neut. | tot.:weigh. by| mean dec. time
+              |     system    |               |               | sim. del. fr. | pr. del. fr.
+              |               |               |               |   (micros)    |    (micros)
+==============================================================================================
+             1|          1 - 1|      0.000E+00|    206.218E-06|     80.214E+06|     16.542E+03
+             2|          1 - 2|      0.000E+00|    995.883E-06|     35.346E+06|     35.201E+03
+             3|          1 - 3|      0.000E+00|    628.714E-06|     23.516E+06|     14.785E+03
+             4|          1 - 4|      0.000E+00|      1.328E-03|      7.516E+06|      9.981E+03
+             5|          1 - 5|      0.000E+00|      1.924E-03|      3.419E+06|      6.578E+03
+             6|          1 - 6|      0.000E+00|    598.536E-06|      1.500E+06|    898.045E+00
+             7|          1 - 7|      0.000E+00|    530.635E-06|    611.703E+03|    324.591E+00
+             8|          1 - 8|      0.000E+00|    153.406E-06|    281.326E+03|     43.157E+00
+         total|               |      6.320E-03|      6.365E-03|     13.252E+06|     84.351E+03
+
+                syst.   1 :  U234 U235 U238 (/opt/moret/lib/xml/jeff311.xml)
+
+
+Prompt nubar  | Delayed nubar | Total nubar   | Prompt keff = | beta =        | beta eff =    | keff =        | reactivity =
+induced fis. =| induced fis. =| induced fis. =| prompt neut.  | pr. del. neut.| produced neut.| produced neut.| (keff - 1)
+prompt neut.  | pr. del. neut.| produced neut.| / terminated  | / produced    | from delayed /| / terminated  |   / keff
+/ induced fis.| / induced fis.| / induced fis.| simulat. neut.| neut.         | produced neut.| simulat. neut.|
+ mean - std   |  mean - std   |  mean - std   |  mean - std   |  mean - std   |  mean - std   |  mean - std   |  mean - std
+==============================================================================================================================
+       2.58316|        0.01643|        2.59959|        0.97801|        0.00632|        0.00622|        0.98423|       -0.01602
+       0.00052|        0.00001|        0.00052|        0.00184|        0.00000|        0.00018|        0.00186|        0.00191
+
+
+Mean prompt   | Mean prompt   | Mean          | Mean          | Growth rate =
+life time     | generat. time | life time     | generat. time | react. / mean
+              |               |               |               | gen. time
+  (micros)    |   (micros)    |   (micros)    |   (micros)    |  (micros-1)
+ mean - std   |  mean - std   |  mean - std   |  mean - std   |  mean - std
+==============================================================================
+     9.585E-03|      9.739E-03|     85.557E+03|     86.927E+03|   -183.932E-09
+    19.055E-06|     29.676E-06|      3.908E+03|      3.974E+03|     23.218E-09
+
+
+               ==========================================================================================
+               |                             NORMAL END OF THE CALCULATION                              |
+               ==========================================================================================
+
+
+calc. time (s) :             CPU              real
+
+reading        :             2.3               3.0
+verification   :             0.0               0.0
+passive simu.  :             0.4               0.4
+active simu.   :             2.0               2.0
+outputs        :             0.0               0.0
+global         :             4.8               5.5
