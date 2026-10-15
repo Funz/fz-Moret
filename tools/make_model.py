@@ -1,105 +1,99 @@
 #!/usr/bin/env python3
-"""Generate .fz/models/Moret.json.
+"""Generate .fz/models/Moret.json from tools/moret_outputs.py.
 
-The output commands are shell + POSIX awk one-liners (LC_ALL=C; checked with
-mawk, BWK awk and gawk --posix). They are written here as Python strings and
-serialized with json.dumps, which avoids escaping mistakes in the JSON.
+Each output of the model is a ``python://`` expression (fz >= 1.2), evaluated
+by fz in the case output directory without any shell: it executes the source
+of one function of tools/moret_outputs.py (with the helpers and constants it
+uses) and calls it on the case directory ``base_dir``:
+
+    python://(lambda g, d: (exec(SOURCE, g), g['mean_keff'](d))[1])({}, base_dir)
+
+The parsing logic is thus written, reviewed and tested as plain Python in
+tools/moret_outputs.py; the JSON is a build product.
 
 Usage (from the repository root):
     python3 tools/make_model.py           # rewrite .fz/models/Moret.json
     python3 tools/make_model.py --check   # exit 1 if the JSON is not up to date
-
-Formats parsed (verified on MORET 6.0.0 builds d9ff307 / 052de83 and MORET 5.D.1,
-see tests/moret_probe/README.md): <input>.listing, <input>.out.xml[.gz].
 """
+import ast
 import json
 import sys
 from collections import OrderedDict
 from pathlib import Path
 
-MODEL = Path(__file__).resolve().parents[1] / ".fz" / "models" / "Moret.json"
+ROOT = Path(__file__).resolve().parents[1]
+MODEL = ROOT / ".fz" / "models" / "Moret.json"
+SOURCE = ROOT / "tools" / "moret_outputs.py"
 
-# Listing of the MORET dataset; apo2.listing (APOLLO2 step of moret.py) excluded
-L = "L=$(ls *.listing 2>/dev/null | grep -v '^apo2\\.listing$' | head -1); [ -z \"$L\" ] || "
 
-STATUS = (
-    "L=$(ls *.listing 2>/dev/null | grep -v '^apo2\\.listing$' | head -1); "
-    "if [ -z \"$L\" ]; then echo 'NO OUTPUT'; else LC_ALL=C awk '"
-    "function clean(s){gsub(/[ \\t]+/,\" \",s); sub(/^ /,\"\",s); sub(/ $/,\"\",s); return s} "
-    "function crash(f,  l,c){c=\"\"; while((getline l < f)>0) if(c==\"\" && l ~ /forrtl: |[Ss]egmentation fault|SIGSEGV|Aborted|Killed|command not found|commande introuvable/) c=clean(l); close(f); return c} "
-    "/^Error message number / && m==\"\" {e=1; n=0} "
-    "e {if($0 ~ /^[ \\t]*$/) e=0; else {if(n<5) m=m (m==\"\"?\"\":\" \") clean($0); n++; if($0 ~ /expected keyword/) e=0}; next} "
-    "/^ *[|] +ABNORMAL END OF THE CALCULATION +[|]/ {ab=1} "
-    "/^ *[|] +NORMAL END OF THE CALCULATION +[|]/ {ok=1} "
-    "/^ *[|] +STOP OPTION +[|]/ {stop=1} "
-    "END{sub(/:$/,\".\",m); "
-    "if(ab) print \"ABNORMAL END\" (m==\"\"?\"\":\": \" m); "
-    "else if(ok && stop) print \"NORMAL END (STOP OPTION, NO SIMULATION)\"; "
-    "else if(ok) print \"NORMAL END\"; "
-    "else {c=crash(\"moret.log\"); if(c==\"\") c=crash(\"err.txt\"); if(c==\"\") c=crash(\"out.txt\"); "
-    "s=\"NO END BANNER\"; if(m!=\"\") s=s \": \" m; if(c!=\"\") s=s \": \" c; print s}}' \"$L\"; fi"
-)
+def _definitions(tree):
+    """Top-level functions and constants: name -> (node, source names it uses)."""
+    defs = {}
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef):
+            names = [node.name]
+        elif isinstance(node, ast.Assign):
+            names = [t.id for t in node.targets if isinstance(t, ast.Name)]
+        else:
+            continue
+        used = {n.id for n in ast.walk(node) if isinstance(n, ast.Name)}
+        for name in names:
+            defs[name] = (node, used)
+    return defs
 
-KEFF = L + "LC_ALL=C awk '/^##.*LOWEST SIGMA ESTI\\./{for(i=1;i<=NF;i++) if($i==\"+/-\"){print $(i%s); exit}}' \"$L\""
 
-ESTIMATOR = L + (
-    "LC_ALL=C awk '/^##.*LOWEST SIGMA ESTI\\./ && k==\"\" {for(i=1;i<=NF;i++) if($i==\"+/-\"){k=$(i-1); s=$(i+1)}; next} "
-    "k!=\"\" && /^##/ {for(i=3;i<NF;i++) if($i==\"+/-\") break; if(i<NF && $(i-1)==k && $(i+1)==s){n=\"\"; for(j=2;j<i-1;j++) n=n (n==\"\"?\"\":\" \") $j; print n; exit}}' \"$L\""
-)
+def standalone_source(name, text):
+    """Source of the imports, then of `name` and everything it uses, in module order."""
+    tree = ast.parse(text)
+    defs = _definitions(tree)
+    needed, todo = set(), [name]
+    while todo:
+        current = todo.pop()
+        if current in needed or current not in defs:
+            continue
+        needed.add(current)
+        todo.extend(defs[current][1])
+    parts = []
+    for node in tree.body:
+        if isinstance(node, (ast.Import, ast.ImportFrom)):
+            parts.append(ast.get_source_segment(text, node))
+        elif node in [defs[n][0] for n in needed]:
+            segment = ast.get_source_segment(text, node)
+            if isinstance(node, ast.FunctionDef):
+                # docstrings are kept in tools/moret_outputs.py only
+                body = node.body[0]
+                if isinstance(body, ast.Expr) and isinstance(body.value, ast.Constant):
+                    doc = ast.get_source_segment(text, body)
+                    segment = segment.replace("    " + doc + "\n", "", 1)
+            parts.append(segment)
+    return "\n".join(parts) + "\n"
 
-CYCLES = L + "LC_ALL=C awk '/^##.*LOWEST SIGMA ESTI\\./{for(i=1;i<NF;i++) if($i==\"CYCLE\"){print $(i+1); exit}}' \"$L\""
 
-TRANSIENT = L + "LC_ALL=C awk '/SUPPRESSION OF THE GREATEST NUMBER OF CYCLES/{t=1; next} t && /^ *[|] +[0-9]+ /{print $2; exit}' \"$L\""
+def build():
+    text = SOURCE.read_text()
+    namespace = {}
+    exec(compile(text, str(SOURCE), "exec"), namespace)
+    outputs = OrderedDict()
+    for name in namespace["OUTPUTS"]:
+        src = standalone_source(name, text)
+        outputs[name] = "python://(lambda g, d: (exec(%r, g), g[%r](d))[1])({}, base_dir)" % (src, name)
+    return OrderedDict([
+        ("id", "Moret"),
+        ("varprefix", "$"),
+        ("formulaprefix", "@"),
+        ("delim", "{}"),
+        ("commentline", "*"),
+        ("output", outputs),
+    ])
 
-CPU = (
-    "X=$(ls *.out.xml *.out.xml.gz 2>/dev/null | head -1); v=''; "
-    "[ -z \"$X\" ] || v=$(gzip -dcf \"$X\" "
-    "| LC_ALL=C awk '/<cpu_time>/{c=1} c && /<global>/{s=$0; sub(/.*<global>/,\"\",s); sub(/<.*/,\"\",s); print s; exit}'); "
-    "if [ -z \"$v\" ]; then " + L + "v=$(LC_ALL=C awk '/^global +:/{print $3; exit}' \"$L\"); fi; "
-    "[ -z \"$v\" ] || echo \"$v\""
-)
 
-VERSION = L + "LC_ALL=C awk '/<<<<<<< .* >>>>>>>/{s=$0; sub(/^.*<<<<<<< /,\"\",s); sub(/ >>>>>>>.*$/,\"\",s); print s; exit}' \"$L\""
+def text():
+    return json.dumps(build(), indent=4, ensure_ascii=False) + "\n"
 
-WARNINGS = L + (
-    "LC_ALL=C awk '/^Information message number [0-9]+ from WARN_/{k=$6 \" \" $4; if(!(k in c)) o[++n]=k; c[k]++} "
-    "END{s=\"\"; for(i=1;i<=n;i++) s=s (s==\"\"?\"\":\", \") o[i] (c[o[i]]>1?\" (x\" c[o[i]] \")\":\"\"); if(s!=\"\") print s}' \"$L\""
-)
-
-# dkeff of each perturbed system: correlated sampling (PERTURBED SYSTEM NO n block,
-# LOWEST SIGMA line) or Taylor series (one "##  n  dk +/- s" line per system)
-DKEFF = L + (
-    "LC_ALL=C awk -v f=%d '/^##/{if($0~/PERTURBED SYSTEM NO/){match($0,/NO +[0-9]+/);s=substr($0,RSTART+3,RLENGTH-3)+0} "
-    "else if(s>0 && $0~/LOWEST SIGMA ESTI\\./){for(i=1;i<=NF;i++) if($i==\"+/-\"){m[s]=$(i-1);d[s]=$(i+1)}; s=0} "
-    "if($0~/TAYLOR SERIES EXPANSION/) t=1; if(t && $2~/^[0-9]+$/ && $4==\"+/-\"){m[$2]=$3;d[$2]=$5}} "
-    "END{o=\"\"; for(k=1;k in m;k++){v=(f==1?m[k]:d[k]); sub(/^\\+/,\"\",v); o=o (o==\"\"?\"\":\", \") \"\\\"\" k \"\\\": \" v}; print \"{\" o \"}\"}' \"$L\""
-)
-
-model = OrderedDict([
-    ("id", "Moret"),
-    ("varprefix", "$"),
-    ("formulaprefix", "@"),
-    ("delim", "{}"),
-    ("commentline", "*"),
-    ("output", OrderedDict([
-        ("moret_status", STATUS),
-        ("mean_keff", KEFF % "-1"),
-        ("sigma_keff", KEFF % "+1"),
-        ("keff_estimator", ESTIMATOR),
-        ("active_cycles", CYCLES),
-        ("transient_cycles", TRANSIENT),
-        ("dkeff", DKEFF % 1),
-        ("sigma_dkeff", DKEFF % 2),
-        ("moret_warnings", WARNINGS),
-        ("moret_version", VERSION),
-        ("cpu_time", CPU),
-    ])),
-])
-text = json.dumps(model, indent=4, ensure_ascii=False) + "\n"
 
 if __name__ == "__main__":
     if "--check" in sys.argv[1:]:
-        if MODEL.read_text() != text:
+        if MODEL.read_text() != text():
             sys.exit(f"{MODEL} is not up to date: run python3 tools/make_model.py")
     else:
-        MODEL.write_text(text)
+        MODEL.write_text(text())

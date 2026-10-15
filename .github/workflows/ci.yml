@@ -65,7 +65,7 @@ jobs:
       run: |
         python tests/test_plugin.py
 
-    - name: Check that the model JSON matches its generator
+    - name: Check that the model JSON matches its generator (tools/moret_outputs.py)
       run: |
         python tools/make_model.py --check
 
@@ -74,15 +74,6 @@ jobs:
         pip install pytest
         pytest tests/test_calculator.py tests/test_outputs.py tests/test_fz_e2e.py -v
 
-    - name: Test output extraction with mawk and busybox awk
-      run: |
-        sudo apt-get install -y mawk busybox
-        for impl in mawk "busybox awk"; do
-          mkdir -p "/tmp/awk-${impl%% *}"
-          printf '#!/bin/sh\nexec %s "$@"\n' "$impl" > "/tmp/awk-${impl%% *}/awk"
-          chmod +x "/tmp/awk-${impl%% *}/awk"
-          PATH="/tmp/awk-${impl%% *}:$PATH" pytest tests/test_outputs.py -q
-        done
 
   lint:
     name: Lint Shell Scripts

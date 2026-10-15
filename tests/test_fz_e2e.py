@@ -14,6 +14,8 @@ from pathlib import Path
 import pytest
 
 fz = pytest.importorskip("fz")
+# python:// outputs of the Moret model need fz >= 1.2
+pytest.importorskip("fz.outparsers", reason="fz >= 1.2 required (python:// outputs)")
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests" / "fixtures" / "moret6"
